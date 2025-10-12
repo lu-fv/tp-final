@@ -1,0 +1,13 @@
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.user-form {
+  width: 100%;
+}
+
+.password-form {
+  width: 100%;
+}
