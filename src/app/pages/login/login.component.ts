@@ -11,7 +11,8 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatButtonModule, MatButton} from '@angular/material/button';
+import { MatButtonModule, MatButton } from '@angular/material/button';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +27,11 @@ import {MatButtonModule, MatButton} from '@angular/material/button';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  providers: [AuthService],
 })
 export class LoginComponent {
   private formbuilder = inject(FormBuilder);
+  private authService = inject(AuthService);
   loginForm = this.formbuilder.group({
     user: ['', [Validators.required, Validators.max(5)]],
     password: [
@@ -37,16 +40,19 @@ export class LoginComponent {
     ],
   });
   constructor() {}
-  get user(){
-    return this.loginForm.get("user")
+  get user() {
+    return this.loginForm.get('user');
   }
 
-  get password(){
-    return this.loginForm.get("password")
+  get password() {
+    return this.loginForm.get('password');
   }
   submit(): void {
-    console.log(this.loginForm)
-    if (this.loginForm.invalid)
-      return;
+    console.log(this.loginForm);
+    if (this.loginForm.invalid) return;
+    this.authService.login(
+      Number(this.user?.value),
+      this.password?.value as string
+    )
   }
 }
