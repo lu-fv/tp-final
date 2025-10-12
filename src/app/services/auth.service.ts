@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   login(user:number, password:string){
     return  this.http.get("");
