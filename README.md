@@ -6,7 +6,7 @@
 
 3) ng serve 
 4) ng add @angular/material >> agrego libreria CSS >>  Y
-
+5) https://material.angular.dev/components/table/overview 
 
 
 # Tpfinal
@@ -156,8 +156,8 @@ bash
 ng new mi-proyecto
 
 # Generar componente
-ng generate giy nombre-componente
-
+ng generate component nombre-componente
+ng g forma reducida
 # Generar servicio
 ng generate service nombre-servicio
 
