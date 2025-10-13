@@ -1,0 +1,74 @@
+{
+  "user": [
+    {
+      "name": "Lucía",
+      "lastname": "Franco",
+      "legajo": 1,
+      "password": "abc123",
+      "type":"student"
+    },
+    {
+      "name": "Juan",
+      "lastname": "Pérez",
+      "legajo": 2,
+      "password": "jp4567",
+      "type":"student"
+    },
+    {
+      "name": "María",
+      "lastname": "Gómez",
+      "legajo": 3,
+      "password": "M4r14G",
+      "type":"student"
+    },
+    {
+      "name": "Carlos",
+      "lastname": "Rodríguez",
+      "legajo": 4,
+      "password": "Car10",
+      "type":"student"
+    },
+    {
+      "name": "Ana",
+      "lastname": "López",
+      "legajo": 5,
+      "password": "Ana89",
+      "type":"student"
+    },
+    {
+      "name": "Sofía",
+      "lastname": "Martínez",
+      "legajo": 6,
+      "password": "sof321",
+      "type":"student"
+    },
+    {
+      "name": "Diego",
+      "lastname": "Fernández",
+      "legajo": 7,
+      "password": "Dg2025",
+      "type":"student"
+    },
+    {
+      "name": "Valentina",
+      "lastname": "Torres",
+      "legajo": 8,
+      "password": "val1234",
+      "type":"student"
+    },
+    {
+      "name": "Mateo",
+      "lastname": "Suárez",
+      "legajo": 9,
+      "password": "mt456",
+      "type":"student"
+    },
+    {
+      "name": "Camila",
+      "lastname": "Navarro",
+      "legajo": 10,
+      "password": "Cm890",
+      "type":"student"
+    }
+  ]
+}

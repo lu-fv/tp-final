@@ -161,8 +161,10 @@ ng g forma reducida
 # Generar servicio
 ng generate service nombre-servicio
 
-# Ejecutar en desarrollo
+# Ejecutar en desarrollo o corre la aplicacion de angular
 ng serve
+# Ejecutar en json-server 
+json-server --watch json/db.json --port 3000
 
 # Construir para producción
 ng build
