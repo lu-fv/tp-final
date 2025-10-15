@@ -10,10 +10,10 @@ export class AuthService {
   constructor() { }
 
   login(user:number, password:string){
-    return this.http.get(`http://localhost:3000/user?legajo=${user}&password=${password}`);
+    return this.http.get(`http://localhost:3000/users?legajo=${user}&password=${password}`);
   }
 
-  signup (name:string, lastname:string, password:string){
-    return this.http.post("http://localhost:3000/user",{name,lastname,password});
+  signup (firstName:string, lastName:string, password:string){
+    return this.http.post("http://localhost:3000/users",{firstName,lastName,password});
   }
 }

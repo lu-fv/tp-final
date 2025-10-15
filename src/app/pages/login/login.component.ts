@@ -58,12 +58,15 @@ export class LoginComponent {
         next: (result: any) => {
           console.log(result);
           if (result.length > 0) {
-            this.alert.set('Se encontro el usuario '+ result[0].name);
+            this.alert.set('Se encontro el usuario '+ result[0].firstName);
           } else {
             this.alert.set('Legajo o pass incorrecto');
           }
         },
-        error: (err) => console.error('Error:', err),
+        error: (err) => {
+          console.error('Error:', err)
+        this.alert.set('Ocurrio un error ');
+        },
       });
   }
 }
