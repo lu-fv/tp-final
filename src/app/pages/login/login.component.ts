@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule, MatButton } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { map } from 'rxjs';
+import { MenuServiceService } from '../../menu.service.service';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ import { map } from 'rxjs';
 export class LoginComponent {
   private formbuilder = inject(FormBuilder);
   private authService = inject(AuthService);
+  private menuService = inject(MenuServiceService);
   loginForm = this.formbuilder.group({
     user: ['', [Validators.required, Validators.max(100000)]],
     password: [
@@ -49,7 +51,7 @@ export class LoginComponent {
   get password() {
     return this.loginForm.get('password');
   }
-  submit(): void {
+  /*submit(): void {
     console.log(this.loginForm);
     if (this.loginForm.invalid) return;
     this.authService
@@ -66,6 +68,31 @@ export class LoginComponent {
         error: (err) => {
           console.error('Error:', err)
         this.alert.set('Ocurrio un error ');
+        },
+      });
+  }*/
+
+  submit(): void {
+    if (this.loginForm.invalid) return;
+
+    this.authService
+      .login(Number(this.user?.value), this.password?.value as string)
+      .subscribe({
+        next: (result: any) => {
+          if (result.length > 0) {
+            const usuario = result[0];
+            this.alert.set('Bienvenido ' + usuario.firstName);
+
+            this.menuService.setRole(usuario.role);
+
+            console.log('Rol asignado:', usuario.role);
+          } else {
+            this.alert.set('Legajo o contraseña incorrectos');
+          }
+        },
+        error: (err) => {
+          console.error('Error:', err);
+          this.alert.set('Ocurrió un error al iniciar sesión');
         },
       });
   }

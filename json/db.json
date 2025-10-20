@@ -5,166 +5,360 @@
       "lastname": "Franco",
       "legajo": 1,
       "password": "abc123",
-      "type": "student",
+      "role": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1122", "name": "Sistemas de Procesamiento de Datos", "status": "approved" },
-        { "code": "95-1123", "name": "Matemática", "status": "approved" },
-        { "code": "95-1111", "name": "Inglés I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "in_progress" },
-        { "code": "95-1126", "name": "Arquitectura y Sistemas Operativos", "status": "in_progress" },
-        { "code": "95-1104", "name": "Estadísticas", "status": "pending" },
-        { "code": "95-1112", "name": "Inglés II", "status": "pending" }
+        {
+          "courseCode": "95-1121",
+          "courseName": "Programación I",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1111",
+          "courseName": "Inglés I",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1122",
+          "courseName": "Sistemas de Procesamiento de Datos",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1125",
+          "courseName": "Programación II",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1127",
+          "courseName": "Laboratorio de Computación II",
+          "status": "completed"
+        }
       ]
     },
     {
-      "name": "Juan",
+      "firstName": "Juan",
       "lastname": "Pérez",
       "legajo": 2,
       "password": "jp4567",
-      "type": "student",
+      "role": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "in_progress" },
-        { "code": "95-1230", "name": "Programación III", "status": "pending" },
-        { "code": "95-1234", "name": "Laboratorio de Computación III", "status": "pending" }
+        {
+          "courseCode": "95-1123",
+          "courseName": "Matemática",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1126",
+          "courseName": "Arquitectura y Sistemas Operativos",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1128",
+          "courseName": "Metodología de la Investigación",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1112",
+          "courseName": "Inglés II",
+          "status": "completed"
+        }
       ]
     },
     {
-      "name": "María",
+      "firstName": "María",
       "lastname": "Gómez",
       "legajo": 3,
       "password": "M4r14G",
-      "type": "student",
+      "role": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1122", "name": "Sistemas de Procesamiento de Datos", "status": "approved" },
-        { "code": "95-1111", "name": "Inglés I", "status": "approved" },
-        { "code": "95-1104", "name": "Estadísticas", "status": "in_progress" },
-        { "code": "95-1112", "name": "Inglés II", "status": "pending" }
+        {
+          "courseCode": "95-1230",
+          "courseName": "Programación III",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1234",
+          "courseName": "Laboratorio de Computación III",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1235",
+          "courseName": "Metodología de Sistemas I",
+          "status": "inProgress"
+        }
       ]
     },
     {
-      "name": "Carlos",
+      "firstName": "Carlos",
       "lastname": "Rodríguez",
       "legajo": 4,
       "password": "Car10",
-      "type": "student",
+      "role": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "approved" },
-        { "code": "95-1230", "name": "Programación III", "status": "in_progress" },
-        { "code": "95-1234", "name": "Laboratorio de Computación III", "status": "in_progress" },
-        { "code": "95-1235", "name": "Metodología de Sistemas I", "status": "pending" }
+        {
+          "courseCode": "95-1121",
+          "courseName": "Programación I",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1125",
+          "courseName": "Programación II",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1230",
+          "courseName": "Programación III",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1236",
+          "courseName": "Diseño y Administración de Base de Datos",
+          "status": "notStarted"
+        }
       ]
     },
     {
-      "name": "Ana",
+      "firstName": "Ana",
       "lastname": "López",
       "legajo": 5,
       "password": "Ana89",
-      "type": "student",
+      "role": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1122", "name": "Sistemas de Procesamiento de Datos", "status": "approved" },
-        { "code": "95-1123", "name": "Matemática", "status": "approved" },
-        { "code": "95-1111", "name": "Inglés I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1126", "name": "Arquitectura y Sistemas Operativos", "status": "approved" },
-        { "code": "95-1104", "name": "Estadísticas", "status": "in_progress" },
-        { "code": "95-1128", "name": "Metodología de la Investigación", "status": "pending" }
+        {
+          "courseCode": "95-1111",
+          "courseName": "Inglés I",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1112",
+          "courseName": "Inglés II",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1209",
+          "courseName": "Legislación",
+          "status": "notStarted"
+        }
       ]
     },
     {
-      "name": "Sofía",
+      "firstName": "Sofía",
       "lastname": "Martínez",
       "legajo": 6,
       "password": "sof321",
-      "type": "student",
-      "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "approved" },
-        { "code": "95-1230", "name": "Programación III", "status": "approved" },
-        { "code": "95-1234", "name": "Laboratorio de Computación III", "status": "approved" },
-        { "code": "95-1235", "name": "Metodología de Sistemas I", "status": "in_progress" },
-        { "code": "95-1236", "name": "Diseño y Administración de Base de Datos", "status": "pending" }
-      ]
+      "role": "admin"
     },
     {
-      "name": "Diego",
+      "firstName": "Diego",
       "lastname": "Fernández",
       "legajo": 7,
       "password": "Dg2025",
-      "type": "student",
-      "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1122", "name": "Sistemas de Procesamiento de Datos", "status": "approved" },
-        { "code": "95-1123", "name": "Matemática", "status": "approved" },
-        { "code": "95-1111", "name": "Inglés I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "approved" },
-        { "code": "95-1230", "name": "Programación III", "status": "in_progress" }
-      ]
+       "role": "admin"
     },
+    
     {
-      "name": "Valentina",
+      "firstName": "Valentina",
       "lastname": "Torres",
       "legajo": 8,
       "password": "val1234",
       "type": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "in_progress" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "pending" },
-        { "code": "95-1126", "name": "Arquitectura y Sistemas Operativos", "status": "pending" }
+        {
+          "courseCode": "95-1233",
+          "courseName": "Elementos de Investigación Operativa",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1234",
+          "courseName": "Laboratorio de Computación III",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1235",
+          "courseName": "Metodología de Sistemas I",
+          "status": "inProgress"
+        }
       ]
     },
     {
-      "name": "Mateo",
+      "firstName": "Mateo",
       "lastname": "Suárez",
       "legajo": 9,
       "password": "mt456",
       "type": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "approved" },
-        { "code": "95-1230", "name": "Programación III", "status": "approved" },
-        { "code": "95-1234", "name": "Laboratorio de Computación III", "status": "approved" },
-        { "code": "95-1235", "name": "Metodología de Sistemas I", "status": "in_progress" },
-        { "code": "95-1236", "name": "Diseño y Administración de Base de Datos", "status": "pending" }
+        {
+          "courseCode": "95-1121",
+          "courseName": "Programación I",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1125",
+          "courseName": "Programación II",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1230",
+          "courseName": "Programación III",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1236",
+          "courseName": "Diseño y Administración de Base de Datos",
+          "status": "inProgress"
+        }
       ]
     },
     {
-      "name": "Camila",
+      "firstName": "Camila",
       "lastname": "Navarro",
       "legajo": 10,
       "password": "Cm890",
       "type": "student",
       "courses": [
-        { "code": "95-1121", "name": "Programación I", "status": "approved" },
-        { "code": "95-1122", "name": "Sistemas de Procesamiento de Datos", "status": "approved" },
-        { "code": "95-1123", "name": "Matemática", "status": "approved" },
-        { "code": "95-1111", "name": "Inglés I", "status": "approved" },
-        { "code": "95-1124", "name": "Laboratorio de Computación I", "status": "approved" },
-        { "code": "95-1125", "name": "Programación II", "status": "approved" },
-        { "code": "95-1127", "name": "Laboratorio de Computación II", "status": "approved" },
-        { "code": "95-1230", "name": "Programación III", "status": "approved" },
-        { "code": "95-1234", "name": "Laboratorio de Computación III", "status": "approved" },
-        { "code": "95-1235", "name": "Metodología de Sistemas I", "status": "approved" },
-        { "code": "95-1236", "name": "Diseño y Administración de Base de Datos", "status": "in_progress" },
-        { "code": "95-1237", "name": "Laboratorio de Computación IV", "status": "pending" }
+        {
+          "courseCode": "95-1128",
+          "courseName": "Metodología de la Investigación",
+          "status": "completed"
+        },
+        {
+          "courseCode": "95-1235",
+          "courseName": "Metodología de Sistemas I",
+          "status": "inProgress"
+        },
+        {
+          "courseCode": "95-1209",
+          "courseName": "Legislación",
+          "status": "notStarted"
+        }
       ]
+    }
+  ],
+  "courses": [
+    {
+      "courseCode": "95-1121",
+      "courseName": "Programación I",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1122",
+      "courseName": "Sistemas de Procesamiento de Datos",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1123",
+      "courseName": "Matemática",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1111",
+      "courseName": "Inglés I",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1124",
+      "courseName": "Laboratorio de Computación I",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1125",
+      "courseName": "Programación II",
+      "requiresToEnroll": ["95-1121", "95-1124"],
+      "requiresToPass": ["95-1121", "95-1124"]
+    },
+    {
+      "courseCode": "95-1126",
+      "courseName": "Arquitectura y Sistemas Operativos",
+      "requiresToEnroll": ["95-1122"],
+      "requiresToPass": ["95-1122"]
+    },
+    {
+      "courseCode": "95-1104",
+      "courseName": "Estadísticas",
+      "requiresToEnroll": ["95-1123"],
+      "requiresToPass": ["95-1123"]
+    },
+    {
+      "courseCode": "95-1112",
+      "courseName": "Inglés II",
+      "requiresToEnroll": ["95-1111"],
+      "requiresToPass": ["95-1111"]
+    },
+    {
+      "courseCode": "95-1127",
+      "courseName": "Laboratorio de Computación II",
+      "requiresToEnroll": ["95-1121", "95-1124"],
+      "requiresToPass": ["95-1121", "95-1124"]
+    },
+    {
+      "courseCode": "95-1128",
+      "courseName": "Metodología de la Investigación",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1230",
+      "courseName": "Programación III",
+      "requiresToEnroll": ["95-1125", "95-1127"],
+      "requiresToPass": ["95-1125", "95-1127"]
+    },
+    {
+      "courseCode": "95-1231",
+      "courseName": "Organización Contable de la Empresa",
+      "requiresToEnroll": ["95-1123"],
+      "requiresToPass": ["95-1123"]
+    },
+    {
+      "courseCode": "95-1232",
+      "courseName": "Organización Empresarial",
+      "requiresToEnroll": ["95-1104"],
+      "requiresToPass": ["95-1104"]
+    },
+    {
+      "courseCode": "95-1233",
+      "courseName": "Elementos de Investigación Operativa",
+      "requiresToEnroll": ["95-1104"],
+      "requiresToPass": ["95-1104"]
+    },
+    {
+      "courseCode": "95-1234",
+      "courseName": "Laboratorio de Computación III",
+      "requiresToEnroll": ["95-1125", "95-1127"],
+      "requiresToPass": ["95-1125", "95-1127"]
+    },
+    {
+      "courseCode": "95-1235",
+      "courseName": "Metodología de Sistemas I",
+      "requiresToEnroll": [
+        "95-1128",
+        "95-1230",
+        "95-1231",
+        "95-1232",
+        "95-1234"
+      ],
+      "requiresToPass": ["95-1128", "95-1230", "95-1231", "95-1232", "95-1234"]
+    },
+    {
+      "courseCode": "95-1236",
+      "courseName": "Diseño y Administración de Base de Datos",
+      "requiresToEnroll": ["95-1230", "95-1234"],
+      "requiresToPass": ["95-1230", "95-1234"]
+    },
+    {
+      "courseCode": "95-1209",
+      "courseName": "Legislación",
+      "requiresToEnroll": [],
+      "requiresToPass": []
+    },
+    {
+      "courseCode": "95-1237",
+      "courseName": "Laboratorio de Computación IV",
+      "requiresToEnroll": ["95-1230", "95-1234"],
+      "requiresToPass": ["95-1230", "95-1234"]
     }
   ]
 }
