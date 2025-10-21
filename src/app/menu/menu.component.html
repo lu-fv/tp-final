@@ -1,10 +1,22 @@
-<nav class="menu">
-  <ul>
-    <li><a routerLink="/plan-academico">Plan Académico</a></li>
-    <li><a routerLink="/estado-academico">Estado Académico</a></li>
-    <li><a routerLink="/inscripcion-cursada">Inscripción a Cursada</a></li>
-    <li><a routerLink="/descarga-certificado">Descarga Certificado</a></li>
-    <li><a routerLink="/alerta-pago">Alerta de Pago</a></li>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <img src="assets/logo-utn.png" alt="UTN" height="40" />
+    <span>UTN - Autogestión</span>
+  </div>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/inicio">Inicio</a></li>
+
+    <li *ngIf="isAlumno()"><a routerLink="/inscripciones">Inscripciones</a></li>
+    <li *ngIf="isAlumno()"><a routerLink="/deuda">Consulta de Deuda</a></li>
+
+    <li *ngIf="isAdmin()"><a routerLink="/admin/alumnos">Administrar Alumnos</a></li>
+    <li *ngIf="isAdmin()"><a routerLink="/admin/inscripciones">Inscripciones</a></li>
+
+    <li><a routerLink="/notas">Notas</a></li>
+    <li><a routerLink="/certificados">Certificados</a></li>
+    <li class="logout" (click)="logout()">Salir</li>
   </ul>
 </nav>
 
+<router-outlet></router-outlet>

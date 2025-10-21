@@ -1,364 +1,559 @@
 {
   "users": [
     {
-      "firstName": "Lucía",
-      "lastname": "Franco",
-      "legajo": 1,
-      "password": "abc123",
-      "role": "student",
-      "courses": [
-        {
-          "courseCode": "95-1121",
-          "courseName": "Programación I",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1111",
-          "courseName": "Inglés I",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1122",
-          "courseName": "Sistemas de Procesamiento de Datos",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1125",
-          "courseName": "Programación II",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1127",
-          "courseName": "Laboratorio de Computación II",
-          "status": "completed"
-        }
-      ]
+      "id": "1",
+      "username": "alumno1",
+      "password": "1234",
+      "role": "alumno",
+      "studentId": 101
     },
     {
-      "firstName": "Juan",
-      "lastname": "Pérez",
-      "legajo": 2,
-      "password": "jp4567",
-      "role": "student",
-      "courses": [
-        {
-          "courseCode": "95-1123",
-          "courseName": "Matemática",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1126",
-          "courseName": "Arquitectura y Sistemas Operativos",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1128",
-          "courseName": "Metodología de la Investigación",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1112",
-          "courseName": "Inglés II",
-          "status": "completed"
-        }
-      ]
-    },
-    {
-      "firstName": "María",
-      "lastname": "Gómez",
-      "legajo": 3,
-      "password": "M4r14G",
-      "role": "student",
-      "courses": [
-        {
-          "courseCode": "95-1230",
-          "courseName": "Programación III",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1234",
-          "courseName": "Laboratorio de Computación III",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1235",
-          "courseName": "Metodología de Sistemas I",
-          "status": "inProgress"
-        }
-      ]
-    },
-    {
-      "firstName": "Carlos",
-      "lastname": "Rodríguez",
-      "legajo": 4,
-      "password": "Car10",
-      "role": "student",
-      "courses": [
-        {
-          "courseCode": "95-1121",
-          "courseName": "Programación I",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1125",
-          "courseName": "Programación II",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1230",
-          "courseName": "Programación III",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1236",
-          "courseName": "Diseño y Administración de Base de Datos",
-          "status": "notStarted"
-        }
-      ]
-    },
-    {
-      "firstName": "Ana",
-      "lastname": "López",
-      "legajo": 5,
-      "password": "Ana89",
-      "role": "student",
-      "courses": [
-        {
-          "courseCode": "95-1111",
-          "courseName": "Inglés I",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1112",
-          "courseName": "Inglés II",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1209",
-          "courseName": "Legislación",
-          "status": "notStarted"
-        }
-      ]
-    },
-    {
-      "firstName": "Sofía",
-      "lastname": "Martínez",
-      "legajo": 6,
-      "password": "sof321",
-      "role": "admin"
-    },
-    {
-      "firstName": "Diego",
-      "lastname": "Fernández",
-      "legajo": 7,
-      "password": "Dg2025",
-       "role": "admin"
-    },
-    
-    {
-      "firstName": "Valentina",
-      "lastname": "Torres",
-      "legajo": 8,
-      "password": "val1234",
-      "type": "student",
-      "courses": [
-        {
-          "courseCode": "95-1233",
-          "courseName": "Elementos de Investigación Operativa",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1234",
-          "courseName": "Laboratorio de Computación III",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1235",
-          "courseName": "Metodología de Sistemas I",
-          "status": "inProgress"
-        }
-      ]
-    },
-    {
-      "firstName": "Mateo",
-      "lastname": "Suárez",
-      "legajo": 9,
-      "password": "mt456",
-      "type": "student",
-      "courses": [
-        {
-          "courseCode": "95-1121",
-          "courseName": "Programación I",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1125",
-          "courseName": "Programación II",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1230",
-          "courseName": "Programación III",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1236",
-          "courseName": "Diseño y Administración de Base de Datos",
-          "status": "inProgress"
-        }
-      ]
-    },
-    {
-      "firstName": "Camila",
-      "lastname": "Navarro",
-      "legajo": 10,
-      "password": "Cm890",
-      "type": "student",
-      "courses": [
-        {
-          "courseCode": "95-1128",
-          "courseName": "Metodología de la Investigación",
-          "status": "completed"
-        },
-        {
-          "courseCode": "95-1235",
-          "courseName": "Metodología de Sistemas I",
-          "status": "inProgress"
-        },
-        {
-          "courseCode": "95-1209",
-          "courseName": "Legislación",
-          "status": "notStarted"
-        }
-      ]
+      "id": "2",
+      "username": "alumno2",
+      "password": "1234",
+      "role": "alumno",
+      "studentId": 102
     }
   ],
-  "courses": [
+  
+  "admins": [
+    { "id": "1", "username": "admin", "password": "admin", "nombre": "Admin Demo" },
+    { "id": "2", "username": "secretaria", "password": "utn2025", "nombre": "Secretaría Académica" }
+  ],
+
+  "debts": [],
+
+  "students": [
     {
-      "courseCode": "95-1121",
-      "courseName": "Programación I",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "101",
+      "legajo": "MDP-2020-001",
+      "nombre": "Gabriel",
+      "apellido": "Laguna",
+      "dni": "37.240.635",
+      "email": "gabriel.laguna@alumnos.utn.edu.ar",
+      "telefono": "223-555-0000",
+      "condicion": "regular",
+      "fechaIngreso": "2022-03-01"
     },
     {
-      "courseCode": "95-1122",
-      "courseName": "Sistemas de Procesamiento de Datos",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "102",
+      "legajo": "MDP-2020-002",
+      "nombre": "Lucía",
+      "apellido": "Franco Vertiz",
+      "dni": "36.000.000",
+      "email": "lucia.franco@alumnos.utn.edu.ar",
+      "telefono": "223-555-0001",
+      "condicion": "regular",
+      "fechaIngreso": "2021-03-01"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "1",
+      "codigo": "95-1121",
+      "nombre": "Programación I",
+      "creditos": 8,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1123",
-      "courseName": "Matemática",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "2",
+      "codigo": "95-1122",
+      "nombre": "Sistemas de Procesamiento de Datos",
+      "creditos": 6,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1111",
-      "courseName": "Inglés I",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "3",
+      "codigo": "95-1123",
+      "nombre": "Matemática",
+      "creditos": 8,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1124",
-      "courseName": "Laboratorio de Computación I",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "4",
+      "codigo": "95-1111",
+      "nombre": "Inglés I",
+      "creditos": 2,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1125",
-      "courseName": "Programación II",
-      "requiresToEnroll": ["95-1121", "95-1124"],
-      "requiresToPass": ["95-1121", "95-1124"]
+      "id": "5",
+      "codigo": "95-1124",
+      "nombre": "Laboratorio de Computación I",
+      "creditos": 4,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1126",
-      "courseName": "Arquitectura y Sistemas Operativos",
-      "requiresToEnroll": ["95-1122"],
-      "requiresToPass": ["95-1122"]
+      "id": "6",
+      "codigo": "95-1125",
+      "nombre": "Programación II",
+      "creditos": 8,
+      "correlativasCursar": [
+        "95-1121",
+        "95-1124"
+      ],
+      "correlativasRendir": [
+        "95-1121",
+        "95-1124"
+      ]
     },
     {
-      "courseCode": "95-1104",
-      "courseName": "Estadísticas",
-      "requiresToEnroll": ["95-1123"],
-      "requiresToPass": ["95-1123"]
+      "id": "7",
+      "codigo": "95-1126",
+      "nombre": "Arquitectura y Sistemas Operativos",
+      "creditos": 6,
+      "correlativasCursar": [
+        "95-1122"
+      ],
+      "correlativasRendir": [
+        "95-1122"
+      ]
     },
     {
-      "courseCode": "95-1112",
-      "courseName": "Inglés II",
-      "requiresToEnroll": ["95-1111"],
-      "requiresToPass": ["95-1111"]
+      "id": "8",
+      "codigo": "95-1129",
+      "nombre": "Estadística",
+      "creditos": 6,
+      "correlativasCursar": [
+        "95-1123"
+      ],
+      "correlativasRendir": [
+        "95-1123"
+      ]
     },
     {
-      "courseCode": "95-1127",
-      "courseName": "Laboratorio de Computación II",
-      "requiresToEnroll": ["95-1121", "95-1124"],
-      "requiresToPass": ["95-1121", "95-1124"]
+      "id": "9",
+      "codigo": "95-1112",
+      "nombre": "Inglés II",
+      "creditos": 2,
+      "correlativasCursar": [
+        "95-1111"
+      ],
+      "correlativasRendir": [
+        "95-1111"
+      ]
     },
     {
-      "courseCode": "95-1128",
-      "courseName": "Metodología de la Investigación",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "10",
+      "codigo": "95-1127",
+      "nombre": "Laboratorio de Computación II",
+      "creditos": 4,
+      "correlativasCursar": [
+        "95-1121",
+        "95-1124"
+      ],
+      "correlativasRendir": [
+        "95-1121",
+        "95-1124"
+      ]
     },
     {
-      "courseCode": "95-1230",
-      "courseName": "Programación III",
-      "requiresToEnroll": ["95-1125", "95-1127"],
-      "requiresToPass": ["95-1125", "95-1127"]
+      "id": "11",
+      "codigo": "95-1128",
+      "nombre": "Metodología de la Investigación",
+      "creditos": 2,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1231",
-      "courseName": "Organización Contable de la Empresa",
-      "requiresToEnroll": ["95-1123"],
-      "requiresToPass": ["95-1123"]
+      "id": "12",
+      "codigo": "95-1230",
+      "nombre": "Programación III",
+      "creditos": 8,
+      "correlativasCursar": [
+        "95-1125",
+        "95-1127"
+      ],
+      "correlativasRendir": [
+        "95-1125",
+        "95-1127"
+      ]
     },
     {
-      "courseCode": "95-1232",
-      "courseName": "Organización Empresarial",
-      "requiresToEnroll": ["95-1104"],
-      "requiresToPass": ["95-1104"]
+      "id": "13",
+      "codigo": "95-1231",
+      "nombre": "Organización Contable de la Empresa",
+      "creditos": 4,
+      "correlativasCursar": [],
+      "correlativasRendir": [
+        "95-1123"
+      ]
     },
     {
-      "courseCode": "95-1233",
-      "courseName": "Elementos de Investigación Operativa",
-      "requiresToEnroll": ["95-1104"],
-      "requiresToPass": ["95-1104"]
+      "id": "14",
+      "codigo": "95-1232",
+      "nombre": "Organización Empresarial",
+      "creditos": 4,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1234",
-      "courseName": "Laboratorio de Computación III",
-      "requiresToEnroll": ["95-1125", "95-1127"],
-      "requiresToPass": ["95-1125", "95-1127"]
+      "id": "15",
+      "codigo": "95-1233",
+      "nombre": "Elementos de la Investigación Operativa",
+      "creditos": 4,
+      "correlativasCursar": [
+        "95-1123"
+      ],
+      "correlativasRendir": [
+        "95-1123"
+      ]
     },
     {
-      "courseCode": "95-1235",
-      "courseName": "Metodología de Sistemas I",
-      "requiresToEnroll": [
+      "id": "16",
+      "codigo": "95-1234",
+      "nombre": "Laboratorio de Computación III",
+      "creditos": 4,
+      "correlativasCursar": [
+        "95-1125",
+        "95-1127"
+      ],
+      "correlativasRendir": [
+        "95-1125",
+        "95-1127"
+      ]
+    },
+    {
+      "id": "17",
+      "codigo": "95-1235",
+      "nombre": "Metodología de Sistemas I",
+      "creditos": 6,
+      "correlativasCursar": [
         "95-1128",
         "95-1230",
         "95-1231",
         "95-1232",
         "95-1234"
       ],
-      "requiresToPass": ["95-1128", "95-1230", "95-1231", "95-1232", "95-1234"]
+      "correlativasRendir": [
+        "95-1128",
+        "95-1230",
+        "95-1231",
+        "95-1232",
+        "95-1234"
+      ]
     },
     {
-      "courseCode": "95-1236",
-      "courseName": "Diseño y Administración de Base de Datos",
-      "requiresToEnroll": ["95-1230", "95-1234"],
-      "requiresToPass": ["95-1230", "95-1234"]
+      "id": "18",
+      "codigo": "95-1236",
+      "nombre": "Diseño y Administración de Base de Datos",
+      "creditos": 6,
+      "correlativasCursar": [
+        "95-1230",
+        "95-1234"
+      ],
+      "correlativasRendir": [
+        "95-1230",
+        "95-1234"
+      ]
     },
     {
-      "courseCode": "95-1209",
-      "courseName": "Legislación",
-      "requiresToEnroll": [],
-      "requiresToPass": []
+      "id": "19",
+      "codigo": "95-1209",
+      "nombre": "Legislación",
+      "creditos": 2,
+      "correlativasCursar": [],
+      "correlativasRendir": []
     },
     {
-      "courseCode": "95-1237",
-      "courseName": "Laboratorio de Computación IV",
-      "requiresToEnroll": ["95-1230", "95-1234"],
-      "requiresToPass": ["95-1230", "95-1234"]
+      "id": "20",
+      "codigo": "95-1237",
+      "nombre": "Laboratorio de Computación IV",
+      "creditos": 4,
+      "correlativasCursar": [
+        "95-1230",
+        "95-1234"
+      ],
+      "correlativasRendir": [
+        "95-1230",
+        "95-1234"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "id": "11",
+      "subjectId": 1,
+      "anio": 2025,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Lu/Mi 18-22",
+      "cupo": 40
+    },
+    {
+      "id": "12",
+      "subjectId": 2,
+      "anio": 2025,
+      "cuatrimestre": 1,
+      "comision": "B",
+      "horario": "Ma/Ju 18-22",
+      "cupo": 35
+    },
+    {
+      "id": "13",
+      "subjectId": 3,
+      "anio": 2025,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Sa 8-12",
+      "cupo": 30
+    },
+    {
+      "id": "14",
+      "subjectId": 4,
+      "anio": 2025,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Vi 18-20",
+      "cupo": 45
+    },
+    {
+      "id": "15",
+      "subjectId": 5,
+      "anio": 2025,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Lu 16-18",
+      "cupo": 30
+    },
+    {
+      "id": "21",
+      "subjectId": 6,
+      "anio": 2025,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Lu/Mi 18-22",
+      "cupo": 40
+    },
+    {
+      "id": "22",
+      "subjectId": 7,
+      "anio": 2025,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Ma/Ju 18-22",
+      "cupo": 35
+    },
+    {
+      "id": "23",
+      "subjectId": 8,
+      "anio": 2025,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Sa 8-12",
+      "cupo": 30
+    },
+    {
+      "id": "24",
+      "subjectId": 9,
+      "anio": 2025,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Vi 18-20",
+      "cupo": 45
+    },
+    {
+      "id": "25",
+      "subjectId": 10,
+      "anio": 2025,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Lu 16-18",
+      "cupo": 30
+    },
+    {
+      "id": "31",
+      "subjectId": 12,
+      "anio": 2026,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Lu/Mi 18-22",
+      "cupo": 35
+    },
+    {
+      "id": "32",
+      "subjectId": 13,
+      "anio": 2026,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Ma 18-20",
+      "cupo": 35
+    },
+    {
+      "id": "33",
+      "subjectId": 14,
+      "anio": 2026,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Ju 18-20",
+      "cupo": 35
+    },
+    {
+      "id": "34",
+      "subjectId": 15,
+      "anio": 2026,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Sa 8-12",
+      "cupo": 30
+    },
+    {
+      "id": "35",
+      "subjectId": 16,
+      "anio": 2026,
+      "cuatrimestre": 1,
+      "comision": "A",
+      "horario": "Lu 16-18",
+      "cupo": 30
+    },
+    {
+      "id": "41",
+      "subjectId": 17,
+      "anio": 2026,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Lu/Mi 18-22",
+      "cupo": 30
+    },
+    {
+      "id": "42",
+      "subjectId": 18,
+      "anio": 2026,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Ma/Ju 18-22",
+      "cupo": 30
+    },
+    {
+      "id": "43",
+      "subjectId": 19,
+      "anio": 2026,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Vi 18-20",
+      "cupo": 40
+    },
+    {
+      "id": "44",
+      "subjectId": 20,
+      "anio": 2026,
+      "cuatrimestre": 2,
+      "comision": "A",
+      "horario": "Sa 8-12",
+      "cupo": 30
+    }
+  ],
+  "course_enrollments": [
+    {
+      "id": "9001",
+      "studentId": 101,
+      "courseId": 11,
+      "estado": "inscripto",
+      "fecha": "2025-03-02T12:00:00.000Z"
+    },
+    {
+      "id": "9002",
+      "studentId": 101,
+      "courseId": 12,
+      "estado": "inscripto",
+      "fecha": "2025-03-02T12:05:00.000Z"
+    },
+    {
+      "id": 1760994326965,
+      "studentId": 101,
+      "courseId": "14",
+      "estado": "inscripto",
+      "fecha": "2025-10-20T21:05:26.965Z"
+    },
+    {
+      "id": 1760994340421,
+      "studentId": 101,
+      "courseId": "13",
+      "estado": "inscripto",
+      "fecha": "2025-10-20T21:05:40.421Z"
+    }
+  ],
+  "course_grades": [
+    {
+      "id": "5001",
+      "studentId": 101,
+      "courseId": 11,
+      "parcial1": 7,
+      "parcial2": 6,
+      "promedio": 6.5,
+      "condicion": "aprobado"
+    },
+    {
+      "id": "5002",
+      "studentId": 101,
+      "courseId": 12,
+      "parcial1": 6,
+      "parcial2": 4,
+      "promedio": 5,
+      "condicion": "regular"
+    }
+  ],
+  "exam_tables": [
+    {
+      "id": "7001",
+      "subjectId": 2,
+      "fecha": "2025-07-15",
+      "aula": "Lab 2",
+      "turno": "Noche",
+      "periodo": "Julio 2025"
+    },
+    {
+      "id": "7002",
+      "subjectId": 7,
+      "fecha": "2025-12-10",
+      "aula": "Aula 4",
+      "turno": "Tarde",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7003",
+      "subjectId": 12,
+      "fecha": "2026-07-10",
+      "aula": "Aula 1",
+      "turno": "Mañana",
+      "periodo": "Julio 2026"
+    }
+  ],
+  "exam_enrollments": [
+    {
+      "id": "8001",
+      "studentId": 101,
+      "examTableId": 7001,
+      "estado": "inscripto",
+      "fecha": "2025-07-01T10:00:00.000Z"
+    },
+    {
+      "id": "1760917240781",
+      "studentId": 101,
+      "examTableId": "7002",
+      "estado": "inscripto",
+      "fecha": "2025-10-19T23:40:40.781Z"
+    },
+    {
+      "id": "1760917251401",
+      "studentId": 101,
+      "examTableId": "7001",
+      "estado": "inscripto",
+      "fecha": "2025-10-19T23:40:51.401Z"
+    }
+  ],
+  "exam_grades": [
+    {
+      "id": "8100",
+      "studentId": 101,
+      "examTableId": 7001,
+      "nota": 6,
+      "resultado": "aprobado"
     }
   ]
 }

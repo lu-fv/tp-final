@@ -5,8 +5,8 @@ se debe incluir el FormGroup para poder utilizar el atributo loginForm -->
 (ngSubmit)="submit()"
 [formGroup]="loginForm" class="login-form">
     <mat-form-field class="user-form">
-        <mat-label>Legajo</mat-label>
-        <input id="user" formControlName="user" type="number" matInput placeholder="12345">
+        <mat-label>Usuario</mat-label>
+        <input id="user" formControlName="user" type="text" matInput placeholder="usuario o legajo">
         @if (!user?.valid && user?.touched) {
             <mat-error>Campo requerido</mat-error>
         }
