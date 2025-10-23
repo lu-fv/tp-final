@@ -1,4 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tema Angular Material (prebuilt) */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* Variables globales */
+:root{
+  --utn-primary: #2563eb;     /* Azul único en toda la app */
+  --utn-text:    #ffffff;
+}
+
+/* Reset base + tipografía */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body{
+  margin: 0;
+  background: #0f1c26;        /* color de base detrás de la foto */
+  color: var(--utn-text);
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ====== Fondo de login con parallax ====== */
+.login-bg{
+  /* la capa existe en el CSS del componente, acá definimos la imagen y efecto */
+  background:
+    linear-gradient(to bottom, rgba(14,26,37,.65), rgba(14,26,37,.75)),
+    url('assets/utn-hero.jpg') center / cover no-repeat fixed;  /* parallax con fixed */
+  filter: saturate(1.05);
+}
+
+/* (Opcional) placeholders globales más claros, por si algún otro input no está en el login */
+::placeholder{
+  color: rgba(255,255,255,.75);
+}

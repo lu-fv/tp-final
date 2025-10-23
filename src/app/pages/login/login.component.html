@@ -1,24 +1,60 @@
-<!--#form se utiliza como etiqueta para que funcione el formBuilder y 
-se debe incluir el FormGroup para poder utilizar el atributo loginForm -->
+<div class="login-bg"></div>
 
-<form #form="ngForm" 
-(ngSubmit)="submit()"
-[formGroup]="loginForm" class="login-form">
-    <mat-form-field class="user-form">
+<!-- Marca fija arriba a la izquierda -->
+<header class="brand">
+  <img src="assets/utn-logo.png" alt="UTNMDP" />
+  <span>Autogestión UTN</span>
+</header>
+
+<!-- Contenedor centrado -->
+<div class="login-wrap">
+  <div class="login-card">
+
+    <h3 class="card-title">Ingreso</h3>
+
+    <!-- Toggle Alumno / Admin -->
+    <mat-button-toggle-group
+      class="role-toggle"
+      [formControl]="role"
+      name="role"
+      appearance="legacy">
+      <mat-button-toggle value="alumno">Alumno</mat-button-toggle>
+      <mat-button-toggle value="admin">Administrativo</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <!-- Formulario -->
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+      <mat-form-field appearance="outline" class="full">
         <mat-label>Usuario</mat-label>
-        <input id="user" formControlName="user" type="text" matInput placeholder="usuario o legajo">
-        @if (!user?.valid && user?.touched) {
-            <mat-error>Campo requerido</mat-error>
-        }
-    </mat-form-field>
-    <mat-form-field class="password-form">
-        <mat-label>Contraseña</mat-label>
-        <input id="password" formControlName="password" type="password" matInput placeholder="******">
-         @if (!password?.valid && password?.touched) {
-            <mat-error>Campo requerido</mat-error>
-        }
-    </mat-form-field>
-    <button matButton="elevated">Ingresar</button>
-    <p>{{alert()}}</p>
+        <input matInput formControlName="user" />
+        <mat-error *ngIf="user?.touched && user?.invalid">Campo requerido</mat-error>
+      </mat-form-field>
 
-</form>
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          [type]="hide() ? 'password' : 'text'"
+          formControlName="password" />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="togglePass()"
+          [attr.aria-label]="hide() ? 'Mostrar' : 'Ocultar'">
+          <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.touched && password?.invalid">
+          La contraseña es obligatoria
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="full" type="submit">
+        Ingresar
+      </button>
+
+      <p class="alert" *ngIf="alert()">{{ alert() }}</p>
+    </form>
+  </div>
+</div>

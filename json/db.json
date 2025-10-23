@@ -17,7 +17,7 @@
   ],
   
   "admins": [
-    { "id": "1", "username": "admin", "password": "admin", "nombre": "Admin Demo" },
+    { "id": "1", "username": "admin", "password": "admin", "nombre": "Admin" },
     { "id": "2", "username": "secretaria", "password": "utn2025", "nombre": "Secretaría Académica" }
   ],
 

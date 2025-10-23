@@ -1,29 +1,24 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
-export type Rol = 'alumno' | 'admin' | null;
+import { Injectable, signal } from '@angular/core';
+import type { Rol } from '../core/models';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  private _rol$ = new BehaviorSubject<Rol>(null);
+  // rol actual (reactivo)
+  private _role = signal<Rol | null>(null);
 
-  /** Guarda el rol actual (alumno/admin) */
-  setRole(rol: Rol) {
-    this._rol$.next(rol);
+  // leer
+  role() { return this._role(); }
+
+  // escribir
+  setRole(r: Rol) { this._role.set(r); }
+
+  // helpers para el menú
+  isAlumno() { return this._role() === 'alumno'; }
+  isAdmin()  { return this._role() === 'admin'; }
+
+  // limpiar (logout, etc.)
+  clear() {
+    this._role.set(null);
+    localStorage.removeItem('auth:user');
   }
-
-  /** Devuelve el valor actual (sincrónico) */
-  getRole(): Rol {
-    return this._rol$.value;
-  }
-
-  /** Observable si en algún momento querés reaccionar a cambios */
-  get role$() {
-    return this._rol$.asObservable();
-  }
-
-  /** Helpers para plantillas */
-  isAlumno() { return this._rol$.value === 'alumno'; }
-  isAdmin()  { return this._rol$.value === 'admin'; }
-  clear()    { this._rol$.next(null); }
 }

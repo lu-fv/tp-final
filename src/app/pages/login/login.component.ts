@@ -1,40 +1,60 @@
 import { Component, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   Validators,
   ReactiveFormsModule,
-  FormsModule,
+  FormControl,
 } from '@angular/forms';
+
+// Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
+// Servicios / modelos
 import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
-
+import type { Rol } from '../../core/models';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggleModule,
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'],
   providers: [AuthService],
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
-  private menu = inject(MenuService);
+  private menuService = inject(MenuService);
 
-  // Usuario: string (puede ser "alumno1", "admin", etc.)
-  // Pass: minlength 4 por tu validación
+  // toggle de rol (fuera del form)
+  role = new FormControl<Rol>('alumno', { nonNullable: true });
+
+  // form de credenciales
   loginForm = this.fb.group({
     user: ['', [Validators.required, Validators.maxLength(100)]],
     password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
   });
 
-  alert = signal<string | null>(null);
+  // UI
+  private _hide = signal(true);
+  hide() { return this._hide(); }
+  togglePass() { this._hide.set(!this._hide()); }
 
+  alert = signal<string | null>(null);
   get user() { return this.loginForm.get('user'); }
   get password() { return this.loginForm.get('password'); }
 
@@ -43,31 +63,27 @@ export class LoginComponent {
 
     const username = String(this.user?.value ?? '').trim();
     const pass = String(this.password?.value ?? '').trim();
+    const rolSel = this.role.value;
 
     this.auth.login(username, pass).subscribe({
       next: (result: any) => {
-        // json-server puede devolver array o objeto
         const u = Array.isArray(result) ? result[0] : result;
 
         if (u) {
-          // Nombre robusto: toma lo que exista en tu db.json
+          // nombre robusto
           const nombre =
-            u.nombre ??
-            u.firstName ??
-            u.username ??
-            u.legajo ??
-            'Usuario';
+            (u.nombre && String(u.nombre).trim()) ??
+            (u.firstName && String(u.firstName).trim()) ??
+            (u.username && String(u.username).trim()) ??
+            (u.legajo ? `Legajo ${u.legajo}` : 'Usuario');
 
-          // Rol robusto: si no viene, deduzco por studentId
-          const rol: 'alumno' | 'admin' =
-            u.role ??
-            (u.studentId ? 'alumno' : 'admin');
+          // rol: si viene en el usuario lo usamos, sino el seleccionado
+          const rol: Rol = (u.role as Rol) ?? (u.studentId ? 'alumno' : 'admin') ?? (rolSel ?? 'alumno');
 
-          // Notifico el rol al menú (para mostrar opciones)
-          this.menu.setRole(rol);
+          // exponer al menú
+          this.menuService.setRole(rol);
 
           this.alert.set(`Bienvenido ${nombre}`);
-          // acá podrías navegar si querés: this.router.navigateByUrl('/deuda') ...
         } else {
           this.alert.set('Usuario o contraseña incorrectos');
         }

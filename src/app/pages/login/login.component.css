@@ -1,13 +1,127 @@
-.login-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+:root{
+  --utn-primary: #2563eb;
+  --utn-text:    #ffffff;
 }
 
-.user-form {
-  width: 100%;
+/* ===== Fondo general ===== */
+.login-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  /* OJO: usar ruta relativa sin barra inicial y el nombre real del archivo */
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.05) 100%),
+    url('/assets/utn-hero.jpg') no-repeat center center fixed;
+  background-size: cover;
+  filter: brightness(1.15) contrast(1.06);
+  transition: transform 0.8s ease-out;
+  transform: translateY(0);
 }
 
-.password-form {
-  width: 100%;
+/* Movimiento sutil al hacer scroll */
+body {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
+body::-webkit-scrollbar { width: 6px; }
+body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 4px; }
+body:active .login-bg { transform: translateY(-10px); }
+
+/* ===== Marca UTN ===== */
+.brand {
+  position: fixed;
+  z-index: 2;
+  top: 24px; left: 40px;
+  display: flex; align-items: center; gap: 14px;
+  color: var(--utn-text);
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+  user-select: none;
+}
+.brand img { height: 55px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); }
+.brand span { font-size: 30px; font-weight: 700; letter-spacing: 0.4px; }
+
+/* ===== Contenedor del login ===== */
+.login-wrap {
+  position: relative;
+  min-height: 110vh;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+/* ===== Panel del login ===== */
+.login-card {
+  width: min(640px, 92vw);
+  margin-top: -20px;
+  padding: 28px 26px 32px;
+  color: var(--utn-text);
+  background: rgba(10, 15, 20, 0.48);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+  transition: background .25s, box-shadow .25s, border-color .25s;
+}
+.login-card:hover {
+  background: rgba(10,15,20,0.56);
+  border-color: rgba(255,255,255,0.75);
+  box-shadow: 0 22px 48px rgba(0,0,0,0.55);
+}
+.card-title { margin: 4px 2px 16px; font-weight: 600; }
+.full { width: 100%; }
+
+/* ===== Toggle Alumno/Admin ===== */
+.role-toggle {
+  width: 100%;
+  margin: 6px 0 14px;
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.role-toggle .mat-button-toggle { flex: 1 1 50%; text-align: center; color: var(--utn-text); }
+.role-toggle .mat-button-toggle-checked {
+  background: var(--utn-primary) !important;
+  color: #fff !important;
+}
+.role-toggle .mat-button-toggle + .mat-button-toggle {
+  border-left: 1px solid rgba(255,255,255,0.8);
+}
+
+/* ===== Inputs / labels (Angular Material) ===== */
+:host ::ng-deep .login-card .mat-mdc-text-field-wrapper {
+  background: rgba(255,255,255,0.10);
+  border-radius: 8px;
+}
+:host ::ng-deep .login-card .mdc-notched-outline__leading,
+:host ::ng-deep .login-card .mdc-notched-outline__notch,
+:host ::ng-deep .login-card .mdc-notched-outline__trailing { border-color: #ffffff !important; }
+:host ::ng-deep .login-card .mdc-text-field--focused .mdc-notched-outline__leading,
+:host ::ng-deep .login-card .mdc-text-field--focused .mdc-notched-outline__notch,
+:host ::ng-deep .login-card .mdc-notched-outline__trailing { border-color: #ffffff !important; }
+:host ::ng-deep .login-card .mdc-floating-label,
+:host ::ng-deep .login-card .mdc-floating-label--float-above {
+  color: #ffffff !important; opacity: 1 !important; font-weight: 500;
+}
+:host ::ng-deep .login-card .mat-mdc-input-element { color: #ffffff !important; }
+:host ::ng-deep .login-card .mat-mdc-input-element::placeholder { color: rgba(255,255,255,0.85) !important; }
+:host ::ng-deep .login-card .mat-icon { color: #ffffff !important; }
+
+/* ===== Botón ===== */
+.login-card button.mat-mdc-raised-button {
+  margin-top: 12px;
+  background: var(--utn-primary) !important;
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: .3px;
+  box-shadow: 0 8px 22px rgba(37,99,235,0.45);
+  transition: transform .08s ease, box-shadow .2s ease, background .25s ease;
+}
+.login-card button.mat-mdc-raised-button:hover {
+  box-shadow: 0 12px 28px rgba(37,99,235,0.55);
+  transform: translateY(-1px);
+  background: linear-gradient(90deg, #2563eb, #3b82f6) !important;
+}
+.login-card button.mat-mdc-raised-button:active { transform: translateY(0); }
+
+/* ===== Mensaje de alerta ===== */
+.alert { margin: 12px 2px 0; color: #ffb3b3; font-size: .92rem; }
