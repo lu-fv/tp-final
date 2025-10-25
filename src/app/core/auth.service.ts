@@ -1,10 +1,11 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SessionUser, Rol } from './models';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _user = signal<SessionUser | null>(null);
-
+  private router = inject (Router)
   constructor() {
     const raw = localStorage.getItem('auth:user');
     if (raw) this._user.set(JSON.parse(raw));
@@ -70,6 +71,9 @@ export class AuthService {
   logout() {
     this._user.set(null);
     localStorage.removeItem('auth:user');
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload(); // 🔄 fuerza recarga luego de navegar
+    });
   }
 
   private persist(u: SessionUser) {

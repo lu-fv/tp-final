@@ -16,8 +16,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Servicios / modelos
 import { AuthService } from '../../services/auth.service';
+import { AuthService as CoreAuthServices } from '../../core/auth.service';
+
 import { MenuService } from '../../services/menu.service';
 import type { Rol } from '../../core/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -33,12 +36,14 @@ import type { Rol } from '../../core/models';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService],
+  providers: [AuthService, CoreAuthServices],
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
+  private authCore = inject(CoreAuthServices);
   private menuService = inject(MenuService);
+  private router = inject(Router);
 
   // toggle de rol (fuera del form)
   role = new FormControl<Rol>('alumno', { nonNullable: true });
@@ -46,19 +51,30 @@ export class LoginComponent {
   // form de credenciales
   loginForm = this.fb.group({
     user: ['', [Validators.required, Validators.maxLength(100)]],
-    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
+    ],
   });
 
   // UI
   private _hide = signal(true);
-  hide() { return this._hide(); }
-  togglePass() { this._hide.set(!this._hide()); }
+  hide() {
+    return this._hide();
+  }
+  togglePass() {
+    this._hide.set(!this._hide());
+  }
 
   alert = signal<string | null>(null);
-  get user() { return this.loginForm.get('user'); }
-  get password() { return this.loginForm.get('password'); }
+  get user() {
+    return this.loginForm.get('user');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
 
-  submit(): void {
+  /*submit(): void {
     if (this.loginForm.invalid) return;
 
     const username = String(this.user?.value ?? '').trim();
@@ -76,12 +92,13 @@ export class LoginComponent {
             (u.firstName && String(u.firstName).trim()) ??
             (u.username && String(u.username).trim()) ??
             (u.legajo ? `Legajo ${u.legajo}` : 'Usuario');
-
+          const a = u.studentId as number
           // rol: si viene en el usuario lo usamos, sino el seleccionado
-          const rol: Rol = (u.role as Rol) ?? (u.studentId ? 'alumno' : 'admin') ?? (rolSel ?? 'alumno');
+          const rol: Rol = (u.role as Rol) ?? (a ? 'alumno' : 'admin') ?? (rolSel ?? 'alumno');
 
           // exponer al menú
           this.menuService.setRole(rol);
+          this.router.navigateByUrl('dashboard');
 
           this.alert.set(`Bienvenido ${nombre}`);
         } else {
@@ -93,5 +110,30 @@ export class LoginComponent {
         this.alert.set('Ocurrió un error al iniciar sesión');
       },
     });
+  }*/
+
+  submit(): void {
+    if (this.loginForm.invalid) return;
+
+    const username = String(this.user?.value ?? '').trim();
+    const pass = String(this.password?.value ?? '').trim();
+    const rolSel = this.role.value;
+
+    this.authCore.login(username, pass).then((status: boolean) => {
+      if (status) {
+        if(this.authCore.isAdmin()){
+          this.router.navigateByUrl('dashboard/admin');
+        }
+        else{
+          this.router.navigateByUrl('dashboard/student');
+        }
+        
+       
+      } else {
+        this.alert.set('Usuario o contraseña incorrectos');
+      }
+    }).catch(err => {
+        console.error('Error:', err);
+        this.alert.set('Ocurrió un error al iniciar sesión');})
   }
 }
