@@ -1,0 +1,19 @@
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  padding: 18px 22px;
+}
+
+.card__header { margin-bottom: 12px; }
+.card__header h3 { margin: 0 0 4px; }
+.card__header small { color: #667085; }
+
+.card__body { margin-top: 6px; }
+
+.grid { display: grid; gap: 12px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.col label { font-size: .8rem; color: #6b7280; }
+.col .value { font-weight: 600; }
+
+.hint { margin-top: 12px; color: #6b7280; font-size: .87rem; }

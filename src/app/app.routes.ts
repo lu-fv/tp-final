@@ -1,42 +1,62 @@
 import { Routes } from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
-import { DeudaComponent } from './pages/deuda/deuda.component';
 import { AuthGuard } from './core/auth.guard';
+//import { MenuAlumnoComponent } from './pages/alumno/menu-alumno/menu-alumno.component';
+
+// Layout (admin)
+import { MenuComponent } from './menu/menu.component';
+
+// Admin pages
 import { AddStudentComponent } from './pages/admin/add-student/add-student.component';
+
 
 export const routes: Routes = [
   // Login (lazy)
   {
     path: '',
     loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
+      import('./pages/login/login.component').then(m => m.LoginComponent),
   },
   {
     path: 'login',
     loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
+      import('./pages/login/login.component').then(m => m.LoginComponent),
   },
 
-  // Área autenticada (usa el layout del menú)
+  // ===================== ÁREA AUTENTICADA – ADMIN =====================
   {
     path: 'dashboard/admin',
-    component: MenuComponent,
+    component: MenuComponent,            // layout admin existente
     canActivate: [AuthGuard],
     children: [
+      // Página por defecto en admin
       { path: '', component: AddStudentComponent },
+      // Alta de alumno (alias explícito)
       { path: 'alta-alumno', component: AddStudentComponent },
-    ],
-  },
-  {
-    path: 'dashboard/student',
-    component: MenuComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: DeudaComponent },
-      { path: 'deuda', component: DeudaComponent },
+      // (Acá pueden sumar más páginas de admin cuando existan)
     ],
   },
 
-  // Fallback
-  { path: '**', redirectTo: '' },
-];
+  // ===================== ÁREA AUTENTICADA – ALUMNO =====================
+ {
+  path: 'dashboard/student',
+  canActivate: [AuthGuard],
+  loadComponent: () =>
+    import('./pages/alumno/menu-alumno/menu-alumno.component')
+      .then(m => m.MenuAlumnoComponent),     // <— layout (standalone) con <router-outlet>
+  children: [
+    {
+      path: '',
+      loadComponent: () =>
+        import('./pages/alumno/inicio-alumno/inicio-alumno.component')
+          .then(c => c.InicioAlumnoComponent),
+    },
+    {
+      path: 'deuda',
+      loadComponent: () =>
+        import('./pages/deuda/deuda.component')
+          .then(c => c.DeudaComponent),
+    },
+    
+  ],
+}
+]

@@ -1,20 +1,29 @@
 /* Tema Angular Material (prebuilt) */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+/* === Global === */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-/* Variables globales */
 :root{
-  --utn-primary: #2563eb;     /* Azul único en toda la app */
-  --utn-text:    #ffffff;
+  --utn-primary: #2563eb;
+  --utn-surface: #ffffff;
+  --utn-bg: #f5f7fb; /* fondo claro */
+  --utn-text: #0f172a; /* texto oscuro */
 }
 
-/* Reset base + tipografía */
-html, body { height: 100%; }
-html, body{
-  margin: 0;
-  background: #0f1c26;        /* color de base detrás de la foto */
-  color: var(--utn-text);
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+html, body {
+  height: 100%;
 }
+
+body {
+  margin: 0;
+  font-family: Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--utn-bg);
+  color: var(--utn-text);
+}
+
+/* Reset enlaces */
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 
 /* ====== Fondo de login con parallax ====== */
 .login-bg{
@@ -29,3 +38,38 @@ html, body{
 ::placeholder{
   color: rgba(255,255,255,.75);
 }
+
+/* ====== TEMP: estilos layout alumno ====== */
+.alumno-header{
+  position: sticky; top:0; z-index:20; background:#fff;
+  border-bottom:1px solid rgba(15,23,42,.08);
+}
+.alumno-header .brand{ display:flex; align-items:center; gap:14px; padding:12px 20px 6px; }
+.alumno-header .brand img{ height:28px; filter:drop-shadow(0 1px 0 rgba(0,0,0,.05)); }
+.alumno-header .title{ margin:0; font-size:22px; font-weight:700; color:var(--utn-text); }
+.alumno-header .title span{ font-weight:600; color:#334155; }
+.alumno-header .title small{ display:block; margin-top:2px; font-size:12px; font-weight:600; color:#64748b; }
+
+.nav{ display:flex; align-items:center; gap:18px; padding:10px 20px 14px; border-top:1px solid rgba(15,23,42,.06); }
+.nav a{ padding:8px 14px; border-radius:999px; font-size:14px; font-weight:600; color:#0f172a; background:transparent; }
+.nav a:hover{ background:rgba(15,23,42,.06); text-decoration:none; }
+.nav a.active{ background:var(--utn-primary); color:#fff; box-shadow:0 6px 18px rgba(37,99,235,.25), inset 0 -2px 0 rgba(0,0,0,.08); }
+.nav a.salir{ margin-left:auto; color:#b91c1c; }
+.nav a.salir:hover{ background: rgba(185,28,28,.08); }
+
+.alumno-main{ padding:18px 20px 32px; }
+.main-surface{
+  background:var(--utn-surface); color:var(--utn-text);
+  border:1px solid rgba(15,23,42,.08); border-radius:14px; min-height:220px; padding:18px 20px;
+  box-shadow:0 10px 30px rgba(2,6,23,.05), 0 2px 6px rgba(2,6,23,.04);
+}
+
+/* ====== TEMP: tarjeta InicioAlumno ====== */
+.card{ background:#fff; border-radius:14px; box-shadow:0 6px 16px rgba(0,0,0,.08); padding:18px 22px; }
+.card__header{ margin-bottom:12px; } .card__header h3{ margin:0 0 4px; } .card__header small{ color:#667085; }
+.card__body{ margin-top:6px; }
+.grid{ display:grid; gap:12px; }
+.row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.col label{ font-size:.8rem; color:#6b7280; }
+.col .value{ font-weight:600; }
+.hint{ margin-top:12px; color:#6b7280; font-size:.87rem; }

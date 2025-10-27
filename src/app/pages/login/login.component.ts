@@ -1,3 +1,4 @@
+// src/app/pages/login/login.component.ts
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -14,11 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-// Servicios / modelos
-import { AuthService } from '../../services/auth.service';
-import { AuthService as CoreAuthServices } from '../../core/auth.service';
-
-import { MenuService } from '../../services/menu.service';
+import { AuthService as CoreAuthService } from '../../core/auth.service';
 import type { Rol } from '../../core/models';
 import { Router } from '@angular/router';
 
@@ -36,104 +33,45 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService, CoreAuthServices],
+  // ❌ NO providers aquí (usamos la instancia global providedIn:'root')
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
-  private authCore = inject(CoreAuthServices);
-  private menuService = inject(MenuService);
+  private authCore = inject(CoreAuthService);
   private router = inject(Router);
 
-  // toggle de rol (fuera del form)
   role = new FormControl<Rol>('alumno', { nonNullable: true });
 
-  // form de credenciales
   loginForm = this.fb.group({
     user: ['', [Validators.required, Validators.maxLength(100)]],
-    password: [
-      '',
-      [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
-    ],
+    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
   });
 
-  // UI
   private _hide = signal(true);
-  hide() {
-    return this._hide();
-  }
-  togglePass() {
-    this._hide.set(!this._hide());
-  }
+  hide() { return this._hide(); }
+  togglePass() { this._hide.set(!this._hide()); }
 
   alert = signal<string | null>(null);
-  get user() {
-    return this.loginForm.get('user');
-  }
-  get password() {
-    return this.loginForm.get('password');
-  }
-
-  /*submit(): void {
-    if (this.loginForm.invalid) return;
-
-    const username = String(this.user?.value ?? '').trim();
-    const pass = String(this.password?.value ?? '').trim();
-    const rolSel = this.role.value;
-
-    this.auth.login(username, pass).subscribe({
-      next: (result: any) => {
-        const u = Array.isArray(result) ? result[0] : result;
-
-        if (u) {
-          // nombre robusto
-          const nombre =
-            (u.nombre && String(u.nombre).trim()) ??
-            (u.firstName && String(u.firstName).trim()) ??
-            (u.username && String(u.username).trim()) ??
-            (u.legajo ? `Legajo ${u.legajo}` : 'Usuario');
-          const a = u.studentId as number
-          // rol: si viene en el usuario lo usamos, sino el seleccionado
-          const rol: Rol = (u.role as Rol) ?? (a ? 'alumno' : 'admin') ?? (rolSel ?? 'alumno');
-
-          // exponer al menú
-          this.menuService.setRole(rol);
-          this.router.navigateByUrl('dashboard');
-
-          this.alert.set(`Bienvenido ${nombre}`);
-        } else {
-          this.alert.set('Usuario o contraseña incorrectos');
-        }
-      },
-      error: (err) => {
-        console.error('Error:', err);
-        this.alert.set('Ocurrió un error al iniciar sesión');
-      },
-    });
-  }*/
+  get user() { return this.loginForm.get('user'); }
+  get password() { return this.loginForm.get('password'); }
 
   submit(): void {
     if (this.loginForm.invalid) return;
 
     const username = String(this.user?.value ?? '').trim();
     const pass = String(this.password?.value ?? '').trim();
-    const rolSel = this.role.value;
 
-    this.authCore.login(username, pass).then((status: boolean) => {
-      if (status) {
-        if(this.authCore.isAdmin()){
-          this.router.navigateByUrl('dashboard/admin');
-        }
-        else{
-          this.router.navigateByUrl('dashboard/student');
-        }
-        
-       
-      } else {
-        this.alert.set('Usuario o contraseña incorrectos');
-      }
-    }).catch(err => {
-        console.error('Error:', err);
-        this.alert.set('Ocurrió un error al iniciar sesión');})
+    this.authCore.login(username, pass)
+      .then((ok) => {
+        if (!ok) { this.alert.set('Usuario o contraseña incorrectos'); return; }
+
+        // Redirección por rol
+        if (this.authCore.isAdmin()) this.router.navigateByUrl('dashboard/admin');
+        else this.router.navigateByUrl('dashboard/student');
+      })
+      .catch((err) => {
+        console.error(err);
+        this.alert.set('Ocurrió un error al iniciar sesión');
+      });
   }
 }
