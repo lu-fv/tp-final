@@ -1,0 +1,72 @@
+<section class="card">
+  <header class="card__header">
+    <h3>Inscripción a cursadas</h3>
+    <small>Requiere correlativas de cursada en condición regular o aprobada.</small>
+  </header>
+
+  <div class="card__body" *ngIf="vm$ | async as vm">
+    <p class="alert" *ngIf="mensaje">{{ mensaje }}</p>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Materia</th>
+          <th>Comisión</th>
+          <th>Horario</th>
+          <th>Correlativas</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of vm.rows; trackBy: trackRow">
+          <td>{{ r.subject.codigo }}</td>
+          <td>{{ r.subject.nombre }}</td>
+          <td>{{ $any(r.course).comision ?? 'A' }}</td>
+          <td>{{ $any(r.course).horario ?? '—' }}</td>
+
+          <td>
+            <!-- MOSTRAR correlativas si alguna de las dos listas existe y tiene items -->
+            <ng-container
+              *ngIf="((($any(r.subject)?.correlativasCursar?.length ?? 0) +
+                       ($any(r.subject)?.correlativasParaCursar?.length ?? 0)) > 0); else sinCor">
+              {{
+                (
+                  $any(r.subject)?.correlativasCursar ??
+                  $any(r.subject)?.correlativasParaCursar ??
+                  []
+                ).join(', ')
+              }}
+              <span class="ok" *ngIf="r.okCorrel">✓</span>
+              <span class="bad" *ngIf="!r.okCorrel">✗</span>
+            </ng-container>
+            <ng-template #sinCor>—</ng-template>
+          </td>
+
+          <td>
+            <!-- Si NO estoy inscripto => botón Inscribirme (solo si cumple correlativas) -->
+            <button
+              *ngIf="!r.already; else yaInscriptoTpl"
+              type="button"
+              [disabled]="!r.okCorrel || btnDisabled(r.course.id)"
+              (click)="inscribirmeCurso(r.course)">
+              Inscribirme
+            </button>
+
+            <!-- Si estoy inscripto => botón Dar de baja (bloquea por fila) -->
+            <ng-template #yaInscriptoTpl>
+              <button
+                type="button"
+                class="secondary"
+                [disabled]="btnDisabled(r.course.id)"
+                (click)="darmeDeBajaCurso(r.myEnroll, r.course.id)">
+                Dar de baja
+              </button>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

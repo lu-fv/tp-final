@@ -56,6 +56,16 @@ export const routes: Routes = [
         import('./pages/deuda/deuda.component')
           .then(c => c.DeudaComponent),
     },
+    {
+      path: 'inscripciones',
+      loadComponent: () => import('./pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component')
+        .then(c => c.InscripcionesCursadasComponent),
+    },
+    {
+      path: 'examenes',
+      loadComponent: () => import('./pages/alumno/inscripciones-examen/inscripciones-examen.component')
+        .then(c => c.InscripcionesExamenComponent),
+    },
     
   ],
 }

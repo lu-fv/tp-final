@@ -15,14 +15,21 @@
       "studentId": 102
     }
   ],
-  
   "admins": [
-    { "id": "1", "username": "admin", "password": "admin", "nombre": "Admin" },
-    { "id": "2", "username": "secretaria", "password": "utn2025", "nombre": "Secretaría Académica" }
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin",
+      "nombre": "Admin"
+    },
+    {
+      "id": "2",
+      "username": "secretaria",
+      "password": "utn2025",
+      "nombre": "Secretaría Académica"
+    }
   ],
-
   "debts": [],
-
   "students": [
     {
       "id": "101",
@@ -450,32 +457,133 @@
   ],
   "course_enrollments": [
     {
-      "id": "9001",
+      "id": "d57c",
       "studentId": 101,
-      "courseId": 11,
+      "courseId": "15",
       "estado": "inscripto",
-      "fecha": "2025-03-02T12:00:00.000Z"
+      "fecha": "2025-11-09T18:48:51.335Z"
     },
     {
-      "id": "9002",
+      "id": "5439",
       "studentId": 101,
-      "courseId": 12,
-      "estado": "inscripto",
-      "fecha": "2025-03-02T12:05:00.000Z"
+      "courseId": "22",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:50:21.678Z",
+      "fechaBaja": "2025-11-09T23:19:45.688Z"
     },
     {
-      "id": 1760994326965,
+      "id": "a6bb",
+      "studentId": 101,
+      "courseId": "32",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:50:46.253Z",
+      "fechaBaja": "2025-11-09T23:34:10.333Z"
+    },
+    {
+      "id": "3365",
+      "studentId": 101,
+      "courseId": "32",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:50:48.364Z",
+      "fechaBaja": "2025-11-09T23:34:15.953Z"
+    },
+    {
+      "id": "99b8",
+      "studentId": 101,
+      "courseId": "32",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:50:49.294Z",
+      "fechaBaja": "2025-11-09T23:34:24.159Z"
+    },
+    {
+      "id": "3938",
+      "studentId": 101,
+      "courseId": "33",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:51:14.638Z",
+      "fechaBaja": "2025-11-09T23:34:21.775Z"
+    },
+    {
+      "id": "7291",
+      "studentId": 101,
+      "courseId": "32",
+      "estado": "baja",
+      "fecha": "2025-11-09T18:51:15.978Z",
+      "fechaBaja": "2025-11-09T23:34:32.365Z"
+    },
+    {
+      "id": "1762715892482",
       "studentId": 101,
       "courseId": "14",
       "estado": "inscripto",
-      "fecha": "2025-10-20T21:05:26.965Z"
+      "fecha": "2025-11-09T19:18:12.482Z"
     },
     {
-      "id": 1760994340421,
+      "id": "95cf",
+      "studentId": 101,
+      "courseId": "12",
+      "estado": "inscripto",
+      "fecha": "2025-11-09T21:21:03.784Z"
+    },
+    {
+      "id": "c447",
+      "studentId": 101,
+      "courseId": "12",
+      "estado": "inscripto",
+      "fecha": "2025-11-09T21:21:04.604Z"
+    },
+    {
+      "id": "600f",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "baja",
+      "fecha": "2025-11-09T22:28:30.178Z",
+      "fechaBaja": "2025-11-09T23:19:19.361Z"
+    },
+    {
+      "id": "6007",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "baja",
+      "fecha": "2025-11-09T22:28:32.360Z",
+      "fechaBaja": "2025-11-09T23:19:22.480Z"
+    },
+    {
+      "id": "3f5b",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "baja",
+      "fecha": "2025-11-09T22:28:34.518Z",
+      "fechaBaja": "2025-11-09T23:20:30.448Z"
+    },
+    {
+      "id": "0a2d",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "baja",
+      "fecha": "2025-11-09T22:28:34.752Z",
+      "fechaBaja": "2025-11-09T23:22:42.124Z"
+    },
+    {
+      "id": "a24e",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "inscripto",
+      "fecha": "2025-11-09T22:28:35.877Z"
+    },
+    {
+      "id": "69a3",
       "studentId": 101,
       "courseId": "13",
       "estado": "inscripto",
-      "fecha": "2025-10-20T21:05:40.421Z"
+      "fecha": "2025-11-09T22:50:13.845Z"
+    },
+    {
+      "id": "e4da",
+      "studentId": 101,
+      "courseId": "13",
+      "estado": "inscripto",
+      "fecha": "2025-11-09T22:50:14.884Z"
     }
   ],
   "course_grades": [
@@ -524,29 +632,7 @@
       "periodo": "Julio 2026"
     }
   ],
-  "exam_enrollments": [
-    {
-      "id": "8001",
-      "studentId": 101,
-      "examTableId": 7001,
-      "estado": "inscripto",
-      "fecha": "2025-07-01T10:00:00.000Z"
-    },
-    {
-      "id": "1760917240781",
-      "studentId": 101,
-      "examTableId": "7002",
-      "estado": "inscripto",
-      "fecha": "2025-10-19T23:40:40.781Z"
-    },
-    {
-      "id": "1760917251401",
-      "studentId": 101,
-      "examTableId": "7001",
-      "estado": "inscripto",
-      "fecha": "2025-10-19T23:40:51.401Z"
-    }
-  ],
+  "exam_enrollments": [],
   "exam_grades": [
     {
       "id": "8100",

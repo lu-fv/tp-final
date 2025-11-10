@@ -1,51 +1,62 @@
 <header class="alumno-header">
+
+  <!-- Marca / Logo -->
   <div class="brand">
-    <!-- 🔹 ruta absoluta recomendada para assets -->
-    <img src="/assets/utn-logo.png" alt="UTN" />
-    <h1 class="title">
-      UTN <span>— Autogestión</span>
+    <img src="assets/utn-logo.png" alt="UTN" />
+    <div class="title">
+      <span>UTN — Autogestión</span>
       <small>Alumnos</small>
-    </h1>
+    </div>
   </div>
 
+  <!-- Navegación -->
   <nav class="nav">
-    <a
+    <a 
       routerLink="/dashboard/student"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Inicio</a
-    >
+      [routerLinkActiveOptions]="{ exact: true }">
+      Inicio
+    </a>
 
-    <a
+    <a 
       routerLink="/dashboard/student/deuda"
-      routerLinkActive="active"
-      >Consulta de Deuda</a
-    >
+      routerLinkActive="active">
+      Consulta de Deuda
+    </a>
 
-    <a
+    <a 
       routerLink="/dashboard/student/inscripciones"
-      routerLinkActive="active"
-      >Inscripciones</a
-    >
+      routerLinkActive="active">
+      Inscripciones
+    </a>
 
-    <a
+    <a 
+      routerLink="/dashboard/student/examenes"
+      routerLinkActive="active">
+      Exámenes
+    </a>
+
+    <a 
       routerLink="/dashboard/student/notas"
-      routerLinkActive="active"
-      >Notas</a
-    >
+      routerLinkActive="active">
+      Notas
+    </a>
 
-    <a
+    <a 
       routerLink="/dashboard/student/certificados"
-      routerLinkActive="active"
-      >Certificados</a
-    >
+      routerLinkActive="active">
+      Certificados
+    </a>
 
     <a class="salir" (click)="logout()">Salir</a>
   </nav>
+
 </header>
+
 
 <main class="alumno-main">
   <section class="main-surface">
+    <!-- Aquí se renderiza cualquier página del área del alumno -->
     <router-outlet></router-outlet>
   </section>
 </main>

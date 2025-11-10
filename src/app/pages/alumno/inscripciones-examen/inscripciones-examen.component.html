@@ -1,0 +1,60 @@
+<section class="card">
+  <header class="card__header">
+    <h3>Inscripción a mesas de examen</h3>
+    <small>Requiere correlativas para rendir y la materia en condición regular o aprobada.</small>
+  </header>
+
+  <div class="card__body" *ngIf="vm$ | async as vm">
+    <p class="alert" *ngIf="mensaje">{{ mensaje }}</p>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Materia</th>
+          <th>Fecha</th>
+          <th>Turno</th>
+          <th>Periodo</th>
+          <th>Correlativas</th>
+          <th>Mi estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of vm.rows">
+          <td>{{ r.subject.codigo }}</td>
+          <td>{{ r.subject.nombre }}</td>
+          <td>{{ r.table.fecha }}</td>
+          <td>{{ r.table.turno }}</td>
+          <td>{{ r.table.periodo }}</td>
+          <td>
+            <ng-container *ngIf="r.subject.correlativasRendir?.length; else sinCor">
+              {{ r.subject.correlativasRendir.join(', ') }}
+              <span class="ok" *ngIf="r.okCorrel">✓</span>
+              <span class="bad" *ngIf="!r.okCorrel">✗</span>
+            </ng-container>
+            <ng-template #sinCor>—</ng-template>
+          </td>
+          <td>
+            <span class="ok" *ngIf="r.meOk">Regular/Aprob.</span>
+            <span class="bad" *ngIf="!r.meOk">No habilitado</span>
+          </td>
+          <td>
+            <button
+              *ngIf="!r.already; else yaInscripto"
+              [disabled]="!r.okCorrel || !r.meOk"
+              (click)="inscribirme(r.table)">
+              Inscribirme
+            </button>
+
+            <ng-template #yaInscripto>
+              <button class="secondary" (click)="darmeDeBaja(r.myEnroll)">
+                Darme de baja
+              </button>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
