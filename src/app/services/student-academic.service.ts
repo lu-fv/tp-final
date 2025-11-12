@@ -1,10 +1,7 @@
 // src/app/services/student-academic.service.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  Subject, Course, CourseEnrollment, CourseGrade,
-  ExamTable, ExamEnrollment
-} from '../core/models'; // 👈 mantiene tu ruta actual
+import {Subject, Course, CourseEnrollment, CourseGrade,ExamTable, ExamEnrollment, ExamGrade} from '../core/models'; // 👈 mantiene tu ruta actual
 import { map, switchMap, Observable, of, catchError, forkJoin } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -52,6 +49,16 @@ export class StudentAcademicService {
     );
   }
   examEnrollments$ = this.inscripcionesExamen$.bind(this);
+
+  notasExamen$(studentId: number): Observable<ExamGrade[]> {
+  return this.http.get<ExamGrade[]>(
+    `${this.base}/exam_grades?studentId=${studentId}&${this.bust()}`
+  );
+}
+
+examGrades$ = this.notasExamen$.bind(this);
+
+  
 
   // ---------- Helpers de estado / correlativas ----------
   /**

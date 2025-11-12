@@ -565,13 +565,6 @@
       "fechaBaja": "2025-11-09T23:22:42.124Z"
     },
     {
-      "id": "a24e",
-      "studentId": 101,
-      "courseId": "11",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T22:28:35.877Z"
-    },
-    {
       "id": "69a3",
       "studentId": 101,
       "courseId": "13",
@@ -584,6 +577,20 @@
       "courseId": "13",
       "estado": "inscripto",
       "fecha": "2025-11-09T22:50:14.884Z"
+    },
+    {
+      "id": "0ec5",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "inscripto",
+      "fecha": "2025-11-10T21:46:03.803Z"
+    },
+    {
+      "id": "f31f",
+      "studentId": 101,
+      "courseId": "22",
+      "estado": "inscripto",
+      "fecha": "2025-11-10T21:56:18.678Z"
     }
   ],
   "course_grades": [
@@ -591,9 +598,9 @@
       "id": "5001",
       "studentId": 101,
       "courseId": 11,
-      "parcial1": 7,
-      "parcial2": 6,
-      "promedio": 6.5,
+      "parcial1": 8,
+      "parcial2": 8,
+      "promedio": 8,
       "condicion": "aprobado"
     },
     {
@@ -601,9 +608,18 @@
       "studentId": 101,
       "courseId": 12,
       "parcial1": 6,
-      "parcial2": 4,
-      "promedio": 5,
+      "parcial2": 7,
+      "promedio": 6.5,
       "condicion": "regular"
+    },
+    {
+      "id": "5003",
+      "studentId": 101,
+      "courseId": 22,
+      "parcial1": 8,
+      "parcial2": 9,
+      "promedio": 8.5,
+      "condicion": "aprobado"
     }
   ],
   "exam_tables": [
@@ -632,7 +648,15 @@
       "periodo": "Julio 2026"
     }
   ],
-  "exam_enrollments": [],
+  "exam_enrollments": [
+    {
+      "id": "ff69",
+      "studentId": 101,
+      "examTableId": "7001",
+      "estado": "inscripto",
+      "fecha": "2025-11-10T21:51:15.567Z"
+    }
+  ],
   "exam_grades": [
     {
       "id": "8100",

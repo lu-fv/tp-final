@@ -66,6 +66,12 @@ export const routes: Routes = [
       loadComponent: () => import('./pages/alumno/inscripciones-examen/inscripciones-examen.component')
         .then(c => c.InscripcionesExamenComponent),
     },
+    {
+  path: 'notas',
+  loadComponent: () =>
+    import('./pages/alumno/notas/notas.component')
+      .then(c => c.NotasComponent),
+    }
     
   ],
 }

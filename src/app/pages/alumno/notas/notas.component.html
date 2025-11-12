@@ -1,0 +1,107 @@
+<section class="card">
+  <header class="card__header">
+    <h3>Consulta de notas</h3>
+    <small>Incluye notas de cursada y exámenes finales.</small>
+  </header>
+
+  <div class="card__body" *ngIf="vm$ | async as vm">
+
+    <!-- ===================== NOTAS DE CURSADA ===================== -->
+    <h4 style="margin-top:0">Notas de Cursada</h4>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Materia</th>
+          <th>Detalle</th>
+          <th>Condición</th>
+          <th>Nota</th>
+          <th class="ghost">Fecha</th> <!-- fantasma para alinear -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of vm.rowsCursada">
+          <td>{{ r.codigo }}</td>
+          <td>{{ r.materia }}</td>
+          <td>{{ r.detalle }}</td>
+
+          <td>
+            <span class="ok" *ngIf="(r.condicion || '').toLowerCase() === 'aprobado'">
+              {{ r.condicion }}
+            </span>
+            <span class="regular" *ngIf="(r.condicion || '').toLowerCase() === 'regular'">
+              {{ r.condicion }}
+            </span>
+            <span class="bad" *ngIf="(r.condicion || '').toLowerCase() !== 'aprobado'
+                                   && (r.condicion || '').toLowerCase() !== 'regular'
+                                   && r.condicion !== '--'">
+              {{ r.condicion }}
+            </span>
+            <span *ngIf="r.condicion === '--'">—</span>
+          </td>
+
+          <td>
+            <ng-container *ngIf="r.promedio !== null; else sinPromedio">
+              {{ r.promedio }}
+              <span class="detalle-nota">
+                (P1={{ r.p1 ?? '-' }}, P2={{ r.p2 ?? '-' }})
+              </span>
+            </ng-container>
+            <ng-template #sinPromedio>—</ng-template>
+          </td>
+
+          <td class="ghost">—</td> <!-- ocupa ancho, no visible -->
+        </tr>
+
+        <tr *ngIf="!vm.rowsCursada.length">
+          <td colspan="6" class="sin-registros">Sin registros de cursada.</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!-- ===================== NOTAS DE EXÁMENES ===================== -->
+    <h4 style="margin-top:2rem">Notas de Exámenes</h4>
+
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Materia</th>
+          <th>Detalle</th>
+          <th>Condición</th>
+          <th>Nota</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of vm.rowsExamen">
+          <td>{{ r.codigo }}</td>
+          <td>{{ r.materia }}</td>
+          <td>{{ r.detalle }}</td>
+
+          <td>
+            <span class="ok" *ngIf="(r.condicion || '').toLowerCase() === 'aprobado'">
+              {{ r.condicion }}
+            </span>
+            <span class="bad" *ngIf="(r.condicion || '').toLowerCase() === 'desaprobado'">
+              {{ r.condicion }}
+            </span>
+            <span *ngIf="r.condicion === '--'">—</span>
+          </td>
+
+          <td>{{ r.nota ?? '—' }}</td>
+          <td>{{ r.fecha ? (r.fecha | date:'d \'de\' MMMM \'de\' y') : '—' }}</td>
+        </tr>
+
+        <tr *ngIf="!vm.rowsExamen.length">
+          <td colspan="6" class="sin-registros">Sin registros de exámenes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>

@@ -74,3 +74,11 @@ export interface ExamEnrollment {
   estado: 'inscripto' | 'baja';
   fecha: string; // ISO
 }
+
+export interface ExamGrade {
+  id: string;
+  studentId: number;
+  examTableId: number | string;
+  nota?: number | null;
+  resultado: 'aprobado' | 'desaprobado' | 'ausente' | 'libre' | 'otro';
+}
