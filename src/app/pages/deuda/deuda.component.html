@@ -1,2 +1,64 @@
-<h2>Consulta de Deuda</h2>
-<p>Aquí se mostrará el estado de deuda del alumno.</p>
+<section class="card">
+  <header class="card__header">
+    <h3>Consulta de Deuda</h3>
+  </header>
+
+  <div class="card__body" *ngIf="vm$ | async as vm">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Materia</th>
+          <th>Comisión</th>
+          <th>Cuotas</th>
+          <th>Total</th>
+          <th>Pendiente</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let r of vm.rows">
+          <td>{{ r.subjectCode }}</td>
+          <td>{{ r.subjectName }}</td>
+          <td>{{ r.course.comision }}</td>
+          <td class="cuotas">
+            <div class="chip"
+                 *ngFor="let c of r.cuotas"
+                 [class.paid]="c.pagada"
+                 [title]="(c.vence | date:'dd/MM/yyyy') + (c.pagada ? ' - pagada' : ' - pendiente')">
+              C{{ c.nro }} · {{ c.vence | date:'dd/MM' }}
+            </div>
+          </td>
+          <td>{{ r.total | currency:'ARS':'symbol':'1.0-0' }}</td>
+          <td class="pend">{{ r.totalPendiente | currency:'ARS':'symbol':'1.0-0' }}</td>
+          <td class="acciones">
+            <button (click)="pagarPorCuota(r)" class="btn-action btn-cuota">Pagar por cuota</button>
+            <button (click)="pagarTodo(r)" class="btn-action btn-todo">Pagar todo</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="!vm.rows.length">
+          <td colspan="7" class="sin-registros">Sin materias con deuda.</td>
+        </tr>
+
+        <tr class="total-row" *ngIf="vm.rows.length">
+          <td colspan="5"></td>
+          <td class="gran-total" colspan="2">
+            Total pendiente: <strong>{{ vm.granTotal | currency:'ARS':'symbol':'1.0-0' }}</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Modal QR ficticio -->
+<div class="modal-backdrop" *ngIf="showQR" (click)="cerrarQR()"></div>
+<div class="modal" *ngIf="showQR">
+  <h3>Pago con QR</h3>
+  <div class="qr"></div>
+  <p class="detalle">{{ qrDetalle }}</p>
+  <p class="monto">{{ qrMonto | currency:'ARS':'symbol':'1.0-0' }}</p>
+  <button class="secondary" (click)="cerrarQR()">Cerrar</button>
+</div>

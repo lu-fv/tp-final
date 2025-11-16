@@ -2,7 +2,18 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Subject, Course, CourseEnrollment, CourseGrade,ExamTable, ExamEnrollment, ExamGrade} from '../core/models'; // 👈 mantiene tu ruta actual
-import { map, switchMap, Observable, of, catchError, forkJoin } from 'rxjs';
+import { map, switchMap, Observable, of, catchError, forkJoin, combineLatest } from 'rxjs';
+import { DatePipe } from '@angular/common';
+
+export interface DebtPayment {
+  id?: string | number;
+  studentId: number;
+  courseId: string | number;
+  installment: number;     // 1..4
+  amount: number;          // 20000
+  date: string;            // ISO
+  concept: string;         // texto libre (ej: "Cursada 95-1121 - cuota 1")
+}
 
 @Injectable({ providedIn: 'root' })
 export class StudentAcademicService {
@@ -151,11 +162,16 @@ examGrades$ = this.notasExamen$.bind(this);
   enrollExam = this.inscribirExamen.bind(this);
 
   /** BAJA CURSADA: DELETE directo (json-server) */
-  bajaCursada(enrollmentId: number | string) {
-    const id = String(enrollmentId).trim();
-    const url = `${this.base}/course_enrollments/${encodeURIComponent(id)}`;
-    return this.http.delete(url);
-  }
+  bajaCursada(enrollment: CourseEnrollment) {
+  const id = String(enrollment.id);
+
+  return this.deletePaymentsByCourse(enrollment.studentId, enrollment.courseId).pipe(
+    switchMap(() =>
+      this.http.delete(`${this.base}/course_enrollments/${id}`)
+    )
+  );
+}
+
 
   /** BAJA EXAMEN: DELETE directo */
   bajaExamen(enrollmentId: number | string) {
@@ -165,17 +181,59 @@ examGrades$ = this.notasExamen$.bind(this);
   }
 
   /** BAJA MASIVA (por si quedaron duplicados): elimina TODAS las activas de un curso */
-  bajaTodasCursadasDeCurso(studentId: number | string, courseId: number | string) {
-    const q = `studentId=${studentId}&courseId=${courseId}&estado=inscripto&${this.bust()}`;
-    const urlList = `${this.base}/course_enrollments?${q}`;
-    return this.http.get<CourseEnrollment[]>(urlList).pipe(
-      switchMap(list => {
-        if (!list?.length) return of(null);
-        const dels = list.map(e =>
-          this.http.delete(`${this.base}/course_enrollments/${encodeURIComponent(String(e.id))}`)
-        );
-        return forkJoin(dels);
-      })
-    );
-  }
+  bajaTodasCursadasDeCurso(studentId: number, courseId: string | number): Observable<any> {
+  const cid = String(courseId);
+
+  // 1) Borrar pagos del alumno para ese curso
+  return this.deletePaymentsByCourse(studentId, cid).pipe(
+    // 2) Traer inscripciones a ese curso para ese alumno
+    switchMap(() =>
+      this.http.get<CourseEnrollment[]>(
+        `${this.base}/course_enrollments?studentId=${studentId}&courseId=${cid}`
+      )
+    ),
+    // 3) Borrar todas las inscripciones encontradas
+    switchMap(enrolls => {
+      if (!enrolls.length) return of(null);
+
+      const deletes = enrolls.map(e =>
+        this.http.delete(`${this.base}/course_enrollments/${e.id}`)
+      );
+      return combineLatest(deletes);
+    })
+  );
+}
+
+
+
+  payments$(studentId: number) {
+  return this.http.get<DebtPayment[]>(`${this.base}/payments?studentId=${studentId}&${this.bust()}`);
+}
+
+pay$(payload: DebtPayment) {
+  return this.http.post<DebtPayment>(`${this.base}/payments`, payload);
+}
+
+buildInstallmentDueDates(course: Course): string[] {
+  const year = Number(course.anio);
+  const cuat = Number(course.cuatrimestre);
+  const months = cuat === 1 ? [3,4,5,6] : [8,9,10,11];
+  return months.map(m => new Date(Date.UTC(year, m - 1, 10)).toISOString());
+}
+
+deletePaymentsByCourse(studentId: number, courseId: string | number) {
+  return this.http.get<DebtPayment[]>(
+    `${this.base}/payments?studentId=${studentId}&courseId=${courseId}`
+  ).pipe(
+    switchMap(payments => {
+      const deletes = payments.map(p =>
+        this.http.delete(`${this.base}/payments/${p.id}`)
+      );
+      return combineLatest(deletes.length ? deletes : [of(null)]);
+    })
+  );
+}
+
+
+
 }

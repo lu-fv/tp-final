@@ -457,21 +457,6 @@
   ],
   "course_enrollments": [
     {
-      "id": "d57c",
-      "studentId": 101,
-      "courseId": "15",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T18:48:51.335Z"
-    },
-    {
-      "id": "5439",
-      "studentId": 101,
-      "courseId": "22",
-      "estado": "baja",
-      "fecha": "2025-11-09T18:50:21.678Z",
-      "fechaBaja": "2025-11-09T23:19:45.688Z"
-    },
-    {
       "id": "a6bb",
       "studentId": 101,
       "courseId": "32",
@@ -512,27 +497,6 @@
       "fechaBaja": "2025-11-09T23:34:32.365Z"
     },
     {
-      "id": "1762715892482",
-      "studentId": 101,
-      "courseId": "14",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T19:18:12.482Z"
-    },
-    {
-      "id": "95cf",
-      "studentId": 101,
-      "courseId": "12",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T21:21:03.784Z"
-    },
-    {
-      "id": "c447",
-      "studentId": 101,
-      "courseId": "12",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T21:21:04.604Z"
-    },
-    {
       "id": "600f",
       "studentId": 101,
       "courseId": "11",
@@ -565,32 +529,11 @@
       "fechaBaja": "2025-11-09T23:22:42.124Z"
     },
     {
-      "id": "69a3",
+      "id": "2ff5",
       "studentId": 101,
-      "courseId": "13",
+      "courseId": "14",
       "estado": "inscripto",
-      "fecha": "2025-11-09T22:50:13.845Z"
-    },
-    {
-      "id": "e4da",
-      "studentId": 101,
-      "courseId": "13",
-      "estado": "inscripto",
-      "fecha": "2025-11-09T22:50:14.884Z"
-    },
-    {
-      "id": "0ec5",
-      "studentId": 101,
-      "courseId": "11",
-      "estado": "inscripto",
-      "fecha": "2025-11-10T21:46:03.803Z"
-    },
-    {
-      "id": "f31f",
-      "studentId": 101,
-      "courseId": "22",
-      "estado": "inscripto",
-      "fecha": "2025-11-10T21:56:18.678Z"
+      "fecha": "2025-11-16T14:53:50.452Z"
     }
   ],
   "course_grades": [
@@ -665,5 +608,6 @@
       "nota": 6,
       "resultado": "aprobado"
     }
-  ]
+  ],
+  "payments": []
 }
