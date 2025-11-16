@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {Subject, Course, CourseEnrollment, CourseGrade,ExamTable, ExamEnrollment, ExamGrade} from '../core/models'; // 👈 mantiene tu ruta actual
 import { map, switchMap, Observable, of, catchError, forkJoin, combineLatest } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Student } from '../core/models';
 
 export interface DebtPayment {
   id?: string | number;
@@ -68,6 +69,11 @@ export class StudentAcademicService {
 }
 
 examGrades$ = this.notasExamen$.bind(this);
+
+student$(studentId: number) {
+  return this.http.get<Student>(`${this.base}/students/${studentId}`);
+}
+
 
   
 

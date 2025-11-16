@@ -67,10 +67,16 @@ export const routes: Routes = [
         .then(c => c.InscripcionesExamenComponent),
     },
     {
-  path: 'notas',
-  loadComponent: () =>
-    import('./pages/alumno/notas/notas.component')
-      .then(c => c.NotasComponent),
+      path: 'notas',
+      loadComponent: () =>
+        import('./pages/alumno/notas/notas.component')
+          .then(c => c.NotasComponent),
+    },
+    {
+      path: 'certificados',
+      loadComponent: () =>
+        import('./pages/alumno/certificados/certificados.component')
+          .then(c => c.CertificadosComponent),
     }
     
   ],
