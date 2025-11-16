@@ -55,4 +55,10 @@ export class StudentApiService {
         })
       );
   }
+  
+  getAll(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.baseUrl}/${this.resource}`).pipe(
+      map((students) => students || [])
+    );
+  }
 }

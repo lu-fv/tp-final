@@ -24,7 +24,7 @@ export const routes: Routes = [
   // ===================== ÁREA AUTENTICADA – ADMIN =====================
   {
     path: 'dashboard/admin',
-   
+
     canActivate: [AuthGuard, HasRole('admin')],
     loadComponent: () =>
       import('./pages/admin/menu-admin/menu-admin.component').then(
@@ -38,9 +38,20 @@ export const routes: Routes = [
             (m) => m.AddStudentComponent
           ),
       },
-      // Carga de notas de cursadas
-      // Inscripciones a cursadas
-      // (Acá pueden sumar más páginas de admin cuando existan)
+      {
+        path: 'listado',
+        loadComponent: () =>
+          import(
+            './pages/admin/listado-alumnos/listado-alumnos.component'
+          ).then((m) => m.ListadoAlumnosComponent),
+      },
+      {
+        path: 'detalle/:id',
+        loadComponent: () =>
+          import('./pages/admin/detalle-alumno/detalle-alumno.component').then(
+            (m) => m.DetalleAlumnoComponent
+          ),
+      },
     ],
   },
 
