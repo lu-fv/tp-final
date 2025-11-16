@@ -44,16 +44,27 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     user: ['', [Validators.required, Validators.maxLength(100)]],
-    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(4), Validators.maxLength(20)],
+    ],
   });
 
   private _hide = signal(true);
-  hide() { return this._hide(); }
-  togglePass() { this._hide.set(!this._hide()); }
+  hide() {
+    return this._hide();
+  }
+  togglePass() {
+    this._hide.set(!this._hide());
+  }
 
   alert = signal<string | null>(null);
-  get user() { return this.loginForm.get('user'); }
-  get password() { return this.loginForm.get('password'); }
+  get user() {
+    return this.loginForm.get('user');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   submit(): void {
     if (this.loginForm.invalid) return;
@@ -61,13 +72,40 @@ export class LoginComponent {
     const username = String(this.user?.value ?? '').trim();
     const pass = String(this.password?.value ?? '').trim();
 
-    this.authCore.login(username, pass)
+    this.authCore
+      .login(username, pass)
       .then((ok) => {
-        if (!ok) { this.alert.set('Usuario o contraseña incorrectos'); return; }
+        if (!ok) {
+          this.alert.set('Usuario o contraseña incorrectos');
+          return;
+        }
 
-        // Redirección por rol
-        if (this.authCore.isAdmin()) this.router.navigateByUrl('dashboard/admin');
-        else this.router.navigateByUrl('dashboard/student');
+        // Verificar rol seleccionado vs rol real
+        if (this.role.value== 'admin') {
+          if (!this.authCore.isAdmin()) {
+            this.authCore.logout();
+            this.alert.set(
+              'Usuario logueado como admin, seleccione el rol correcto'
+            );
+            return;
+          } else {
+            this.router.navigateByUrl('dashboard/admin');
+          }
+        } else if (this.role.value == 'alumno') {
+          if (this.authCore.isAdmin()) {
+            this.authCore.logout();
+            this.alert.set(
+              'Usuario logueado como alumno, seleccione el rol correcto'
+            );
+            return;
+          } else {
+            this.router.navigateByUrl('dashboard/student');
+          }
+        } else {
+          this.authCore.logout();
+          this.alert.set('Rol seleccionado inválido');
+          return;
+        }
       })
       .catch((err) => {
         console.error(err);

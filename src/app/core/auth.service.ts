@@ -16,7 +16,9 @@ export class AuthService {
   role(): 'alumno'|'admin'|null { return this._user()?.role ?? null; }
   isLogged() { return !!this._user(); }
   isAdmin() { return this.role() === 'admin'; }
-
+  hasRole(role: Rol): boolean {
+    return this._user()?.role === role;
+  }
   /** Login que acepta alumno o admin */
   async login(username: string, password: string): Promise<boolean> {
   const u = encodeURIComponent(username);
