@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './core/auth.guard';
+import { AuthGuard, HasRole } from './core/auth.guard';
 //import { MenuAlumnoComponent } from './pages/alumno/menu-alumno/menu-alumno.component';
 
 // Layout (admin)
@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'dashboard/admin',
     component: MenuComponent,            // layout admin existente
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, HasRole('admin')],
     children: [
       // Página por defecto en admin
       { path: '', component: AddStudentComponent },
@@ -39,7 +39,7 @@ export const routes: Routes = [
   // ===================== ÁREA AUTENTICADA – ALUMNO =====================
  {
   path: 'dashboard/student',
-  canActivate: [AuthGuard],
+  canActivate: [AuthGuard, HasRole('alumno')],
   loadComponent: () =>
     import('./pages/alumno/menu-alumno/menu-alumno.component')
       .then(m => m.MenuAlumnoComponent),     // <— layout (standalone) con <router-outlet>
