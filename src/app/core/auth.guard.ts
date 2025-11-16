@@ -15,7 +15,7 @@ export const AuthGuard: CanActivateFn = () => {
   router.navigateByUrl('/login');
   return false;
 };
-
+///HasRole verifica que el user tenga el rol adecuado en el component
 export const HasRole = (role: Rol): CanActivateFn => {
   return () => {
     const auth = inject(AuthService);

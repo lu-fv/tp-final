@@ -80,7 +80,7 @@ export class LoginComponent {
           return;
         }
 
-        // Redirección por rol
+        // Verificar rol seleccionado vs rol real
         if (this.role.value== 'admin') {
           if (!this.authCore.isAdmin()) {
             this.authCore.logout();
