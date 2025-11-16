@@ -21,6 +21,7 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
 
+
   // ===================== ÁREA AUTENTICADA – ADMIN =====================
   {
     path: 'dashboard/admin',
@@ -52,6 +53,16 @@ export const routes: Routes = [
             (m) => m.DetalleAlumnoComponent
           ),
       },
+          {
+      path: 'inscripciones/:id',
+      loadComponent: () => import('./pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component')
+        .then(c => c.InscripcionesCursadasComponent),
+    },
+    {
+      path: 'examenes/:id',
+      loadComponent: () => import('./pages/alumno/inscripciones-examen/inscripciones-examen.component')
+        .then(c => c.InscripcionesExamenComponent),
+    },
     ],
   },
 

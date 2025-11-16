@@ -3,12 +3,13 @@ import {DatePipe } from '@angular/common';
 import { AdminApiService } from '../../../services/admin-api.service';
 import { Student } from '../../../core/models';
 import { StudentApiService } from '../../../services/student-api.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-listado-alumnos',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe,RouterLink],
   templateUrl: './listado-alumnos.component.html',
   styleUrl: './listado-alumnos.component.css',
   providers: [StudentApiService],

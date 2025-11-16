@@ -14,10 +14,7 @@
                     <th>nombre</th>
                     <th>apellido</th>
                     <th>dni</th>
-                    <th>email</th>
-                    <th>telefono</th>
-                    <th>condicion</th>
-                    <th>fechaIngreso</th>
+                    <th>acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,10 +24,11 @@
                     <td>{{alumno.nombre}}</td>
                     <td>{{alumno.apellido}}</td>
                     <td>{{alumno.dni}}</td>
-                    <td>{{alumno.email}}</td>
-                    <td>{{alumno.telefono}}</td>
-                    <td>{{alumno.condicion}}</td>
-                    <td>{{alumno.fechaIngreso | date:'dd/MM/yyyy'}}
+                    
+                    <td>
+                        <a [routerLink]="['/dashboard/admin/detalle', alumno.id]" class="btn btn--small btn--info">
+                            Ver detalle
+                        </a>
                     </td>
                 </tr>}
             </tbody>

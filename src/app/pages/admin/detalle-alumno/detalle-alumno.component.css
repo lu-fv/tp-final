@@ -1,0 +1,15 @@
+/* separar por margen automatico los 4 botones */
+
+button{ padding:6px 12px; border-radius:8px; border:1px solid #1d4ed8; background:#1d4ed8; color:#fff; 
+}
+.actions{
+   display: flex;
+    gap: 50px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.btn--primary{
+    background: #fff;
+    color: #1d4ed8;
+}

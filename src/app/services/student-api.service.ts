@@ -61,4 +61,11 @@ export class StudentApiService {
       map((students) => students || [])
     );
   }
+
+  getStudentById(id: number): Observable<Student> {
+    return this.http.get<Student>(`${this.baseUrl}/${this.resource}/${id}`).pipe(
+      map((student) => student)
+    );
+  }
+
 }

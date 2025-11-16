@@ -4,6 +4,5 @@
 .tbl th, .tbl td{ padding:8px 10px; border-bottom:1px solid #e5e7eb; }
 .ok{ color:#16a34a; font-weight:700; }
 .bad{ color:#dc2626; font-weight:700; }
-button{ padding:6px 12px; border-radius:8px; border:1px solid #1d4ed8; background:#1d4ed8; color:#fff; }
-button[disabled]{ opacity:.5; cursor:not-allowed; }
+a{ padding:6px 12px; border-radius:8px; border:1px solid #1d4ed8; background:#1d4ed8; color:#fff; }
 .alert{ margin-bottom:8px; color:#334155; }
