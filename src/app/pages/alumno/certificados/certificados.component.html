@@ -1,0 +1,97 @@
+<!-- src/app/pages/alumno/certificados/certificados.component.html -->
+<section class="card">
+  <header class="card__header">
+    <h3>Certificados</h3>
+  </header>
+
+  <div class="card__body" *ngIf="vm$ | async as vm">
+    <!-- ================= CERTIFICADO REGULAR ================= -->
+    <section class="cert-block">
+      <h4>Certificado de alumno regular</h4>
+      <p class="cert-desc">
+        Permite acreditar la condición de alumno regular. Sólo se emite si la
+        condición actual es <strong>regular</strong>.
+      </p>
+
+      <div class="cert-info">
+        <p><strong>Nombre:</strong> {{ vm.student.apellido }}, {{ vm.student.nombre }}</p>
+        <p><strong>DNI:</strong> {{ vm.student.dni }}</p>
+        <p><strong>Legajo:</strong> {{ vm.student.legajo }}</p>
+        <p>
+          <strong>Condición actual:</strong>
+          <span [ngClass]="{
+              ok: (vm.student.condicion || '').toLowerCase() === 'regular',
+              bad: (vm.student.condicion || '').toLowerCase() !== 'regular'
+            }">
+            {{ vm.student.condicion || '-' }}
+          </span>
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="descargarCertificadoRegular()"
+      >
+        Descargar PDF
+      </button>
+    </section>
+
+    <hr />
+
+    <!-- ================= CERTIFICADO ACADÉMICO ================= -->
+    <section class="cert-block">
+      <h4>Certificado académico</h4>
+      <p class="cert-desc">
+        Incluye un resumen de los exámenes finales rendidos
+        (aprobados y desaprobados).
+      </p>
+
+      <div class="table-wrapper">
+        <table class="tbl tbl-compact">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Código</th>
+              <th>Materia</th>
+              <th>Detalle</th>
+              <th>Condición</th>
+              <th>Nota</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let r of vm.rows">
+              <td>{{ r.tipo }}</td>
+              <td>{{ r.codigo }}</td>
+              <td>{{ r.materia }}</td>
+              <td>{{ r.detalle }}</td>
+              <td [ngClass]="{
+                    ok: (r.condicion || '').toLowerCase() === 'aprobado',
+                    bad: (r.condicion || '').toLowerCase() === 'desaprobado'
+                  }">
+                {{ r.condicion }}
+              </td>
+              <td>{{ r.nota ?? '-' }}</td>
+              <td>{{ r.fecha | date:'yyyy-MM-dd' }}</td>
+            </tr>
+
+            <tr *ngIf="!vm.rows.length">
+              <td colspan="7" style="text-align:center;">
+                Sin exámenes registrados.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="descargarCertificadoAcademico()"
+      >
+        Descargar PDF
+      </button>
+    </section>
+  </div>
+</section>
