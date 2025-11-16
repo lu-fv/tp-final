@@ -82,3 +82,10 @@ export interface ExamGrade {
   nota?: number | null;
   resultado: 'aprobado' | 'desaprobado' | 'ausente' | 'libre' | 'otro';
 }
+
+export interface Admin {
+  id: number;
+  username: string;
+  password: string;
+  nombre: string;
+}

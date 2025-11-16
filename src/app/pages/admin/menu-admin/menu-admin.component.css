@@ -1,0 +1,99 @@
+/* ===== Barra superior ===== */
+.alumno-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #fff;
+  border-bottom: 1px solid rgba(15,23,42,.08);
+}
+
+.alumno-header .brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding: 12px 20px 6px;
+}
+
+.alumno-header .brand img{
+  height: 28px;        
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.05));
+}
+
+.alumno-header .title{
+  margin:0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing:.2px;
+  color: var(--utn-text);
+}
+
+.alumno-header .title span{
+  font-weight:600;
+  color:#334155;
+}
+
+.alumno-header .title small{
+  display:block;
+  margin-top:2px;
+  font-size: 12px;
+  font-weight: 600;
+  color:#64748b;
+}
+
+/* ===== Menú ===== */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding: 10px 20px 14px;
+  border-top: 1px solid rgba(15,23,42,.06);
+}
+
+.nav a{
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;               /* texto oscuro */
+  background: transparent;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.nav a:hover{
+  background: rgba(15,23,42,.06);
+  text-decoration: none;
+}
+
+.nav a.active{
+  background: var(--utn-primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37,99,235,.25), inset 0 -2px 0 rgba(0,0,0,.08);
+}
+
+.nav a.salir{
+  margin-left:auto;
+  color:#b91c1c;
+}
+.nav a.salir:hover{ background: rgba(185,28,28,.08); }
+
+/* ===== Contenido ===== */
+.alumno-main{
+  padding: 18px 20px 32px;
+}
+
+.main-surface{
+  background: var(--utn-surface);
+  color: var(--utn-text);         /* << texto oscuro dentro del panel */
+  border: 1px solid rgba(15,23,42,.08);
+  border-radius: 14px;
+  min-height: 220px;
+  padding: 18px 20px;
+  box-shadow:
+    0 10px 30px rgba(2,6,23,.05),
+    0 2px 6px rgba(2,6,23,.04);
+}
+
+/* Encabezados dentro del contenido */
+.main-surface h1, .main-surface h2, .main-surface h3, .main-surface p, .main-surface li{
+  color: var(--utn-text);
+}

@@ -1,0 +1,45 @@
+<header class="alumno-header">
+
+  <!-- Marca / Logo -->
+  <div class="brand">
+    <img src="assets/utn-logo.png" alt="UTN" />
+    <div class="title">
+      <span>UTN — Autogestión</span>
+      <small>Administrativo</small>
+    </div>
+  </div>
+
+  <!-- Navegación -->
+  <nav class="nav">
+    <a 
+      routerLink="/dashboard/admin"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      Inicio
+    </a>
+
+    <a 
+      routerLink="/dashboard/admin/alta"
+      routerLinkActive="active">
+      Alta de Alumnos
+    </a>
+
+    <a 
+      routerLink="/dashboard/admin/notas"
+      routerLinkActive="active">
+      Listado de alumnos
+    </a>
+    
+
+    <a class="salir" (click)="logout()">Salir</a>
+  </nav>
+
+</header>
+
+
+<main class="admin-main">
+  <section class="main-surface">
+
+    <router-outlet></router-outlet>
+  </section>
+</main>
