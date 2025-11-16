@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
 
 import { StudentAcademicService } from '../../../services/student-academic.service';
 import { AuthService } from '../../../core/auth.service';
 import { Subject, Course, CourseEnrollment } from '../../../core/models';
+import { ActivatedRoute } from '@angular/router';
 
 type Row = {
   course: Course;
@@ -24,10 +25,26 @@ type Row = {
 export class InscripcionesCursadasComponent {
   private aca = inject(StudentAcademicService);
   private auth = inject(AuthService);
+  private route = inject (ActivatedRoute);
 
   mensaje: string | null = null;
   private refresh$ = new BehaviorSubject<void>(undefined);
 
+   protected studentId = signal<number | null>(null);
+  
+    ngOnInit(): void {
+      const userIdFromRoute = Number(this.route.snapshot.paramMap.get('id'));
+      const currentUserId = this.auth.user() ? Number(this.auth.user()?.studentId) : null;
+      if (userIdFromRoute && this.auth.user()?.role === 'alumno' && userIdFromRoute !== currentUserId) {
+        this.mensaje = 'No tienes permiso para ver las inscripciones de otro alumno.';
+      }
+      else if (this.auth.user()?.role === 'alumno' && currentUserId) {
+        this.studentId.set(currentUserId);
+      }
+      else if(this.auth.user()?.role === 'admin' && userIdFromRoute){
+        this.studentId.set(userIdFromRoute);
+      }
+    }
   // loading por fila para evitar doble click
   private loading = new Set<string>();
   btnDisabled(courseId: any) { return this.loading.has(String(courseId)); }
@@ -38,7 +55,7 @@ export class InscripcionesCursadasComponent {
 
   vm$ = this.refresh$.pipe(
     switchMap(() => {
-      const sid = Number(this.auth.user()?.studentId);
+      const sid = Number(this.studentId());
       return combineLatest({
         subjects : this.aca.materias$(),
         courses  : this.aca.cursos$(),
@@ -74,9 +91,9 @@ export class InscripcionesCursadasComponent {
     })
   );
 
-  private studentId(): number {
+  /*private studentId(): number {
     return Number(this.auth.user()?.studentId);
-  }
+  }*/
 
   inscribirmeCurso(c: Course) {
     const sid = this.studentId();
@@ -111,7 +128,7 @@ export class InscripcionesCursadasComponent {
     if (!confirm('¿Confirmás dar de baja esta cursada?')) return;
     if (this.btnDisabled(courseId)) return;
 
-    const sid = this.studentId();
+    const sid = this.studentId() as number;
     this.setLoading(courseId, true);
 
     this.aca.bajaTodasCursadasDeCurso(sid, courseId).subscribe({
@@ -123,3 +140,4 @@ export class InscripcionesCursadasComponent {
 
   trackRow(_: number, r: Row) { return r.course.id as any; }
 }
+

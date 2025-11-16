@@ -1,4 +1,4 @@
-<header class="alumno-header">
+<header class="admin-header">
 
   <!-- Marca / Logo -->
   <div class="brand">
@@ -11,18 +11,19 @@
 
   <!-- Navegación -->
   <nav class="nav">
-
+    <a 
+      routerLink="/dashboard/admin/listado"
+      routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">
+      Listado de alumnos
+    </a>
     <a 
       routerLink="/dashboard/admin/alta"
       routerLinkActive="active">
       Alta de Alumnos
     </a>
 
-    <a 
-      routerLink="/dashboard/admin/listado"
-      routerLinkActive="active">
-      Listado de alumnos
-    </a>
+    
     
 
     <a class="salir" (click)="logout()">Salir</a>

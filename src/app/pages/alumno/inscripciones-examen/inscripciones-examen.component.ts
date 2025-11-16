@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { StudentAcademicService } from '../../../services/student-academic.service';
 import { AuthService } from '../../../core/auth.service';
 import { ExamEnrollment, ExamTable, Subject, Course } from '../../../core/models'; // 👈 ruta
 import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -15,17 +16,32 @@ import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
 export class InscripcionesExamenComponent {
   private aca = inject(StudentAcademicService);
   private auth = inject(AuthService);
-
+  private route = inject (ActivatedRoute);
   mensaje: string | null = null;
   private refresh$ = new BehaviorSubject<void>(undefined);
+  protected studentId = signal<number | null>(null);
+
+  ngOnInit(): void {
+    const userIdFromRoute = Number(this.route.snapshot.paramMap.get('id'));
+    const currentUserId = this.auth.user() ? Number(this.auth.user()?.studentId) : null;
+    if (userIdFromRoute && this.auth.user()?.role === 'alumno' && userIdFromRoute !== currentUserId) {
+      this.mensaje = 'No tienes permiso para ver las inscripciones de otro alumno.';
+    }
+    else if (this.auth.user()?.role === 'alumno' && currentUserId) {
+      this.studentId.set(currentUserId);
+    }
+    else if(this.auth.user()?.role === 'admin' && userIdFromRoute){
+      this.studentId.set(userIdFromRoute);
+    }
+  }
 
   vm$ = this.refresh$.pipe(
     switchMap(() => combineLatest({
       subjects: this.aca.materias$(),
       courses : this.aca.cursos$(),
-      grades  : this.aca.notas$(Number(this.auth.user()?.studentId)),
+      grades  : this.aca.notas$(this.studentId() as number),
       examTbls: this.aca.mesasExamen$(),
-      myExamE : this.aca.inscripcionesExamen$(Number(this.auth.user()?.studentId)),
+      myExamE : this.aca.inscripcionesExamen$(this.studentId() as number),
     })),
     map(({subjects, courses, grades, examTbls, myExamE}) => {
       const statusByCode = this.aca.buildStatusBySubjectCodeFromCourses(subjects, courses, grades);
@@ -52,10 +68,10 @@ export class InscripcionesExamenComponent {
       return { rows, statusByCode, myExamE };
     })
   );
-
+/*
   private studentId(): number {
     return Number(this.auth.user()?.studentId);
-  }
+  }*/
 
   inscribirme(t: ExamTable) {
     const sid = this.studentId();
