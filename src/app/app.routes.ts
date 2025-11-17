@@ -32,6 +32,13 @@ export const routes: Routes = [
       ),
     children: [
       {
+        path: '',
+        loadComponent: () =>
+          import( './pages/admin/listado-alumnos/listado-alumnos.component').then(
+            (c) => c.ListadoAlumnosComponent
+          ),
+      },
+      {
         path: 'alta',
         loadComponent: () =>
           import('./pages/admin/add-student/add-student.component').then(

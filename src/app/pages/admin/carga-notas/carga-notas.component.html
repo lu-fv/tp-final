@@ -1,3 +1,24 @@
-<app-formulario-cursada [studentId]="studentId()"></app-formulario-cursada>
+
+<div class="container">
+    <h2>Carga de Notas</h2>
+
+@if (selectedForm() == 'opcion1') {
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Seleccionar el formulario de carga de notas</mat-label>
+        <mat-select (selectionChange)="onFormSelectionChange($event)" required>
+      <mat-option value="option1" disabled>Seleccione formulario</mat-option>
+      <mat-option value="option2">Carga de notas de cursadas</mat-option>
+      <mat-option value="option3">Carga de notas de examen</mat-option>
+    </mat-select>
+       
+</mat-form-field>
+   
+} @else if (selectedForm() == 'opcion2') {
+   <app-formulario-cursada [studentId]="studentId()"></app-formulario-cursada>
+} @else {
+     <app-formulario-cursada [studentId]="studentId()"></app-formulario-cursada>
+}
 
 
+
+</div>

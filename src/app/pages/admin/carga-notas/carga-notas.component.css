@@ -1,0 +1,10 @@
+.container {
+     margin: auto;
+    width: 30%;
+    h2{
+        text-align: center;
+    }
+}
+.full-width {
+  width: 100%;
+} 
