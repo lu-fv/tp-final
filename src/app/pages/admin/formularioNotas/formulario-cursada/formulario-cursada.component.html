@@ -1,0 +1,54 @@
+<h2>Formulario notas de cursada</h2>
+
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+
+
+    <mat-form-field appearance="outline">
+        <mat-label>Cursada</mat-label>
+        <select matNativeControl formControlName="courseId" required>
+            <option value="" disabled>Seleccione una cursada</option>
+            <option *ngFor="let materiasCursada of materiasCursadas()" [value]="materiasCursada.id">
+                {{materiasCursada.name}}
+            </option>
+        </select>
+        <mat-error *ngIf="courseForm.get('courseId')?.hasError('required')">
+            El nombre es obligatorio
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Parcial 1</mat-label>
+        <input matInput type="number" formControlName="parcial1" min="0" max="10" step="0.1"
+            [disabled]="!isParcial1Enabled()">
+        <mat-hint>{{ getParcial1Hint() }}</mat-hint>
+        <mat-error *ngIf="courseForm.get('parcial1')?.hasError('min')">
+            La nota no puede ser menor a 0
+        </mat-error>
+        <mat-error *ngIf="courseForm.get('parcial1')?.hasError('max')">
+            La nota no puede ser mayor a 10
+        </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Parcial 2 -->
+    <mat-form-field appearance="fill">
+        <mat-label>Parcial 2</mat-label>
+        <input matInput type="number" formControlName="parcial2" min="0" max="10" step="0.1"
+            [disabled]="!isParcial2Enabled()">
+        <mat-hint>{{ getParcial2Hint() }}</mat-hint>
+        <mat-error *ngIf="courseForm.get('parcial2')?.hasError('min')">
+            La nota no puede ser menor a 0
+        </mat-error>
+        <mat-error *ngIf="courseForm.get('parcial2')?.hasError('max')">
+            La nota no puede ser mayor a 10
+        </mat-error>
+    </mat-form-field>
+
+
+
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+</form>
+<div *ngIf="alert()" [ngClass]="{
+    'success-msg': alert()?.type === 'success',
+    'error-msg': alert()?.type === 'error'
+  }" class="status-container">
+    {{ alert()?.text }}
+</div>

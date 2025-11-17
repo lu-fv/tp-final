@@ -21,7 +21,6 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
 
-
   // ===================== ÁREA AUTENTICADA – ADMIN =====================
   {
     path: 'dashboard/admin',
@@ -53,62 +52,79 @@ export const routes: Routes = [
             (m) => m.DetalleAlumnoComponent
           ),
       },
-          {
-      path: 'inscripciones/:id',
-      loadComponent: () => import('./pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component')
-        .then(c => c.InscripcionesCursadasComponent),
-    },
-    {
-      path: 'examenes/:id',
-      loadComponent: () => import('./pages/alumno/inscripciones-examen/inscripciones-examen.component')
-        .then(c => c.InscripcionesExamenComponent),
-    },
+      {
+        path: 'carga-notas/:id',
+        loadComponent: () =>
+          import('./pages/admin/carga-notas/carga-notas.component').then(
+            (c) => c.CargaNotasComponent
+          ),
+      },
+      {
+        path: 'inscripciones/:id',
+        loadComponent: () =>
+          import(
+            './pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component'
+          ).then((c) => c.InscripcionesCursadasComponent),
+      },
+      {
+        path: 'examenes/:id',
+        loadComponent: () =>
+          import(
+            './pages/alumno/inscripciones-examen/inscripciones-examen.component'
+          ).then((c) => c.InscripcionesExamenComponent),
+      },
     ],
   },
 
   // ===================== ÁREA AUTENTICADA – ALUMNO =====================
- {
-  path: 'dashboard/student',
-  canActivate: [AuthGuard, HasRole('alumno')],
-  loadComponent: () =>
-    import('./pages/alumno/menu-alumno/menu-alumno.component')
-      .then(m => m.MenuAlumnoComponent),     // <— layout (standalone) con <router-outlet>
-  children: [
-    {
-      path: '',
-      loadComponent: () =>
-        import('./pages/alumno/inicio-alumno/inicio-alumno.component')
-          .then(c => c.InicioAlumnoComponent),
-    },
-    {
-      path: 'deuda',
-      loadComponent: () =>
-        import('./pages/deuda/deuda.component')
-          .then(c => c.DeudaComponent),
-    },
-    {
-      path: 'inscripciones',
-      loadComponent: () => import('./pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component')
-        .then(c => c.InscripcionesCursadasComponent),
-    },
-    {
-      path: 'examenes',
-      loadComponent: () => import('./pages/alumno/inscripciones-examen/inscripciones-examen.component')
-        .then(c => c.InscripcionesExamenComponent),
-    },
-    {
-      path: 'notas',
-      loadComponent: () =>
-        import('./pages/alumno/notas/notas.component')
-          .then(c => c.NotasComponent),
-    },
-    {
-      path: 'certificados',
-      loadComponent: () =>
-        import('./pages/alumno/certificados/certificados.component')
-          .then(c => c.CertificadosComponent),
-    }
-    
-  ],
-}
-]
+  {
+    path: 'dashboard/student',
+    canActivate: [AuthGuard, HasRole('alumno')],
+    loadComponent: () =>
+      import('./pages/alumno/menu-alumno/menu-alumno.component').then(
+        (m) => m.MenuAlumnoComponent
+      ), // <— layout (standalone) con <router-outlet>
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./pages/alumno/inicio-alumno/inicio-alumno.component').then(
+            (c) => c.InicioAlumnoComponent
+          ),
+      },
+      {
+        path: 'deuda',
+        loadComponent: () =>
+          import('./pages/deuda/deuda.component').then((c) => c.DeudaComponent),
+      },
+      {
+        path: 'inscripciones',
+        loadComponent: () =>
+          import(
+            './pages/alumno/inscripciones-cursadas/inscripciones-cursadas.component'
+          ).then((c) => c.InscripcionesCursadasComponent),
+      },
+      {
+        path: 'examenes',
+        loadComponent: () =>
+          import(
+            './pages/alumno/inscripciones-examen/inscripciones-examen.component'
+          ).then((c) => c.InscripcionesExamenComponent),
+      },
+      {
+        path: 'notas',
+        loadComponent: () =>
+          import('./pages/alumno/notas/notas.component').then(
+            (c) => c.NotasComponent
+          ),
+      },
+      {
+        path: 'certificados',
+        loadComponent: () =>
+          import('./pages/alumno/certificados/certificados.component').then(
+            (c) => c.CertificadosComponent
+          ),
+      },
+    ],
+  },
+];

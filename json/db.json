@@ -534,6 +534,27 @@
       "courseId": "14",
       "estado": "inscripto",
       "fecha": "2025-11-16T14:53:50.452Z"
+    },
+    {
+      "id": "12d2",
+      "studentId": 101,
+      "courseId": "11",
+      "estado": "inscripto",
+      "fecha": "2025-11-16T21:08:10.817Z"
+    },
+    {
+      "id": "e1d3",
+      "studentId": 101,
+      "courseId": "15",
+      "estado": "inscripto",
+      "fecha": "2025-11-16T21:08:16.508Z"
+    },
+    {
+      "id": "5f2b",
+      "studentId": 102,
+      "courseId": "11",
+      "estado": "inscripto",
+      "fecha": "2025-11-16T23:58:47.107Z"
     }
   ],
   "course_grades": [
@@ -563,6 +584,33 @@
       "parcial2": 9,
       "promedio": 8.5,
       "condicion": "aprobado"
+    },
+    {
+      "id": "5004",
+      "courseId": "11",
+      "parcial1": 10,
+      "parcial2": 10,
+      "studentId": 102,
+      "promedio": 10,
+      "condicion": "aprobado"
+    },
+    {
+      "id": "5005",
+      "courseId": "14",
+      "parcial1": 8,
+      "parcial2": 8,
+      "studentId": 101,
+      "promedio": 8,
+      "condicion": "aprobado"
+    },
+    {
+      "id": "5006",
+      "courseId": "15",
+      "parcial1": 8,
+      "parcial2": 6,
+      "studentId": 101,
+      "promedio": 7,
+      "condicion": "regular"
     }
   ],
   "exam_tables": [
@@ -585,10 +633,146 @@
     {
       "id": "7003",
       "subjectId": 12,
-      "fecha": "2026-07-10",
+      "fecha": "2026-03-10",
       "aula": "Aula 1",
       "turno": "Mañana",
+      "periodo": "Marzo 2026"
+    },
+    {
+      "id": "7004",
+      "subjectId": 1,
+      "fecha": "2026-03-10",
+      "aula": "Aula 1",
+      "turno": "Mañana",
+      "periodo": "Marzo 2026"
+    },
+    {
+      "id": "7005",
+      "subjectId": 3,
+      "fecha": "2025-12-15",
+      "aula": "Aula 2",
+      "turno": "Mañana",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7006",
+      "subjectId": 6,
+      "fecha": "2025-12-12",
+      "aula": "Lab 1",
+      "turno": "Noche",
+      "periodo": "Marzo 2026"
+    },
+    {
+      "id": "7007",
+      "subjectId": 8,
+      "fecha": "2025-12-14",
+      "aula": "Aula 3",
+      "turno": "Tarde",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7008",
+      "subjectId": 9,
+      "fecha": "2025-12-16",
+      "aula": "Aula 4",
+      "turno": "Tarde",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7009",
+      "subjectId": 10,
+      "fecha": "2025-12-18",
+      "aula": "Lab 2",
+      "turno": "Noche",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7010",
+      "subjectId": 5,
+      "fecha": "2025-12-11",
+      "aula": "Lab 3",
+      "turno": "Noche",
+      "periodo": "Marzo 2026"
+    },
+    {
+      "id": "7011",
+      "subjectId": 4,
+      "fecha": "2025-12-09",
+      "aula": "Aula 5",
+      "turno": "Tarde",
+      "periodo": "Diciembre 2025"
+    },
+    {
+      "id": "7012",
+      "subjectId": 19,
+      "fecha": "2026-07-12",
+      "aula": "Aula 6",
+      "turno": "Mañana",
       "periodo": "Julio 2026"
+    },
+    {
+      "id": "7013",
+      "subjectId": 18,
+      "fecha": "2026-07-14",
+      "aula": "Lab 4",
+      "turno": "Noche",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7014",
+      "subjectId": 17,
+      "fecha": "2026-07-16",
+      "aula": "Aula 7",
+      "turno": "Tarde",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7015",
+      "subjectId": 20,
+      "fecha": "2026-07-18",
+      "aula": "Lab 5",
+      "turno": "Noche",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7016",
+      "subjectId": 16,
+      "fecha": "2026-07-20",
+      "aula": "Lab 6",
+      "turno": "Noche",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7017",
+      "subjectId": 15,
+      "fecha": "2026-07-22",
+      "aula": "Aula 8",
+      "turno": "Tarde",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7018",
+      "subjectId": 14,
+      "fecha": "2026-07-24",
+      "aula": "Aula 9",
+      "turno": "Tarde",
+      "periodo": "Julio 2026"
+    },
+    {
+      "id": "7019",
+      "subjectId": 13,
+      "fecha": "2026-03-26",
+      "aula": "Aula 10",
+      "turno": "Mañana",
+      "periodo": "Marzo 2026"
+    },
+    {
+      "id": "7020",
+      "subjectId": 11,
+      "fecha": "2026-03-28",
+      "aula": "Aula 11",
+      "turno": "Mañana",
+      "periodo": "Marzo 2026"
     }
   ],
   "exam_enrollments": [
@@ -598,6 +782,13 @@
       "examTableId": "7001",
       "estado": "inscripto",
       "fecha": "2025-11-10T21:51:15.567Z"
+    },
+    {
+      "id": "3ff4",
+      "studentId": 101,
+      "examTableId": "7002",
+      "estado": "inscripto",
+      "fecha": "2025-11-17T21:55:30.533Z"
     }
   ],
   "exam_grades": [
@@ -605,6 +796,13 @@
       "id": "8100",
       "studentId": 101,
       "examTableId": 7001,
+      "nota": 6,
+      "resultado": "aprobado"
+    },
+    {
+      "id": "8101",
+      "studentId": 101,
+      "examTableId": 7004,
       "nota": 6,
       "resultado": "aprobado"
     }

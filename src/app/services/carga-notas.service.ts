@@ -1,0 +1,38 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { CourseGrade, ExamGrade } from '../core/models';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CargaNotasService {
+  private http = inject(HttpClient);
+
+  private baseUrl = 'http://localhost:3000';
+  private resource = 'course_grades';
+
+  addCourseGrade(courseGrade: CourseGrade): Observable<boolean> {
+    return this.http
+      .post<boolean>(`${this.baseUrl}/${this.resource}`, courseGrade)
+      .pipe(map((cg) => cg));
+  }
+  addExamGrade(examGrade: ExamGrade): Observable<boolean> {
+    return this.http
+      .post<boolean>(`${this.baseUrl}/examGrades`, examGrade)
+      .pipe(map((eg) => eg));
+  }
+  getlastId(): Observable<number> {
+    return this.http
+      .get<CourseGrade[]>(`${this.baseUrl}/${this.resource}`)
+      .pipe(
+        map((grades) =>{
+          
+          return grades.length > 0
+            ? Math.max(...grades.map((g) => Number(g.id)))
+            : 0
+          }
+        )
+      );
+  }
+}
