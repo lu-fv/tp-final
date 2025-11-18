@@ -19,7 +19,7 @@ export class CargaNotasService {
   }
   addExamGrade(examGrade: ExamGrade): Observable<boolean> {
     return this.http
-      .post<boolean>(`${this.baseUrl}/examGrades`, examGrade)
+      .post<boolean>(`${this.baseUrl}/exam_grades`, examGrade)
       .pipe(map((eg) => eg));
   }
   getlastId(): Observable<number> {
@@ -35,4 +35,18 @@ export class CargaNotasService {
         )
       );
   }
+
+  getlastExamGradeId(): Observable<number> {  
+    return this.http
+      .get<ExamGrade[]>(`${this.baseUrl}/exam_grades`)
+      .pipe(
+        map((grades) =>{
+          return grades.length > 0
+            ? Math.max(...grades.map((g) => Number(g.id)))
+            : 0
+          }
+        )
+      );
+  }
+  
 }

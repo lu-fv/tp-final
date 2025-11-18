@@ -4,6 +4,7 @@ import { CourseGrade } from '../../../core/models';
 import { ActivatedRoute } from '@angular/router';
 import { CargaNotasService } from '../../../services/carga-notas.service';
 import { FormularioCursadaComponent } from '../formularioNotas/formulario-cursada/formulario-cursada.component';
+import { FormularioExamenComponent } from '../formularioNotas/formulario-examen/formulario-examen.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -11,11 +12,13 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-carga-notas',
   standalone: true,
-  imports: [FormularioCursadaComponent,
-     CommonModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
+  imports: [
+    FormularioCursadaComponent,
+    FormularioExamenComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './carga-notas.component.html',
   styleUrl: './carga-notas.component.css',
@@ -27,7 +30,7 @@ export class CargaNotasComponent {
   statusMessage = signal<{ type: 'success' | 'error'; text: string } | null>(
     null
   );
-  selectedForm = signal<'opcion1' | 'opcion2' |'opcion3' >('opcion1');
+  selectedForm = signal<'opcion1' | 'opcion2' | 'opcion3'>('opcion1');
 
   ngOnInit(): void {
     const studentId = this.route.snapshot.paramMap.get('id');
@@ -41,7 +44,7 @@ export class CargaNotasComponent {
     }
   }
 
-   onFormSelectionChange(event: any): void {
+  onFormSelectionChange(event: any): void {
     const value = event.value;
     if (value === 'option2') {
       this.selectedForm.set('opcion2');

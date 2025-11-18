@@ -1,1 +1,34 @@
-<p>formulario-examen works!</p>
+<h2>Formulario notas de examen</h2>
+
+<form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Cursada Aprobada</mat-label>
+        <select matNativeControl formControlName="examTableId" required>
+            <option value="" disabled>Seleccione una cursada aprobada</option>
+            <option *ngFor="let materiasAprobada of materiasAprobadas()" [value]="materiasAprobada.id">
+                {{materiasAprobada.name}}
+            </option>
+        </select>
+        <mat-error *ngIf="examForm.get('examTableId')?.hasError('required')">
+            La cursada es obligatoria
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Nota</mat-label>
+        <input matInput type="number" formControlName="nota" min="0" max="10" step="0.1" [disabled]="!isNotaEnabled()">
+        <mat-hint>{{ getNotaHint() }}</mat-hint>
+        <mat-error *ngIf="examForm.get('nota')?.hasError('min')">
+            La nota no puede ser menor a 0
+        </mat-error>
+        <mat-error *ngIf="examForm.get('nota')?.hasError('max')">
+            La nota no puede ser mayor a 10
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Guardar</button>
+</form>
+<div *ngIf="alert()" [ngClass]="{
+    'success-msg': alert()?.type === 'success',
+    'error-msg': alert()?.type === 'error'
+  }" class="status-container">
+    {{ alert()?.text }}
+</div>

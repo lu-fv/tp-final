@@ -777,18 +777,25 @@
   ],
   "exam_enrollments": [
     {
-      "id": "ff69",
+      "id": "1",
       "studentId": 101,
       "examTableId": "7001",
       "estado": "inscripto",
       "fecha": "2025-11-10T21:51:15.567Z"
     },
     {
-      "id": "3ff4",
+      "id": "2",
       "studentId": 101,
       "examTableId": "7002",
       "estado": "inscripto",
       "fecha": "2025-11-17T21:55:30.533Z"
+    },
+    {
+      "id": "3",
+      "studentId": 102,
+      "examTableId": "7004",
+      "estado": "inscripto",
+      "fecha": "2025-11-18T00:21:21.505Z"
     }
   ],
   "exam_grades": [
@@ -804,6 +811,13 @@
       "studentId": 101,
       "examTableId": 7004,
       "nota": 6,
+      "resultado": "aprobado"
+    },
+    {
+      "id": "8102",
+      "studentId": 102,
+      "examTableId": "7004",
+      "nota": 7,
       "resultado": "aprobado"
     }
   ],
