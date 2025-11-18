@@ -59,7 +59,7 @@
               <button
                 type="button"
                 class="secondary"
-                [disabled]="btnDisabled(r.course.id)"
+                [disabled]="btnDisabled(r.course.id) || r.statusMyGrade" 
                 (click)="darmeDeBajaCurso(r.myEnroll, r.course.id)">
                 Dar de baja
               </button>

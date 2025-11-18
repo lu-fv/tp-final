@@ -48,7 +48,7 @@
             </button>
 
             <ng-template #yaInscripto>
-              <button class="secondary" (click)="darmeDeBaja(r.myEnroll)">
+              <button  class="secondary" (click)="darmeDeBaja(r.myEnroll, r.statusMyGrade)" [disabled]="r.statusMyGrade">
                 Darme de baja
               </button>
             </ng-template>

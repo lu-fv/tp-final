@@ -4,7 +4,7 @@ import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
 
 import { StudentAcademicService } from '../../../services/student-academic.service';
 import { AuthService } from '../../../core/auth.service';
-import { Subject, Course, CourseEnrollment } from '../../../core/models';
+import { Subject, Course, CourseEnrollment, CourseGrade } from '../../../core/models';
 import { ActivatedRoute } from '@angular/router';
 
 type Row = {
@@ -13,6 +13,7 @@ type Row = {
   okCorrel: boolean;
   already: boolean;
   myEnroll: CourseEnrollment | null;
+  statusMyGrade: boolean;
 };
 
 @Component({
@@ -61,6 +62,7 @@ export class InscripcionesCursadasComponent {
         courses  : this.aca.cursos$(),
         grades   : this.aca.notas$(sid),
         myEnrolls: this.aca.inscripcionesCursada$(sid),
+        
       });
     }),
     map(({ subjects, courses, grades, myEnrolls }) => {
@@ -83,8 +85,11 @@ export class InscripcionesCursadasComponent {
         const myEnroll = already
           ? inscActivas.sort((a, b) => ('' + b.id).localeCompare('' + a.id))[0]
           : null;
-
-        return { course: c, subject: subj, okCorrel, already, myEnroll };
+ const grade = grades.find(
+                (g: CourseGrade) => g.courseId.toString() === myEnroll?.courseId
+              );
+              const statusMyGrade = myEnroll && grade?.condicion ? true : false;
+        return { course: c, subject: subj, okCorrel, already, myEnroll, statusMyGrade };
       }).filter(Boolean) as Row[];
 
       return { rows, statusByCode, myEnrolls };
