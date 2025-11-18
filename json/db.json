@@ -52,6 +52,17 @@
       "telefono": "223-555-0001",
       "condicion": "regular",
       "fechaIngreso": "2021-03-01"
+    },
+    {
+      "id": "1021",
+      "legajo": "103",
+      "nombre": "Matias",
+      "apellido": "Rodriguez",
+      "dni": "33569123",
+      "email": "matias@gmail.com",
+      "telefono": "0223-566-4422",
+      "condicion": "irregular",
+      "fechaIngreso": "2025-11-17T03:00:00.000Z"
     }
   ],
   "subjects": [

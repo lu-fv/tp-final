@@ -17,12 +17,14 @@ export class StudentApiService {
       .get<Student>(`${this.baseUrl}/${this.resource}/${id}`)
       .pipe(map((s) => s ?? null));
   }
-  getLastStudent(): Observable<Student | null> {
+  getLastStudent(): Observable<number> {
     return this.http
       .get<Array<Student>>(`${this.baseUrl}/${this.resource}`)
       .pipe(
         map((s) => {
-          return s[s.length - 1];
+          return  s.length > 0
+                      ? Math.max(...s.map((g) => Number(g.id)))
+                      : 0;
         })
       );
   }

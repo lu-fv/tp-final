@@ -71,7 +71,7 @@ export class AddStudentComponent {
 
       this.studentService.getLastStudent().subscribe({
         next: (s) => {
-          const id = s != null && s.id ? ((s.id as number) + 1).toString() : '101';
+          const id = (s + 1).toString();
 
           this.studentService
             .create(
