@@ -1,15 +1,30 @@
-/* separar por margen automatico los 4 botones */
-
-button{ padding:6px 12px; border-radius:8px; border:1px solid #1d4ed8; background:#1d4ed8; color:#fff; 
+/* Botones */
+button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #1d4ed8;
+  background: #1d4ed8;
+  color: #fff;
+  cursor: pointer;        /* 👈 NUEVO: cursor de mano */
 }
-.actions{
-   display: flex;
-    gap: 50px;
-    margin-top: 20px;
-    justify-content: center;
+
+/* Botón blanco */
+.btn--primary {
+  background: #fff;
+  color: #1d4ed8;
+  cursor: pointer;        /* 👈 también para estos */
 }
 
-.btn--primary{
-    background: #fff;
-    color: #1d4ed8;
+/* Contenedor de botones */
+.actions {
+  display: flex;
+  gap: 50px;
+  margin-top: 40px;       /* 👈 NUEVO: más espacio hacia abajo */
+  justify-content: center;
+}
+
+/* Para asegurar que los <a> como botones también tengan manito */
+.actions a,
+.actions button {
+  cursor: pointer !important;   /* 👈 fuerza la manito */
 }

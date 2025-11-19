@@ -29,7 +29,6 @@
       "nombre": "Secretaría Académica"
     }
   ],
-  "debts": [],
   "students": [
     {
       "id": "101",
@@ -53,7 +52,6 @@
       "condicion": "regular",
       "fechaIngreso": "2021-03-01"
     }
-    
   ],
   "subjects": [
     {
@@ -556,6 +554,20 @@
       "courseId": "11",
       "estado": "inscripto",
       "fecha": "2025-11-16T23:58:47.107Z"
+    },
+    {
+      "id": "0f23",
+      "studentId": 101,
+      "courseId": "12",
+      "estado": "inscripto",
+      "fecha": "2025-11-18T21:44:12.723Z"
+    },
+    {
+      "id": "2631",
+      "studentId": 101,
+      "courseId": "22",
+      "estado": "inscripto",
+      "fecha": "2025-11-18T21:54:39.483Z"
     }
   ],
   "course_grades": [
@@ -785,18 +797,25 @@
       "fecha": "2025-11-10T21:51:15.567Z"
     },
     {
-      "id": "2",
-      "studentId": 101,
-      "examTableId": "7002",
-      "estado": "inscripto",
-      "fecha": "2025-11-17T21:55:30.533Z"
-    },
-    {
       "id": "3",
       "studentId": 102,
       "examTableId": "7004",
       "estado": "inscripto",
       "fecha": "2025-11-18T00:21:21.505Z"
+    },
+    {
+      "id": "c3d0",
+      "studentId": 101,
+      "examTableId": "7002",
+      "estado": "inscripto",
+      "fecha": "2025-11-18T21:49:00.690Z"
+    },
+    {
+      "id": "6895",
+      "studentId": 101,
+      "examTableId": "7004",
+      "estado": "inscripto",
+      "fecha": "2025-11-18T23:16:08.671Z"
     }
   ],
   "exam_grades": [
@@ -819,6 +838,13 @@
       "studentId": 102,
       "examTableId": "7004",
       "nota": 7,
+      "resultado": "aprobado"
+    },
+    {
+      "id": "8103",
+      "studentId": 101,
+      "examTableId": "7002",
+      "nota": 8,
       "resultado": "aprobado"
     }
   ],

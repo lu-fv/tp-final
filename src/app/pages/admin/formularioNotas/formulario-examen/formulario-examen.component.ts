@@ -46,7 +46,7 @@ export class FormularioExamenComponent {
   >([]);
   private aca = inject(StudentAcademicService);
   private refresh$ = new BehaviorSubject<void>(undefined);
-private cargaNotasService = inject(CargaNotasService);
+  private cargaNotasService = inject(CargaNotasService);
 
   vm$ = this.refresh$.pipe(
     switchMap(() => {

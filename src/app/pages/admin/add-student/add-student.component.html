@@ -1,105 +1,75 @@
-<div class="container">
-<h2>Formulario de Alumno</h2>
+<div class="page-container">
+  <div class="card">
+    <h2 class="title">Formulario de Alumno</h2>
 
-    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-      <!-- ID del alumno -->
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-layout">
+
       <mat-form-field appearance="outline">
-        <mat-label>Legajo</mat-label>
+        <mat-label>Legajo*</mat-label>
         <input matInput formControlName="studentId" placeholder="Ej: MDP-2020-001" />
-        <mat-error *ngIf="studentForm.get('studentId')?.hasError('required')">
-          El legajo es obligatorio
-        </mat-error>
       </mat-form-field>
 
-      <!-- Nombre -->
       <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre*</mat-label>
         <input matInput formControlName="firstName" placeholder="Ej: Gabriel" />
-        <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')">
-          El nombre es obligatorio
-        </mat-error>
       </mat-form-field>
 
-      <!-- Apellido -->
       <mat-form-field appearance="outline">
-        <mat-label>Apellido</mat-label>
+        <mat-label>Apellido*</mat-label>
         <input matInput formControlName="lastName" placeholder="Ej: Laguna" />
-        <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')">
-          El apellido es obligatorio
-        </mat-error>
       </mat-form-field>
 
-      <!-- DNI -->
       <mat-form-field appearance="outline">
-        <mat-label>DNI</mat-label>
+        <mat-label>DNI*</mat-label>
         <input matInput formControlName="nationalId" placeholder="Ej: 37.240.635" />
-        <mat-error *ngIf="studentForm.get('nationalId')?.hasError('required')">
-          El DNI es obligatorio
-        </mat-error>
       </mat-form-field>
 
-      <!-- Email -->
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
+        <mat-label>Email*</mat-label>
         <input matInput type="email" formControlName="email" placeholder="Ej: alumno@utn.edu.ar" />
-        <mat-error *ngIf="studentForm.get('email')?.hasError('required')">
-          El email es obligatorio
-        </mat-error>
-        <mat-error *ngIf="studentForm.get('email')?.hasError('email')">
-          Ingrese un email válido
-        </mat-error>
       </mat-form-field>
 
-      <!-- Teléfono -->
       <mat-form-field appearance="outline">
-        <mat-label>Teléfono</mat-label>
-        <input
-          matInput
-          formControlName="phone"
-          placeholder="Ej: 223-555-0000"
-        />
+        <mat-label>Teléfono*</mat-label>
+        <input matInput formControlName="phone" placeholder="Ej: 223-555-0000" />
         <mat-hint>Formato: xxxx-xxx-xxxx</mat-hint>
-        <mat-error *ngIf="studentForm.get('phone')?.hasError('required')">
-          El teléfono es obligatorio
-        </mat-error>
-        <mat-error *ngIf="studentForm.get('phone')?.hasError('pattern')">
-          Formato inválido. Use xxxx-xxx-xxxx
-        </mat-error>
       </mat-form-field>
 
-      <!-- Condición -->
       <mat-form-field appearance="outline">
-        <mat-label>Condición</mat-label>
+        <mat-label>Condición*</mat-label>
         <mat-select formControlName="status">
           <mat-option value="regular">Regular</mat-option>
-          <mat-option value="irregular">Irregular</mat-option>
+          <mat-option value="irregular">Libre</mat-option>
         </mat-select>
-        <mat-error *ngIf="studentForm.get('status')?.hasError('required')">
-          La condición es obligatoria
-        </mat-error>
       </mat-form-field>
 
-      <!-- Fecha de ingreso -->
       <mat-form-field appearance="outline">
-        <mat-label>Fecha de ingreso</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="admissionDate" placeholder="Seleccione una fecha" />
+        <mat-label>Fecha de ingreso*</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="admissionDate"
+          placeholder="Seleccione una fecha"
+        />
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="studentForm.get('admissionDate')?.hasError('required')">
-          La fecha de ingreso es obligatoria
-        </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-raised-button color="primary" type="submit" class="btn-save">
+        Guardar
+      </button>
+
     </form>
-<div
-  *ngIf="statusMessage()"
-  [ngClass]="{
-    'success-msg': statusMessage()?.type === 'success',
-    'error-msg': statusMessage()?.type === 'error'
-  }"
-  class="status-container"
->
-  {{ statusMessage()?.text }}
-</div>
+
+    <div
+      *ngIf="statusMessage()"
+      [ngClass]="{
+        'success-msg': statusMessage()?.type === 'success',
+        'error-msg': statusMessage()?.type === 'error'
+      }"
+      class="status-container"
+    >
+      {{ statusMessage()?.text }}
+    </div>
+  </div>
 </div>

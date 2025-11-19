@@ -1,13 +1,47 @@
-form {
+/* --- CONTENEDOR GENERAL --- */
+.page-container {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 420px;
+  justify-content: center;
+  padding: 30px 0;
 }
 
+/* --- CARD --- */
+.card {
+  background: #fff;
+  width: 520px;
+  border-radius: 14px;
+  padding: 26px 30px 34px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid rgba(15,23,42,.08);
+}
+
+.title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* --- FORMULARIO --- */
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Botón */
+.btn-save {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+/* Mensajes */
 .status-container {
-  margin-top: 16px;
-  padding: 12px;
+  margin-top: 20px;
+  padding: 14px;
   border-radius: 6px;
   text-align: center;
   font-weight: 500;
@@ -23,9 +57,4 @@ form {
   background-color: #ffebee;
   color: #c62828;
   border: 1px solid #ef9a9a;
-}
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
 }

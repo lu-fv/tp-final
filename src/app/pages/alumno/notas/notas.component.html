@@ -94,7 +94,8 @@
           </td>
 
           <td>{{ r.nota ?? '—' }}</td>
-          <td>{{ r.fecha ? (r.fecha | date:'d \'de\' MMMM \'de\' y') : '—' }}</td>
+          <td>{{ r.fecha ? (r.fecha | date:"d 'de' MMMM 'de' y":"es-AR") : '--' }}</td>
+
         </tr>
 
         <tr *ngIf="!vm.rowsExamen.length">

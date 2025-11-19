@@ -139,22 +139,44 @@ export class CertificadosComponent {
       <br/>
     `;
 
-    const estilosTabla = `
-      <style>
-        table { width: 100%; border-collapse: collapse; font-size: 10px; }
-        th {
-          background: #0A5275; color: white;
-          padding: 6px 4px;
-          border: 1px solid #dddddd;
-          text-align: center;
-        }
-        td {
-          padding: 5px 4px;
-          border: 1px solid #dddddd;
-          text-align: center;
-        }
-      </style>
-    `;
+      const estilosTabla = `
+  <style>
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-size: 9px;
+      table-layout: fixed;
+    }
+
+    th {
+      background: #0A5275; 
+      color: white;
+      padding: 4px 2px;
+      border: 1px solid #dddddd;
+      text-align: center;
+    }
+
+    td {
+      padding: 4px 2px;
+      border: 1px solid #dddddd;
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    th:nth-child(1) { width: 8%; }   /* Tipo      */
+    th:nth-child(2) { width: 10%; }  /* Código    */
+    th:nth-child(3) { width: 27%; }  /* Materia   */
+    th:nth-child(4) { width: 23%; }  /* Detalle   */
+    th:nth-child(5) { width: 12%; }  /* Condición */
+    th:nth-child(6) { width: 8%; }   /* Nota      */
+    th:nth-child(7) { width: 12%; }  /* Fecha     */
+
+    /* 👉 Evita que la fecha se parta en dos líneas */
+    td:nth-child(7) { white-space: nowrap; }
+  </style>
+`;
+
+
 
     let filas = '';
     rows.forEach((r) => {
@@ -207,14 +229,16 @@ export class CertificadosComponent {
     `;
 
     // 👉 Contenedor central para que no quede “pegado” a la izquierda
-    const contenido = `
-      <div style="width:480px; margin:0 auto; font-family:Arial, sans-serif;">
-        ${encabezado}
-        ${intro}
-        ${tabla}
-        ${pie}
-      </div>
-    `;
+      const contenido = `
+    <div style="width:520px; margin:0 auto; font-family:Arial, sans-serif;">
+      ${encabezado}
+      ${intro}
+      ${tabla}
+      ${pie}
+    </div>
+  `;
+
+
 
     await pdf.html(contenido, {
       callback: (doc: any) => doc.save('certificado_academico.pdf'),
