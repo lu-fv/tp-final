@@ -26,7 +26,7 @@ export class StudentAcademicService {
     return `_=${Date.now()}`;
   }
 
-  // ---------- GETTERS en español (con alias de compatibilidad) ----------
+ 
   materias$(): Observable<Subject[]> {
     return this.http.get<Subject[]>(`${this.base}/subjects`);
   }
@@ -113,7 +113,7 @@ student$(studentId: number) {
     return subjectCodeStatus;
   }
 
-  /** Todas las correlativas de 'codes' deben estar en {regular, aprobado} */
+  
   hasAllRegularOrApproved(
     statusMap: Record<string, 'aprobado'|'regular'|'otro'|null>,
     codes: string[]
@@ -124,17 +124,17 @@ student$(studentId: number) {
     });
   }
 
-  /** Ya inscripto a un curso */
+ 
   isAlreadyEnrolledCourse(courseId: string | number, enrolls: CourseEnrollment[]) {
     return enrolls.some(e => String(e.courseId) === String(courseId) && e.estado === 'inscripto');
   }
 
-  /** Ya inscripto a una mesa */
+  
   isAlreadyEnrolledExam(examTableId: string | number, enrolls: ExamEnrollment[]) {
     return enrolls.some(e => String(e.examTableId) === String(examTableId) && e.estado === 'inscripto');
   }
 
-  /** Capacidad disponible del curso */
+  
   courseHasCapacity(courseId: string | number): Observable<boolean> {
     return this.http.get<Course>(`${this.base}/courses/${courseId}`).pipe(
       switchMap(course =>
@@ -145,21 +145,20 @@ student$(studentId: number) {
     );
   }
 
-  // ---------- Inscripciones en español (con alias) ----------
-  /** Previene duplicados: si ya hay una inscripción ACTIVA para ese curso, no crea otra */
+ 
   inscribirCursada(payload: CourseEnrollment): Observable<CourseEnrollment> {
     const { studentId, courseId } = payload as any;
     const urlChk = `${this.base}/course_enrollments?studentId=${studentId}&courseId=${courseId}&estado=inscripto&${this.bust()}`;
     return this.http.get<CourseEnrollment[]>(urlChk).pipe(
       switchMap(existentes => {
         if (existentes?.length) {
-          return of(existentes[0]); // ya existe → no duplicar
+          return of(existentes[0]); 
         }
         return this.http.post<CourseEnrollment>(`${this.base}/course_enrollments`, payload);
       })
     );
   }
-  // alias compatibilidad
+ 
   enrollCourse = this.inscribirCursada.bind(this);
 
   inscribirExamen(payload: ExamEnrollment): Observable<ExamEnrollment> {
@@ -167,7 +166,7 @@ student$(studentId: number) {
   }
   enrollExam = this.inscribirExamen.bind(this);
 
-  /** BAJA CURSADA: DELETE directo (json-server) */
+  
   bajaCursada(enrollment: CourseEnrollment) {
   const id = String(enrollment.id);
 
@@ -179,26 +178,26 @@ student$(studentId: number) {
 }
 
 
-  /** BAJA EXAMEN: DELETE directo */
+  
   bajaExamen(enrollmentId: number | string) {
     const id = String(enrollmentId).trim();
     const url = `${this.base}/exam_enrollments/${encodeURIComponent(id)}`;
     return this.http.delete(url);
   }
 
-  /** BAJA MASIVA (por si quedaron duplicados): elimina TODAS las activas de un curso */
+  
   bajaTodasCursadasDeCurso(studentId: number, courseId: string | number): Observable<any> {
   const cid = String(courseId);
 
-  // 1) Borrar pagos del alumno para ese curso
+  
   return this.deletePaymentsByCourse(studentId, cid).pipe(
-    // 2) Traer inscripciones a ese curso para ese alumno
+    
     switchMap(() =>
       this.http.get<CourseEnrollment[]>(
         `${this.base}/course_enrollments?studentId=${studentId}&courseId=${cid}`
       )
     ),
-    // 3) Borrar todas las inscripciones encontradas
+   
     switchMap(enrolls => {
       if (!enrolls.length) return of(null);
 

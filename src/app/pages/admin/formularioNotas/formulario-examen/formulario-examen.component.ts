@@ -1,13 +1,5 @@
 import { Component, effect, inject, input, signal } from '@angular/core';
-import {
-  CourseGrade,
-  CourseEnrollment,
-  Course,
-  Subject,
-  ExamTable,
-  ExamEnrollment,
-  ExamGrade,
-} from '../../../../core/models';
+import {CourseGrade,CourseEnrollment, Course, Subject, ExamTable, ExamEnrollment, ExamGrade,} from '../../../../core/models';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CargaNotasService } from '../../../../services/carga-notas.service';
 import { CommonModule } from '@angular/common';
@@ -23,16 +15,7 @@ import { StudentAcademicService } from '../../../../services/student-academic.se
 @Component({
   selector: 'app-formulario-examen',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-  ],
+  imports: [ CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatDatepickerModule, MatNativeDateModule,],
   templateUrl: './formulario-examen.component.html',
   styleUrl: './formulario-examen.component.css',
   providers: [CargaNotasService, StudentAcademicService],
@@ -60,51 +43,55 @@ export class FormularioExamenComponent {
         myExamGrades: this.aca.notasExamen$(sid),
       });
     }),
-    map(({ subjects, courses, grades, examTbls, myExamE, myExamGrades }) => {
+      map(({ subjects, courses, grades, examTbls, myExamE, myExamGrades }) => {
       const statusByCode = this.aca.buildStatusBySubjectCodeFromCourses(
-        subjects,
-        courses,
-        grades
-      );
+      subjects,
+      courses,
+      grades
+    );
 
-      const rows = examTbls
-        .map((t) => {
-          const subj = subjects.find(
-            (s) => Number(s.id) === Number(t.subjectId)
-          );
-          if (!subj) return null;
+    const rows = examTbls
+      .map((t) => {
+        const subj = subjects.find(
+          (s) => Number(s.id) === Number(t.subjectId)
+        );
+        if (!subj) return null;
 
-          const okCorrel = this.aca.hasAllRegularOrApproved(
-            statusByCode,
-            subj.correlativasRendir || []
-          );
-          const meOk =
-            statusByCode[subj.codigo] === 'regular' ||
-            statusByCode[subj.codigo] === 'aprobado';
-          const already = this.aca.isAlreadyEnrolledExam(t.id, myExamE);
+        const okCorrel = this.aca.hasAllRegularOrApproved(
+          statusByCode,
+          subj.correlativasRendir || []
+        );
 
-          // si ya estoy inscripto, guardo el id de inscripción para poder dar de baja
-          const myEnroll = already
-            ? myExamE.find(
-                (e) =>
-                  String(e.examTableId) === String(t.id) &&
-                  e.estado === 'inscripto'
-              ) ?? null
-            : null;
-          const myGrade = myExamGrades.find(
-            (g) => String(g.examTableId) === String(t.id)
-          );
+        const meOk =
+          statusByCode[subj.codigo] === 'regular' ||
+          statusByCode[subj.codigo] === 'aprobado';
 
-          //return { table: t, subject: subj, okCorrel, meOk, already, myEnroll };
-          return {
-            id: t.id,
-            name: subj.nombre,
-            status: myEnroll && myGrade?.nota === undefined ? true : false,
-          }
-        })
-        .filter((row) => row?.status) as Array<{ id: string | undefined; name: string }>;
-       this.materiasAprobadas.set(rows);
-    })
+        const already = this.aca.isAlreadyEnrolledExam(t.id, myExamE);
+
+        // si ya estoy inscripto, guardo el id de inscripción para poder dar de baja
+        const myEnroll = already
+          ? myExamE.find(
+              (e) =>
+                String(e.examTableId) === String(t.id) &&
+                e.estado === 'inscripto'
+            ) ?? null
+          : null;
+
+        const myGrade = myExamGrades.find(
+          (g) => String(g.examTableId) === String(t.id)
+        );
+
+        return {
+          id: t.id,
+          name: subj.nombre,
+          status: myEnroll && myGrade?.nota === undefined ? true : false,
+        };
+      })
+      .filter((row) => row?.status) as Array<{ id: string | undefined; name: string }>;
+
+    this.materiasAprobadas.set(rows);
+  })
+
   );
 
   constructor() {

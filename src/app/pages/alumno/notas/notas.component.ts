@@ -1,4 +1,4 @@
-// src/app/pages/alumno/notas/notas.component.ts
+
 
 import { Component, inject } from '@angular/core';
 import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
@@ -15,14 +15,14 @@ import {
   ExamGrade
 } from '../../../core/models';
 
-// ----- Tipos de filas -----
+
 
 export type RowCursada = {
   tipo: 'Cursada';
   codigo: string;
   materia: string;
-  detalle: string;          // comision
-  condicion: string;        // regular/aprobado/etc
+  detalle: string;          
+  condicion: string;        
   p1: number | null;
   p2: number | null;
   promedio: number | null;
@@ -32,8 +32,8 @@ export type RowExamen = {
   tipo: 'Examen';
   codigo: string;
   materia: string;
-  detalle: string;          // turno + periodo
-  condicion: string;        // aprobado/desaprobado/etc
+  detalle: string;          
+  condicion: string;        
   nota: number | null;
   fecha: string | null;
 };
@@ -69,9 +69,7 @@ export class NotasComponent {
       const examTableById = new Map<number, ExamTable>();
       examTables.forEach(et => examTableById.set(Number(et.id), et));
 
-      // =========================================================
-      //               ARMAR FILAS DE CURSADA
-      // =========================================================
+  
       const rowsCursada: RowCursada[] =
         courseGrades.map(g => {
           const c = courseById.get(Number(g.courseId));
@@ -92,9 +90,7 @@ export class NotasComponent {
           };
         }).filter(Boolean) as RowCursada[];
 
-      // =========================================================
-      //               ARMAR FILAS DE EXÁMENES
-      // =========================================================
+  
       const rowsExamen: RowExamen[] = examGrades.map(eg => {
         const et = examTableById.get(Number(eg.examTableId));
         if (!et) return null;
@@ -109,29 +105,26 @@ export class NotasComponent {
           detalle: `${et.turno} - ${et.periodo}`,
           condicion: eg.resultado ?? '--',
           nota: eg.nota ?? null,
-          fecha: et.fecha ?? null,   // ✅ fecha viene de ExamTable
+          fecha: et.fecha ?? null,   
         };
       }).filter(Boolean) as RowExamen[];
 
 
-      // =========================================================
-      //           ORDENAR LISTAS POR SEPARADO
-      // =========================================================
 
-      // CURSADA → por código (alfabéticamente)
+
+    
       rowsCursada.sort((a, b) => a.codigo.localeCompare(b.codigo));
 
-      // EXÁMENES → por código, luego por fecha descendente
       rowsExamen.sort((a, b) => {
         const code = a.codigo.localeCompare(b.codigo);
         if (code !== 0) return code;
 
         const fa = a.fecha ? new Date(a.fecha).getTime() : 0;
         const fb = b.fecha ? new Date(b.fecha).getTime() : 0;
-        return fb - fa; // más reciente primero
+        return fb - fa; 
       });
 
-      // =========================================================
+    
       return {
         rowsCursada,
         rowsExamen

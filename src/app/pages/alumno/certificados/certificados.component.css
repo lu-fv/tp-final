@@ -1,4 +1,4 @@
-/* src/app/pages/alumno/certificados/certificados.component.css */
+
 
 .card {
   background: #ffffff;
@@ -16,7 +16,7 @@
   margin-top: 8px;
 }
 
-/* Bloques de certificado */
+
 .cert-block + .cert-block {
   margin-top: 24px;
 }
@@ -35,7 +35,7 @@
   font-size: 14px;
 }
 
-/* Tabla */
+
 .table-wrapper {
   overflow-x: auto;
   margin-top: 8px;
@@ -65,7 +65,7 @@
   padding-bottom: 4px;
 }
 
-/* Estado ok / bad */
+
 .ok {
   color: #2e7d32;
   font-weight: 600;
@@ -76,7 +76,7 @@
   font-weight: 600;
 }
 
-/* Botón */
+
 .btn {
   display: inline-block;
   margin-top: 10px;

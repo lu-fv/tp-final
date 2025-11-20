@@ -10,7 +10,7 @@ import { Admin } from '../core/models';
 export class AdminApiService {
   private http = inject(HttpClient);
 
-  // Ajustá si tu json-server está en otra URL/puerto
+
   private baseUrl = 'http://localhost:3000';
   private resource = 'admins';
 

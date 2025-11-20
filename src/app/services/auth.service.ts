@@ -11,13 +11,13 @@ export class AuthService {
   login(username: string, password: string) {
     const params = new HttpParams().set('username', username).set('password', password);
 
-    // intenta en /users y si no hay coincidencia, prueba en /admins
+
     return this.http.get<any[]>(`${this.api}/users`, { params }).pipe(
       mergeMap(users => {
         if (Array.isArray(users) && users.length) return of(users);
         return this.http.get<any[]>(`${this.api}/admins`, { params });
       }),
-      map(res => res) // puede ser array
+      map(res => res) 
     );
   }
 }

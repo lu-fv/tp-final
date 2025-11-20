@@ -4,7 +4,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 
 import { AuthService } from '../../../core/auth.service';
 import { StudentApiService } from '../../../services/student-api.service';
-import { Student } from '../../../core/models'; // 👈 unificado a ../../core/models
+import { Student } from '../../../core/models'; 
 
 @Component({
   selector: 'menu-alumno',

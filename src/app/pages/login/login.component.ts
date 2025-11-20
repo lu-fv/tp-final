@@ -1,4 +1,4 @@
-// src/app/pages/login/login.component.ts
+
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -8,7 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 
-// Angular Material
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  // ❌ NO providers aquí (usamos la instancia global providedIn:'root')
+  
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
@@ -80,7 +80,7 @@ export class LoginComponent {
           return;
         }
 
-        // Verificar rol seleccionado vs rol real
+     
         if (this.role.value== 'admin') {
           if (!this.authCore.isAdmin()) {
             this.authCore.logout();

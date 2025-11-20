@@ -228,7 +228,7 @@ export class CertificadosComponent {
       </p>
     `;
 
-    // 👉 Contenedor central para que no quede “pegado” a la izquierda
+    // Contenedor central para que no quede “pegado” a la izquierda
       const contenido = `
     <div style="width:520px; margin:0 auto; font-family:Arial, sans-serif;">
       ${encabezado}

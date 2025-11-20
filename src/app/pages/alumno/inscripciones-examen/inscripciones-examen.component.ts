@@ -2,12 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { StudentAcademicService } from '../../../services/student-academic.service';
 import { AuthService } from '../../../core/auth.service';
-import {
-  ExamEnrollment,
-  ExamTable,
-  Subject,
-  Course,
-} from '../../../core/models'; // 👈 ruta
+import { ExamEnrollment, ExamTable, Subject, Course,} from '../../../core/models'; 
 import { BehaviorSubject, combineLatest, map, switchMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
@@ -119,7 +114,7 @@ const statusMyGrade = myEnroll && myGrade?.nota ? true : false;
     }
 
     const payload: ExamEnrollment = {
-      id: undefined as any, // json-server asigna
+      id: undefined as any, 
       studentId: sid,
       examTableId: t.id,
       estado: 'inscripto',

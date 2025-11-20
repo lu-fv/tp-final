@@ -288,7 +288,7 @@
       "anio": 2025,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Lu/Mi 18-22",
+      "horario": "Lu 18-22",
       "cupo": 40
     },
     {
@@ -296,8 +296,8 @@
       "subjectId": 2,
       "anio": 2025,
       "cuatrimestre": 1,
-      "comision": "B",
-      "horario": "Ma/Ju 18-22",
+      "comision": "A",
+      "horario": "Ma 18-22",
       "cupo": 35
     },
     {
@@ -306,7 +306,7 @@
       "anio": 2025,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Sa 8-12",
+      "horario": "Ju 18-22",
       "cupo": 30
     },
     {
@@ -315,7 +315,7 @@
       "anio": 2025,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Vi 18-20",
+      "horario": "Vi 18-22",
       "cupo": 45
     },
     {
@@ -324,7 +324,7 @@
       "anio": 2025,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Lu 16-18",
+      "horario": "Mi 18-22",
       "cupo": 30
     },
     {
@@ -333,7 +333,7 @@
       "anio": 2025,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Lu/Mi 18-22",
+      "horario": "Mi 18-22",
       "cupo": 40
     },
     {
@@ -342,7 +342,7 @@
       "anio": 2025,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Ma/Ju 18-22",
+      "horario": "Ju 18-22",
       "cupo": 35
     },
     {
@@ -351,7 +351,7 @@
       "anio": 2025,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Sa 8-12",
+      "horario": "Lu/Vi 18-20",
       "cupo": 30
     },
     {
@@ -360,7 +360,7 @@
       "anio": 2025,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Vi 18-20",
+      "horario": "Lu/Vi 20-22",
       "cupo": 45
     },
     {
@@ -369,7 +369,7 @@
       "anio": 2025,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Lu 16-18",
+      "horario": "Ma 18-22",
       "cupo": 30
     },
     {
@@ -378,7 +378,7 @@
       "anio": 2026,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Lu/Mi 18-22",
+      "horario": "Lu/Mi 18-20",
       "cupo": 35
     },
     {
@@ -387,7 +387,7 @@
       "anio": 2026,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Ma 18-20",
+      "horario": "Ma 18-22",
       "cupo": 35
     },
     {
@@ -396,7 +396,7 @@
       "anio": 2026,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Ju 18-20",
+      "horario": "Ju 18-22",
       "cupo": 35
     },
     {
@@ -405,7 +405,7 @@
       "anio": 2026,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Sa 8-12",
+      "horario": "Lu/Mi 20-22",
       "cupo": 30
     },
     {
@@ -414,7 +414,7 @@
       "anio": 2026,
       "cuatrimestre": 1,
       "comision": "A",
-      "horario": "Lu 16-18",
+      "horario": "Vi 18-22",
       "cupo": 30
     },
     {
@@ -432,7 +432,7 @@
       "anio": 2026,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Ma/Ju 18-22",
+      "horario": "Ma/Ju 18-20",
       "cupo": 30
     },
     {
@@ -441,7 +441,7 @@
       "anio": 2026,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Vi 18-20",
+      "horario": "Ma/Ju 20-22",
       "cupo": 40
     },
     {
@@ -450,7 +450,7 @@
       "anio": 2026,
       "cuatrimestre": 2,
       "comision": "A",
-      "horario": "Sa 8-12",
+      "horario": "Vi 18-22",
       "cupo": 30
     }
   ],
@@ -561,13 +561,6 @@
       "courseId": "12",
       "estado": "inscripto",
       "fecha": "2025-11-18T21:44:12.723Z"
-    },
-    {
-      "id": "2631",
-      "studentId": 101,
-      "courseId": "22",
-      "estado": "inscripto",
-      "fecha": "2025-11-18T21:54:39.483Z"
     }
   ],
   "course_grades": [
@@ -588,15 +581,6 @@
       "parcial2": 7,
       "promedio": 6.5,
       "condicion": "regular"
-    },
-    {
-      "id": "5003",
-      "studentId": 101,
-      "courseId": 22,
-      "parcial1": 8,
-      "parcial2": 9,
-      "promedio": 8.5,
-      "condicion": "aprobado"
     },
     {
       "id": "5004",
@@ -640,31 +624,31 @@
       "subjectId": 7,
       "fecha": "2025-12-10",
       "aula": "Aula 4",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Diciembre 2025"
     },
     {
       "id": "7003",
       "subjectId": 12,
-      "fecha": "2026-03-10",
+      "fecha": "2025-12-10",
       "aula": "Aula 1",
-      "turno": "Mañana",
-      "periodo": "Marzo 2026"
+      "turno": "Noche",
+      "periodo": "Diciembre 2025"
     },
     {
       "id": "7004",
       "subjectId": 1,
-      "fecha": "2026-03-10",
+      "fecha": "2025-12-09",
       "aula": "Aula 1",
-      "turno": "Mañana",
-      "periodo": "Marzo 2026"
+      "turno": "Noche",
+      "periodo": "Diciembre 2025"
     },
     {
       "id": "7005",
       "subjectId": 3,
       "fecha": "2025-12-15",
       "aula": "Aula 2",
-      "turno": "Mañana",
+      "turno": "Noche",
       "periodo": "Diciembre 2025"
     },
     {
@@ -673,14 +657,14 @@
       "fecha": "2025-12-12",
       "aula": "Lab 1",
       "turno": "Noche",
-      "periodo": "Marzo 2026"
+      "periodo": "Diciembre 2026"
     },
     {
       "id": "7007",
       "subjectId": 8,
       "fecha": "2025-12-14",
       "aula": "Aula 3",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Diciembre 2025"
     },
     {
@@ -688,7 +672,7 @@
       "subjectId": 9,
       "fecha": "2025-12-16",
       "aula": "Aula 4",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Diciembre 2025"
     },
     {
@@ -705,14 +689,14 @@
       "fecha": "2025-12-11",
       "aula": "Lab 3",
       "turno": "Noche",
-      "periodo": "Marzo 2026"
+      "periodo": "Diciembre 2026"
     },
     {
       "id": "7011",
       "subjectId": 4,
       "fecha": "2025-12-09",
       "aula": "Aula 5",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Diciembre 2025"
     },
     {
@@ -720,7 +704,7 @@
       "subjectId": 19,
       "fecha": "2026-07-12",
       "aula": "Aula 6",
-      "turno": "Mañana",
+      "turno": "Noche",
       "periodo": "Julio 2026"
     },
     {
@@ -736,7 +720,7 @@
       "subjectId": 17,
       "fecha": "2026-07-16",
       "aula": "Aula 7",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Julio 2026"
     },
     {
@@ -760,7 +744,7 @@
       "subjectId": 15,
       "fecha": "2026-07-22",
       "aula": "Aula 8",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Julio 2026"
     },
     {
@@ -768,7 +752,7 @@
       "subjectId": 14,
       "fecha": "2026-07-24",
       "aula": "Aula 9",
-      "turno": "Tarde",
+      "turno": "Noche",
       "periodo": "Julio 2026"
     },
     {
@@ -776,7 +760,7 @@
       "subjectId": 13,
       "fecha": "2026-03-26",
       "aula": "Aula 10",
-      "turno": "Mañana",
+      "turno": "Noche",
       "periodo": "Marzo 2026"
     },
     {
@@ -784,7 +768,7 @@
       "subjectId": 11,
       "fecha": "2026-03-28",
       "aula": "Aula 11",
-      "turno": "Mañana",
+      "turno": "Noche",
       "periodo": "Marzo 2026"
     }
   ],
@@ -802,13 +786,6 @@
       "examTableId": "7004",
       "estado": "inscripto",
       "fecha": "2025-11-18T00:21:21.505Z"
-    },
-    {
-      "id": "c3d0",
-      "studentId": 101,
-      "examTableId": "7002",
-      "estado": "inscripto",
-      "fecha": "2025-11-18T21:49:00.690Z"
     },
     {
       "id": "6895",
@@ -838,13 +815,6 @@
       "studentId": 102,
       "examTableId": "7004",
       "nota": 7,
-      "resultado": "aprobado"
-    },
-    {
-      "id": "8103",
-      "studentId": 101,
-      "examTableId": "7002",
-      "nota": 8,
       "resultado": "aprobado"
     }
   ],

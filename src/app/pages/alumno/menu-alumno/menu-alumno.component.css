@@ -1,4 +1,4 @@
-/* ===== Barra superior ===== */
+
 .alumno-header{
   position: sticky;
   top: 0;
@@ -40,7 +40,7 @@
   color:#64748b;
 }
 
-/* ===== Menú ===== */
+
 .nav{
   display:flex;
   align-items:center;
@@ -54,7 +54,7 @@
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
-  color: #0f172a;               /* texto oscuro */
+  color: #0f172a;               
   background: transparent;
   transition: background .15s ease, color .15s ease, box-shadow .15s ease;
 }
@@ -76,14 +76,14 @@
 }
 .nav a.salir:hover{ background: rgba(185,28,28,.08); }
 
-/* ===== Contenido ===== */
+
 .alumno-main{
   padding: 18px 20px 32px;
 }
 
 .main-surface{
   background: var(--utn-surface);
-  color: var(--utn-text);         /* << texto oscuro dentro del panel */
+  color: var(--utn-text);         
   border: 1px solid rgba(15,23,42,.08);
   border-radius: 14px;
   min-height: 220px;
@@ -93,7 +93,6 @@
     0 2px 6px rgba(2,6,23,.04);
 }
 
-/* Encabezados dentro del contenido */
 .main-surface h1, .main-surface h2, .main-surface h3, .main-surface p, .main-surface li{
   color: var(--utn-text);
 }

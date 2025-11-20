@@ -1,18 +1,18 @@
 <div class="login-bg"></div>
 
-<!-- Marca fija arriba a la izquierda -->
+
 <header class="brand">
   <img src="assets/utn-logo.png" alt="UTNMDP" />
   <span>Autogestión UTN</span>
 </header>
 
-<!-- Contenedor centrado -->
+
 <div class="login-wrap">
   <div class="login-card">
 
     <h3 class="card-title">Ingreso</h3>
 
-    <!-- Toggle Alumno / Admin -->
+  
     <mat-button-toggle-group
       class="role-toggle"
       [formControl]="role"
@@ -22,7 +22,7 @@
       <mat-button-toggle value="admin">Administrativo</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <!-- Formulario -->
+  
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
       <mat-form-field appearance="outline" class="full">

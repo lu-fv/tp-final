@@ -1,11 +1,10 @@
-/* carga-notas.component.css */
+
 
 .container {
-  margin: 32px auto;   /* centra el bloque y le da respiro vertical */
+  margin: 32px auto;  
   width: 30%;
 }
 
-/* 👇 esta es la parte que faltaba: centra el título respecto del contenedor */
 .container h2 {
   text-align: center;
   margin-bottom: 20px;

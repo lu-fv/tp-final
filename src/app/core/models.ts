@@ -22,7 +22,7 @@ export interface Student {
 }
 
 export interface Subject {
-  id: string;           // en tu json es string
+  id: string;          
   codigo: string;
   nombre: string;
   creditos: number;
@@ -31,8 +31,8 @@ export interface Subject {
 }
 
 export interface Course {
-  id: string;           // string en el json
-  subjectId: number;    // ojo: en json es number
+  id: string;           
+  subjectId: number;    
   anio: number;
   cuatrimestre: number;
   comision: string;
@@ -45,7 +45,7 @@ export interface CourseEnrollment {
   studentId: number;
   courseId: string | number;
   estado: 'inscripto' | 'baja';
-  fecha: string; // ISO
+  fecha: string; 
 }
 
 export interface CourseGrade {
@@ -60,7 +60,7 @@ export interface CourseGrade {
 
 export interface ExamTable {
   id: string;
-  subjectId: number;     // number en json
+  subjectId: number;     
   fecha: string;         // YYYY-MM-DD
   aula: string;
   turno: string;

@@ -90,7 +90,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/alumno/menu-alumno/menu-alumno.component').then(
         (m) => m.MenuAlumnoComponent
-      ), // <— layout (standalone) con <router-outlet>
+      ), 
     children: [
       {
         path: '',

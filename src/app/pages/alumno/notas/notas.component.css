@@ -24,7 +24,7 @@ h4 {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  table-layout: fixed; /* columnas fijas = alineación perfecta */
+  table-layout: fixed; 
 }
 
 .tbl th, .tbl td {
@@ -40,7 +40,7 @@ h4 {
   color: #444;
 }
 
-/* MISMA DISTRIBUCIÓN DE COLUMNAS (6) PARA AMBAS TABLAS */
+
 .tbl th:nth-child(1), .tbl td:nth-child(1) { width: 12%; }  /* Código     */
 .tbl th:nth-child(2), .tbl td:nth-child(2) { width: 28%; }  /* Materia    */
 .tbl th:nth-child(3), .tbl td:nth-child(3) { width: 20%; }  /* Detalle    */
@@ -48,23 +48,22 @@ h4 {
 .tbl th:nth-child(5), .tbl td:nth-child(5) { width: 12%; }  /* Nota       */
 .tbl th:nth-child(6), .tbl td:nth-child(6) { width: 13%; }  /* Fecha      */
 
-/* COLUMNA FANTASMA: ocupa espacio pero no se ve */
+
 .ghost {
   visibility: hidden;
 }
 
-/* ESTADOS */
 .ok {
   font-weight: 600;
-  color: #2e8b57; /* verde */
+  color: #2e8b57; 
 }
 .regular {
   font-weight: 600;
-  color: #0277bd; /* azul */
+  color: #0277bd; 
 }
 .bad {
   font-weight: 600;
-  color: #c62828; /* rojo */
+  color: #c62828; 
 }
 
 .detalle-nota {
@@ -73,7 +72,7 @@ h4 {
   margin-left: .3rem;
 }
 
-/* SIN REGISTROS */
+
 .sin-registros {
   text-align: center;
   padding: 1rem 0;

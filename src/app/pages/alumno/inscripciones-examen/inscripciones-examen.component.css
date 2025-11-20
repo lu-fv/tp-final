@@ -7,7 +7,7 @@
 button{ padding:6px 12px; border-radius:8px; border:1px solid #1d4ed8; background:#1d4ed8; color:#fff; }
 button[disabled]{ opacity:.5; cursor:not-allowed; }
 .alert{ margin-bottom:8px; color:#334155; }
-/* Alinear títulos y contenido */
+
 .tbl th,
 .tbl td {
   text-align: left;
@@ -15,7 +15,7 @@ button[disabled]{ opacity:.5; cursor:not-allowed; }
   padding-right: 10px;
 }
 
-/* Centrar SOLO la columna de Acción */
+
 .tbl th:last-child,
 .tbl td:last-child {
   text-align: center;

@@ -14,15 +14,15 @@
   border-collapse: collapse;
 }
 
-/* Encabezados y celdas alineados igual */
+
 .tbl thead th,
 .tbl tbody td{
   padding:8px 10px;
   border-bottom:1px solid #e5e7eb;
-  text-align: left;          /* 👈 todos a la izquierda */
+  text-align: left;          
 }
 
-/* Botones / estados */
+
 .ok{ color:#16a34a; font-weight:700; }
 .bad{ color:#dc2626; font-weight:700; }
 

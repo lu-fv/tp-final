@@ -6,7 +6,7 @@
 
   <div class="card__body" *ngIf="vm$ | async as vm">
 
-    <!-- ===================== NOTAS DE CURSADA ===================== -->
+
     <h4 style="margin-top:0">Notas de Cursada</h4>
 
     <table class="tbl">
@@ -17,7 +17,7 @@
           <th>Detalle</th>
           <th>Condición</th>
           <th>Nota</th>
-          <th class="ghost">Fecha</th> <!-- fantasma para alinear -->
+          <th class="ghost">Fecha</th> 
         </tr>
       </thead>
 
@@ -52,7 +52,7 @@
             <ng-template #sinPromedio>—</ng-template>
           </td>
 
-          <td class="ghost">—</td> <!-- ocupa ancho, no visible -->
+          <td class="ghost">—</td> 
         </tr>
 
         <tr *ngIf="!vm.rowsCursada.length">
@@ -62,7 +62,7 @@
     </table>
 
 
-    <!-- ===================== NOTAS DE EXÁMENES ===================== -->
+    
     <h4 style="margin-top:2rem">Notas de Exámenes</h4>
 
     <table class="tbl">
