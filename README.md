@@ -1,170 +1,229 @@
+Nombre del proyecto: UTN – Autogestión de alumnos y administrativos.
 
-#
-1) npm install -g @angular/cli@17
-2) ng new my-first-project
-3) yes - no - CSS 
-
-3) ng serve 
-4) ng add @angular/material >> agrego libreria CSS >>  Y
-5) https://material.angular.dev/components/table/overview 
+Sistema de autogestión desarrollado en Angular para estudiantes y administrativos de la Universidad Tecnológica Nacional – Facultad Regional Mar del Plata.
+Simula un entorno real de gestión académica: inscripciones, notas, certificaciones, pagos y administración.
 
 
-# Tpfinal
+---
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+📌 Características principales
 
-## Development server
+🔐 Autenticación y Seguridad
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Login con credenciales almacenadas en JSON Server.
 
-## Code scaffolding
+AuthGuard para proteger rutas internas.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Control de roles: Alumno / Administrativo.
 
 
-## Inicio de Angular
 
-Angular es un framework de JavaScript desarrollado por Google para crear aplicaciones web SPA (Single Page Applications). Es de código abierto, usa TypeScript por defecto y sigue el patrón MVC (Model-View-Controller).
+---
 
-Características Principales
-TypeScript: Lenguaje principal
+🎓 Panel del Alumno
 
-Component-based: Arquitectura basada en componentes
+✔ Consulta de Deuda
 
-Two-way data binding: Sincronización bidireccional de datos
+Visualización de deudas pendientes.
 
-Inyección de dependencias: Gestión eficiente de servicios
+QR ficticio generado dinámicamente.
 
-Directivas: Funcionalidades extendidas del HTML
-
-Router: Navegación entre vistas
-
-HTTP Client: Comunicación con APIs
-
-Estructura de Carpetas de un Proyecto Angular
+El QR aparece como modal superpuesto para simular pago.
 
 
-mi-proyecto-angular/
-├── 📁 node_modules/          # Dependencias instaladas
-├── 📁 src/                   # Código fuente principal
-│   ├── 📁 app/               # Módulo principal y componentes
-│   │   ├── 📁 components/    # Componentes reutilizables
-│   │   ├── 📁 services/      # Servicios y lógica de negocio
-│   │   ├── 📁 models/        # Interfaces y modelos de datos
-│   │   ├── 📁 guards/        # Protección de rutas
-│   │   ├── 📁 interceptors/  # Interceptores HTTP
-│   │   ├── app.component.ts  # Componente raíz
-│   │   ├── app.module.ts     # Módulo principal
-│   │   └── app-routing.module.ts # Configuración de rutas
-│   ├── 📁 assets/            # Recursos estáticos (imágenes, fuentes)
-│   ├── 📁 environments/      # Configuraciones por entorno
-│   ├── index.html            # HTML principal
-│   ├── main.ts               # Punto de entrada de la aplicación
-│   └── styles.css            # Estilos globales
-├── 📁 dist/                  # Archivos de construcción (producción)
-├── angular.json              # Configuración del workspace
-├── package.json              # Dependencias y scripts
-├── tsconfig.json             # Configuración de TypeScript
-└── README.md                 # Documentación del proyecto
+✔ Inscripción a Cursadas
 
-Explicación Detallada de Cada Carpeta
-1. src/app/ - Núcleo de la Aplicación
-app.module.ts
-typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+Filtrado por correlativas y estado académico.
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    // Componentes declarados aquí
-  ],
-  imports: [
-    BrowserModule,
-    // Módulos importados aquí
-  ],
-  providers: [
-    // Servicios globales aquí
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-app.component.ts (Componente Raíz)
-typescript
-import { Component } from '@angular/core';
+Inscribirse / darse de baja según disponibilidad.
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  title = 'mi-aplicacion';
-}
-2. Estructura de un Componente Típico
-text
-components/
-└── usuario/
-    ├── usuario.component.ts          # Lógica del componente
-    ├── usuario.component.html        # Template/HTML
-    ├── usuario.component.css         # Estilos específicos
-    └── usuario.component.spec.ts     # Pruebas unitarias
-3. Services/ - Lógica de Negocio y APIs
-typescript
-// services/usuario.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UsuarioService {
-  constructor(private http: HttpClient) { }
-  
-  getUsuarios() {
-    return this.http.get('/api/usuarios');
-  }
-}
-4. Models/ - Interfaces y Tipos
-typescript
-// models/usuario.model.ts
-export interface Usuario {
-  id: number;
-  nombre: string;
-  email: string;
-  activo: boolean;
-}
-Comandos Básicos de Angular CLI
-bash
-# Crear nuevo proyecto
-ng new mi-proyecto
+✔ Inscripción a Exámenes
 
-# Generar componente
-ng generate component nombre-componente
-ng g forma reducida
-# Generar servicio
-ng generate service nombre-servicio
+Verifica correlatividades, condición regular o aprobada.
 
-# Ejecutar en desarrollo o corre la aplicacion de angular
-ng serve
-# Ejecutar en json-server 
+Evita inscripciones duplicadas.
+
+Muestra estado “Inscripto”.
+
+
+✔ Notas
+
+Notas de cursada y finales.
+
+Fechas formateadas con locale es-AR.
+
+Ordenadas y legibles.
+
+
+✔ Certificados
+
+Generación de Certificado Académico en PDF con jsPDF.
+
+Incluye encabezado UTN, tabla de notas y firma simulada.
+
+
+
+---
+
+🛠️ Panel del Administrativo
+
+✔ Alta de alumnos
+
+Formulario validado con Angular Material.
+
+✔ Listado y detalle
+
+Acceso a información completa del estudiante con opciones administrativas.
+
+✔ Inscripción a cursadas y exámenes
+
+Mismas reglas que en el panel del alumno.
+
+✔ Carga de notas de examen
+
+Solo permite calificar materias con cursada aprobada.
+
+Solo permite calificar materias cuya inscripcion a la mesa fue realizada con anterioridad.
+
+Selección de mesa válida.
+
+Asignación automática de condición (aprobado/desaprobado).
+
+✔ Carga de notas de cursadas.
+
+Solo permite calificar cursadas cuya inscripcion a la materia fue realizada.
+
+Asignacion de aprobado (promedio de notas de P1 y P2 >= 8).
+
+Asignacion de regular (promedio de notas de P1 y P2 >= 6 y <8)
+
+
+
+---
+
+🧰 Tecnologías utilizadas
+
+Tecnología Uso
+
+Angular 17+ Frontend principal
+Angular Material UI y componentes
+RxJS Reactividad y streams
+Signals Gestión de estado
+JSON Server Backend simulado
+jsPDF + html2canvas Generación de PDFs
+TypeScript Tipado fuerte
+HTML / CSS Maquetación y estilos
+
+
+
+---
+
+📂 Estructura del proyecto
+
+src/
+ ├── app/
+ │ ├── core/ # Modelos, guards, servicios base
+ │ ├── pages/
+ │ │ ├── aluno/ # Panel del estudiante
+ │ │ ├── admin/ # Panel administrativo
+ │ │ ├── login/ # Inicio de sesión
+ │ ├── services/ # Servicios globales
+ │ ├── app.routes.ts # Rutas de la aplicación
+ ├── assets/ # Recursos (logos, imágenes)
+ ├── json/ # db.json usado como backend
+
+
+---
+
+⚙️ Instalación
+
+1. Clonar el repositorio:
+
+
+
+git clone https://github.com/lu-fv/tp-final.git
+
+2. Instalar dependencias:
+
+
+
+npm install
+
+3. Levantar JSON Server (backend simulado):
+
+
+
 json-server --watch json/db.json --port 3000
 
-# Construir para producción
-ng build
+4. Levantar la aplicación Angular:
+
+
+
+ng serve -o
+
+
+---
+
+▶️ Modo de uso
+
+Iniciar sesión como Alumno o Administrativo.
+
+Explorar cada módulo desde la barra de navegación.
+
+Generar inscripciones, consultar estados y descargar certificados.
+
+
+
+---
+
+📲 Generación del QR (módulo de deudas)
+
+Funcionalidad ficticia:
+
+El QR se genera automáticamente en un modal centrado.
+
+Simula el proceso real de pago.
+
+Tras “cerrarlo”, se actualiza el estado de deuda como pagada.
+
+
+
+---
+
+📄 Generación de PDF — Certificado Académico
+
+Utiliza jsPDF y html2canvas.
+
+El contenido HTML se transforma a PDF con estilos personalizados.
+
+Incluye cabecera institucional y tabla de notas.
+
+
+
+---
+
+📚 Objetivo del proyecto
+
+Simular un Sistema de Autogestión real para prácticas académicas de programación avanzada en Angular, integrando:
+
+seguridad,
+
+reactividad,
+
+modelos de datos,
+
+interacción con backend,
+
+diseño responsive,
+
+generación de documentos.
+
+
+
+---
+
+👥 Autores
+
+Franco vertiz Lucia.
+Oscar Gabriel Laguna.
