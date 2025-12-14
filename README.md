@@ -17,87 +17,104 @@ AuthGuard para proteger rutas internas.
 Control de roles: Alumno / Administrativo.
 
 
+## 🔐 Autenticación y Seguridad
+
+- Login con credenciales almacenadas en JSON Server
+- Protección de rutas mediante Guards
+- Control de roles:
+  - Alumno
+  - Administrativo
+  - Profesor
+- Navegación restringida según perfil
 
 ---
 
 🎓 Panel del Alumno
 
 ✔ Consulta de Deuda
-
-Visualización de deudas pendientes.
-
-QR ficticio generado dinámicamente.
-
-El QR aparece como modal superpuesto para simular pago.
-
+- Visualización de deudas pendientes
+- Generación de **QR ficticio dinámico**
+- Modal superpuesto para simular pago
+- Actualización de estado tras el “pago”
 
 ✔ Inscripción a Cursadas
+- Filtrado por correlatividades
+- Validación de estado académico
+- Inscripción y baja según disponibilidad
 
-Filtrado por correlativas y estado académico.
-
-Inscribirse / darse de baja según disponibilidad.
-
-
-✔ Inscripción a Exámenes
-
-Verifica correlatividades, condición regular o aprobada.
-
-Evita inscripciones duplicadas.
-
-Muestra estado “Inscripto”.
-
+ ✔ Inscripción a Exámenes
+- Verificación de correlativas
+- Control de condición (regular / aprobada)
+- Evita inscripciones duplicadas
+- Visualización del estado “Inscripto”
 
 ✔ Notas
-
-Notas de cursada y finales.
-
-Fechas formateadas con locale es-AR.
-
-Ordenadas y legibles.
-
+- Visualización de:
+  - Notas de cursada
+  - Notas de exámenes finales
+- Fechas formateadas con locale **es-AR**
+- Ordenadas y legibles
 
 ✔ Certificados
+- Generación de **Certificado Académico en PDF**
+- Implementado con `jsPDF` y `html2canvas`
+- Incluye:
+  - Encabezado institucional UTN
+  - Tabla de materias y notas
+  - Firma simulada
 
-Generación de Certificado Académico en PDF con jsPDF.
+------
 
-Incluye encabezado UTN, tabla de notas y firma simulada.
+🧑‍🏫 Panel del Profesor (NUEVO)
 
+✔ Gestión académica
+- Acceso exclusivo mediante rol **Profesor**
+- Menú independiente del administrativo
 
+✔ Carga de notas de cursadas
+- Solo permite calificar cursadas **previamente inscriptas**
+- Validaciones automáticas:
+  - **Aprobado**: promedio ≥ 8
+  - **Regular**: promedio ≥ 6 y < 8
+- Registro de notas parciales (P1 / P2)
 
+✔ Carga de notas de exámenes
+- Solo permite calificar mesas:
+  - Con inscripción previa del alumno
+  - Con cursada aprobada
+- Selección de mesa válida
+
+✔ Edición y eliminación de notas
+- Edición de notas de:
+  - Examen
+  - Cursada
+- Eliminación con confirmación
+- Restricciones según estado académico
+- Asignación automática de condición:
+  - aprobado / desaprobado
+    
 ---
 
 🛠️ Panel del Administrativo
 
-✔ Alta de alumnos
-
-Formulario validado con Angular Material.
+✔ Gestión de alumnos
+- **Alta de alumnos**
+  - Formulario validado con Angular Material
+  - **Generación automática de legajo**
+- **Edición de alumnos**
+- **Eliminación de alumnos**
+- Manejo correcto de IDs como string
+  - Evita pérdida de ceros a la izquierda
+- Navegación a edición mediante query params
 
 ✔ Listado y detalle
+- Listado general de alumnos
+- Búsqueda dinámica
+- Acceso al detalle completo del estudiante
 
-Acceso a información completa del estudiante con opciones administrativas.
-
-✔ Inscripción a cursadas y exámenes
-
-Mismas reglas que en el panel del alumno.
-
-✔ Carga de notas de examen
-
-Solo permite calificar materias con cursada aprobada.
-
-Solo permite calificar materias cuya inscripcion a la mesa fue realizada con anterioridad.
-
-Selección de mesa válida.
-
-Asignación automática de condición (aprobado/desaprobado).
-
-✔ Carga de notas de cursadas.
-
-Solo permite calificar cursadas cuya inscripcion a la materia fue realizada.
-
-Asignacion de aprobado (promedio de notas de P1 y P2 >= 8).
-
-Asignacion de regular (promedio de notas de P1 y P2 >= 6 y <8)
-
+✔ Inscripción académica
+- Inscripción a cursadas y exámenes
+- Mismas reglas que el panel del alumno
 
 
 ---
@@ -122,16 +139,17 @@ HTML / CSS Maquetación y estilos
 📂 Estructura del proyecto
 
 src/
- ├── app/
- │ ├── core/ # Modelos, guards, servicios base
- │ ├── pages/
- │ │ ├── aluno/ # Panel del estudiante
- │ │ ├── admin/ # Panel administrativo
- │ │ ├── login/ # Inicio de sesión
- │ ├── services/ # Servicios globales
- │ ├── app.routes.ts # Rutas de la aplicación
- ├── assets/ # Recursos (logos, imágenes)
- ├── json/ # db.json usado como backend
+├── app/
+│ ├── core/ # Modelos, guards y servicios base
+│ ├── pages/
+│ │ ├── alumno/ # Panel del alumno
+│ │ ├── admin/ # Panel administrativo
+│ │ ├── profesor/ # Panel del profesor
+│ │ ├── login/ # Inicio de sesión
+│ ├── services/ # Servicios globales
+│ ├── app.routes.ts # Rutas de la aplicación
+├── assets/ # Recursos (logos, imágenes)
+├── json/ # db.json (backend simulado)
 
 
 ---
@@ -152,13 +170,9 @@ npm install
 
 3. Levantar JSON Server (backend simulado):
 
-
-
 json-server --watch json/db.json --port 3000
 
 4. Levantar la aplicación Angular:
-
-
 
 ng serve -o
 
@@ -167,12 +181,21 @@ ng serve -o
 
 ▶️ Modo de uso
 
-Iniciar sesión como Alumno o Administrativo.
+Iniciar sesión como Alumno, Profesor o Administrativo
 
-Explorar cada módulo desde la barra de navegación.
+Navegar según el rol habilitado
 
-Generar inscripciones, consultar estados y descargar certificados.
+Gestionar:
 
+Inscripciones
+
+Notas
+
+Certificados
+
+Alumnos
+
+Probar validaciones y restricciones académicas
 
 
 ---
@@ -205,19 +228,21 @@ Incluye cabecera institucional y tabla de notas.
 
 📚 Objetivo del proyecto
 
-Simular un Sistema de Autogestión real para prácticas académicas de programación avanzada en Angular, integrando:
+Simular un Sistema de Autogestión Académica real, integrando:
 
-seguridad,
+Seguridad y control de acceso
 
-reactividad,
+Reactividad avanzada
 
-modelos de datos,
+Modelos de datos
 
-interacción con backend,
+Interacción con backend simulado
 
-diseño responsive,
+Diseño responsive
 
-generación de documentos.
+Generación de documentos
+
+Separación clara de responsabilidades por rol
 
 
 
