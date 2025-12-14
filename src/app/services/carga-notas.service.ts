@@ -48,5 +48,22 @@ export class CargaNotasService {
         )
       );
   }
+
+ 
+  updateCourseGrade(id: string, payload: any) {
+    return this.http.put(`${this.baseUrl}/course_grades/${id}`, payload);
+  }
+  deleteCourseGrade(id: string) {
+    return this.http.delete(`${this.baseUrl}/course_grades/${id}`);
+  }
+
+
+  updateExamGrade(id: string, payload: any) {
+    return this.http.put(`${this.baseUrl}/exam_grades/${id}`, payload);
+  }
+  deleteExamGrade(id: string) {
+    return this.http.delete(`${this.baseUrl}/exam_grades/${id}`);
+  }
+
   
 }

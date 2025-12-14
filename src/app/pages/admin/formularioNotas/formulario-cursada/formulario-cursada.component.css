@@ -11,6 +11,7 @@ form {
   border-radius: 6px;
   text-align: center;
   font-weight: 500;
+  max-width: 420px;
 }
 
 .success-msg {
@@ -23,4 +24,53 @@ form {
   background-color: #ffebee;
   color: #c62828;
   border: 1px solid #ef9a9a;
+}
+
+.sep {
+  margin: 22px 0;
+  opacity: 0.2;
+}
+
+.grades-list {
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grade-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.left .materia {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.left .meta {
+  opacity: 0.8;
+  font-size: 13px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 170px;
+}
+
+.locked-reason {
+  margin-top: 2px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.empty {
+  opacity: 0.7;
 }

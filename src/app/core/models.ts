@@ -1,12 +1,12 @@
-export type Rol = 'alumno' | 'admin';
+export type Rol = 'alumno' | 'admin' | 'profesor';
 
 export interface SessionUser {
   id: number;
   username: string;
   role: Rol;
   token: string;
-  nombre?: string;         
-  studentId?: number|null; 
+  nombre?: string;
+  studentId?: number | null;
 }
 
 export interface Student {
@@ -17,22 +17,35 @@ export interface Student {
   dni: string;
   email: string;
   telefono: string;
-  condicion: string;      // "regular"
-  fechaIngreso: string;   // "YYYY-MM-DD"
+  condicion: string;
+  fechaIngreso: string;
+}
+
+export interface Profesor {
+  id: number;
+  username: string;
+  password?: string;
+  nombre: string;
+  role?: 'profesor';
+  email?: string;
+  telefono?: string;
+  direccion?: string;
+  dni?: string;
+  legajo?: string; 
 }
 
 export interface Subject {
-  id: string;          
+  id: string;
   codigo: string;
   nombre: string;
   creditos: number;
-  correlativasCursar: string[];  // lista de códigos (ej: "95-1121")
+  correlativasCursar: string[];
   correlativasRendir: string[];
 }
 
 export interface Course {
-  id: string;           
-  subjectId: number;    
+  id: string;
+  subjectId: number;
   anio: number;
   cuatrimestre: number;
   comision: string;
@@ -45,7 +58,7 @@ export interface CourseEnrollment {
   studentId: number;
   courseId: string | number;
   estado: 'inscripto' | 'baja';
-  fecha: string; 
+  fecha: string;
 }
 
 export interface CourseGrade {
@@ -60,8 +73,8 @@ export interface CourseGrade {
 
 export interface ExamTable {
   id: string;
-  subjectId: number;     
-  fecha: string;         // YYYY-MM-DD
+  subjectId: number;
+  fecha: string;
   aula: string;
   turno: string;
   periodo: string;
@@ -72,7 +85,7 @@ export interface ExamEnrollment {
   studentId: number;
   examTableId: string | number;
   estado: 'inscripto' | 'baja';
-  fecha: string; // ISO
+  fecha: string;
 }
 
 export interface ExamGrade {

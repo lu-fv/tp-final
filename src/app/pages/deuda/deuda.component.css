@@ -19,13 +19,13 @@
 
 .tbl thead th { color: #444; font-weight: 600; }
 
-.tbl th:nth-child(1), .tbl td:nth-child(1) { width: 12%; } /* Código */
-.tbl th:nth-child(2), .tbl td:nth-child(2) { width: 26%; } /* Materia */
-.tbl th:nth-child(3), .tbl td:nth-child(3) { width: 10%; } /* Comisión */
-.tbl th:nth-child(4), .tbl td:nth-child(4) { width: 28%; } /* Cuotas */
-.tbl th:nth-child(5), .tbl td:nth-child(5) { width: 10%; } /* Total */
-.tbl th:nth-child(6), .tbl td:nth-child(6) { width: 10%; } /* Pendiente */
-.tbl th:nth-child(7), .tbl td:nth-child(7) { width: 14%; } /* Acción */
+.tbl th:nth-child(1), .tbl td:nth-child(1) { width: 12%; } 
+.tbl th:nth-child(2), .tbl td:nth-child(2) { width: 26%; } 
+.tbl th:nth-child(3), .tbl td:nth-child(3) { width: 10%; } 
+.tbl th:nth-child(4), .tbl td:nth-child(4) { width: 28%; } 
+.tbl th:nth-child(5), .tbl td:nth-child(5) { width: 10%; } 
+.tbl th:nth-child(6), .tbl td:nth-child(6) { width: 10%; } 
+.tbl th:nth-child(7), .tbl td:nth-child(7) { width: 14%; } 
 
 .cuotas {
   display: flex;
@@ -74,7 +74,6 @@ button:disabled { opacity: .5; cursor: not-allowed; }
   font-size: 1.05rem;
 }
 
-/* Modal QR */
 .modal-backdrop {
   position: fixed; inset: 0;
   background: rgba(0,0,0,.35);
@@ -97,7 +96,6 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .qr {
   width: 220px; height: 220px;
   margin: .5rem auto 1rem;
-  /* QR ficticio con patrones */
   background:
     repeating-linear-gradient(0deg, #000 0 6px, #fff 6px 12px),
     repeating-linear-gradient(90deg, #000 0 6px, #fff 6px 12px);
@@ -108,10 +106,9 @@ button:disabled { opacity: .5; cursor: not-allowed; }
 .detalle { color: #444; margin: 0 0 .25rem; }
 .monto   { font-size: 1.2rem; font-weight: 700; }
 
-/* Botones uniformes */
 .btn-action {
   display: inline-block;
-  width: 140px;          /* 👈 MISMO ancho */
+  width: 140px;          
   padding: 6px 10px;
   text-align: center;
   font-size: 0.9rem;
@@ -121,7 +118,6 @@ button:disabled { opacity: .5; cursor: not-allowed; }
   transition: 0.2s ease;
 }
 
-/* Estilo azul (pagar todo) */
 .btn-todo {
   background: #007bff;
   color: white;
@@ -131,7 +127,6 @@ button:disabled { opacity: .5; cursor: not-allowed; }
   background: #0069d9;
 }
 
-/* Estilo gris (pagar por cuota) */
 .btn-cuota {
   background: #e9ecef;
   color: #333;

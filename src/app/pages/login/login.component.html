@@ -13,14 +13,16 @@
     <h3 class="card-title">Ingreso</h3>
 
   
-    <mat-button-toggle-group
-      class="role-toggle"
-      [formControl]="role"
-      name="role"
-      appearance="legacy">
-      <mat-button-toggle value="alumno">Alumno</mat-button-toggle>
-      <mat-button-toggle value="admin">Administrativo</mat-button-toggle>
-    </mat-button-toggle-group>
+  <mat-button-toggle-group
+    [formControl]="role"
+    appearance="legacy"
+    class="role-toggle"
+  >
+    <mat-button-toggle value="alumno">Alumno</mat-button-toggle>
+    <mat-button-toggle value="admin">Administrativo</mat-button-toggle>
+    <mat-button-toggle value="profesor">Profesor</mat-button-toggle>
+  </mat-button-toggle-group>
+
 
   
     <form [formGroup]="loginForm" (ngSubmit)="submit()">

@@ -1,0 +1,111 @@
+/* HEADER LAYOUT */
+.profesor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 18px;
+  background: #f7f9fc;
+  border-bottom: 1px solid #e6e9f2;
+}
+
+/* BRAND (logo + texto) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.brand img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+
+.brand .title span {
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.brand .title small {
+  display: block;
+  opacity: 0.75;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* NAV 3 COLUMN GRID */
+.nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* izquierda | centro | derecha */
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Left/Center/Right containers */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center; /* clave: centro real */
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+/* Search */
+.student-picker {
+  width: min(420px, 46vw);
+}
+
+/* Links */
+.nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #1f2a44;
+}
+
+.nav a.active {
+  background: #2f5be7;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 22px;
+}
+
+.nav a.disabled {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* Salir */
+.nav a.salir {
+  color: #d32f2f;
+  cursor: pointer;
+}
+
+.nav a.salir:hover {
+  text-decoration: underline;
+}
+
+/* MAIN */
+.profesor-main {
+  padding: 18px;
+}
+
+.main-surface {
+  background: white;
+  border-radius: 14px;
+}

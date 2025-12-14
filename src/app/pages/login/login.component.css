@@ -124,3 +124,45 @@ body:active .login-bg { transform: translateY(-10px); }
 
 
 .alert { margin: 12px 2px 0; color: #ffb3b3; font-size: .92rem; }
+
+/* Contenedor de los tres roles, centrado dentro de la tarjeta */
+.role-toggle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 16px auto;
+}
+
+/* Que los botones ocupen el mismo ancho dentro del grupo */
+.role-toggle .mat-button-toggle {
+  flex: 1 1 0;
+  text-align: center;
+}
+
+/* Estado seleccionado: azul como el botón Ingresar y texto blanco */
+.role-toggle .mat-button-toggle-checked {
+  background-color: #1d4ed8; /* mismo azul del primary */
+  color: #ffffff;
+}
+
+/* Asegurar que el texto quede blanco cuando está seleccionado */
+.role-toggle .mat-button-toggle-checked .mat-button-toggle-label-content {
+  color: #ffffff;
+}
+
+/* Opcional: bordes más suaves y mejor contraste en los no seleccionados */
+.role-toggle .mat-button-toggle {
+  border-radius: 0;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.role-toggle .mat-button-toggle:not(.mat-button-toggle-checked) {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #f5f5f5;
+}
+
+.card-title {
+  color: #ffffff !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

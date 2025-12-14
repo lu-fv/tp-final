@@ -19,7 +19,6 @@ export class MenuComponent {
   private auth = inject(AuthService);
   private router = inject(Router);
 
-  // Usa los nombres reales del servicio core
   isLoggedIn() { return this.auth.isLogged(); }
   role()       { return this.auth.role(); }
 

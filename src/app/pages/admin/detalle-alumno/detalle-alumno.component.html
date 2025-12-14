@@ -1,77 +1,75 @@
 <section class="card">
-    <header class="card__header">
-        <h2>Detalle del alumno</h2>
-    </header>
+  <header class="card__header">
+    <h2>Detalle del alumno</h2>
+  </header>
 
-    <div class="card__body">
-        <ng-container *ngIf="alumno(); else noAlumno">
-            <div class="grid">
-                <div class="row">
-                    <div class="col">
-                        <label>Nombre</label>
-                        <div class="value">
-                            {{ alumno()?.nombre }} {{ alumno()?.apellido }}
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Legajo</label>
-                        <div class="value">{{ alumno()?.legajo }}</div>
-                    </div>
-                </div>
+  <div class="card__body">
+    <ng-container *ngIf="alumno(); else noAlumno">
+      <div class="grid">
+        <div class="row">
+          <div class="col">
+            <label>Nombre</label>
+            <div class="value">{{ alumno()?.nombre }} {{ alumno()?.apellido }}</div>
+          </div>
+          <div class="col">
+            <label>Legajo</label>
+            <div class="value">{{ alumno()?.legajo }}</div>
+          </div>
+        </div>
 
-                <div class="row">
-                    <div class="col">
-                        <label>DNI</label>
-                        <div class="value">{{ alumno()?.dni }}</div>
-                    </div>
-                    <div class="col">
-                        <label>Email</label>
-                        <div class="value">{{ alumno()?.email }}</div>
-                    </div>
-                </div>
+        <div class="row">
+          <div class="col">
+            <label>DNI</label>
+            <div class="value">{{ alumno()?.dni }}</div>
+          </div>
+          <div class="col">
+            <label>Email</label>
+            <div class="value">{{ alumno()?.email }}</div>
+          </div>
+        </div>
 
-                <div class="row">
-                    <div class="col">
-                        <label>Teléfono</label>
-                        <div class="value">{{ alumno()?.telefono }}</div>
-                    </div>
-                    <div class="col">
-                        <label>Condición</label>
-                        <div class="value">{{ alumno()?.condicion }}</div>
-                    </div>
-                </div>
+        <div class="row">
+          <div class="col">
+            <label>Teléfono</label>
+            <div class="value">{{ alumno()?.telefono }}</div>
+          </div>
+          <div class="col">
+            <label>Condición</label>
+            <div class="value">{{ alumno()?.condicion }}</div>
+          </div>
+        </div>
 
-                <div class="row">
-                    <div class="col">
-                        <label>Fecha de ingreso</label>
-                        <div class="value">{{ alumno()?.fechaIngreso }}</div>
-                    </div>
-                    <div class="col">
-                        <label>ID interno</label>
-                        <div class="value">{{ alumno()?.id }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="actions" >
-        
+        <div class="row">
+          <div class="col">
+            <label>Fecha de ingreso</label>
+            <div class="value">{{ alumno()?.fechaIngreso }}</div>
+          </div>
+          <div class="col">
+            <label>ID interno</label>
+            <div class="value">{{ alumno()?.id }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
         <button class="btn btn--secondary" [routerLink]="['/dashboard/admin/inscripciones', alumno()?.id]">
-            Inscripcion a cursada
+          Inscripcion a cursada
         </button>
+
         <button class="btn btn--secondary" [routerLink]="['/dashboard/admin/examenes', alumno()?.id]">
-            Inscripcion a examen
+          Inscripcion a examen
         </button>
-        <button class="btn btn--secondary" [routerLink]="['/dashboard/admin/carga-notas', alumno()?.id]">
-           Carga de notas
-        </button>
-         <button class="btn btn--primary" [routerLink]="['/dashboard/admin/listado']">
-            Volver al listado de alumnos
-        </button>
-    </div>
-        </ng-container>
 
-        <ng-template #noAlumno>
-            <p>No se encontró el alumno.</p>
+        <!-- Carga de notas eliminado (ahora es de Profesores) -->
 
-        </ng-template>
-    </div>
+        <button class="btn btn--primary" [routerLink]="['/dashboard/admin/listado']">
+          Volver al listado de alumnos
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-template #noAlumno>
+      <p>No se encontró el alumno.</p>
+    </ng-template>
+  </div>
 </section>

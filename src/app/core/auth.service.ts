@@ -5,79 +5,120 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _user = signal<SessionUser | null>(null);
-  private router = inject (Router)
+  private router = inject(Router);
+
   constructor() {
     const raw = localStorage.getItem('auth:user');
     if (raw) this._user.set(JSON.parse(raw));
   }
 
-  /** Estado de sesión */
-  user() { return this._user(); }
-  role(): 'alumno'|'admin'|null { return this._user()?.role ?? null; }
-  isLogged() { return !!this._user(); }
-  isAdmin() { return this.role() === 'admin'; }
+  user(): SessionUser | null {
+    return this._user();
+  }
+
+  role(): Rol | null {
+    return this.user()?.role ?? null;
+  }
+
+  isLogged(): boolean {
+    return !!this.user();
+  }
+
+  isAdmin(): boolean {
+    return this.role() === 'admin';
+  }
+
   hasRole(role: Rol): boolean {
-    return this._user()?.role === role;
+    return this.role() === role;
   }
-  /** Login que acepta alumno o admin */
+
+  private safeNumber(value: any): number | null {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+
   async login(username: string, password: string): Promise<boolean> {
-  const u = encodeURIComponent(username);
-  const p = encodeURIComponent(password);
+    const p = encodeURIComponent(password);
 
-  try {
-    /** 1) Buscar alumno por username+password en /users */
-    {
-      const res = await fetch(`http://localhost:3000/users?username=${u}&password=${p}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const users = await res.json();
+    try {
+      // USERS (alumnos)
+      {
+        const res = await fetch(
+          `http://localhost:3000/users?username=${username}&password=${p}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const users = await res.json();
 
-      if (Array.isArray(users) && users.length === 1) {
-        const usr = users[0];
-        const su: SessionUser = {
-          id: Number(usr.id),
-          username: usr.username,
-          nombre: usr.username,
-          role: 'alumno',
-          token: 'tok',
-          studentId: Number(usr.studentId)   // <--- CLAVE
-        };
-        this.persist(su);
-        return true;
+        if (Array.isArray(users) && users.length === 1) {
+          const u = users[0];
+          const su: SessionUser = {
+            id: Number(u.id),
+            username: u.username,
+            nombre: u.username,
+            role: 'alumno',
+            token: 'tok',
+            studentId: this.safeNumber(u.studentId), 
+          };
+          this.persist(su);
+          return true;
+        }
       }
-    }
 
-    /** 2) Buscar admin si no fue alumno */
-    {
-      const res = await fetch(`http://localhost:3000/admins?username=${u}&password=${p}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const admins = await res.json();
+      {
+        const res = await fetch(
+          `http://localhost:3000/admins?username=${username}&password=${p}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const admins = await res.json();
 
-      if (Array.isArray(admins) && admins.length === 1) {
-        const ad = admins[0];
-        const su: SessionUser = {
-          id: Number(ad.id),
-          username: ad.username ?? 'admin',
-          nombre: ad.nombre ?? 'Admin',
-          role: 'admin',
-          token: 'tok'
-        };
-        this.persist(su);
-        return true;
+        if (Array.isArray(admins) && admins.length === 1) {
+          const ad = admins[0];
+          const su: SessionUser = {
+            id: Number(ad.id),
+            username: ad.username,
+            nombre: ad.nombre ?? 'Admin',
+            role: 'admin',
+            token: 'tok',
+            studentId: null,
+          };
+          this.persist(su);
+          return true;
+        }
       }
-    }
 
-    return false;
-  } catch {
-    return false;
+      {
+        const res = await fetch(
+          `http://localhost:3000/profesores?username=${username}&password=${p}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const profesores = await res.json();
+
+        if (Array.isArray(profesores) && profesores.length === 1) {
+          const pr = profesores[0];
+          const su: SessionUser = {
+            id: Number(pr.id),
+            username: pr.username,
+            nombre: pr.nombre ?? 'Profesor',
+            role: 'profesor',
+            token: 'tok',
+            studentId: null,
+          };
+          this.persist(su);
+          return true;
+        }
+      }
+
+      return false;
+    } catch (err) {
+      console.error('Error en login:', err);
+      return false;
+    }
   }
-}
 
   logout() {
     this._user.set(null);
     localStorage.removeItem('auth:user');
-    this.router.navigate(['/login']).then(() => {
-      window.location.reload(); // fuerza recarga luego de navegar
-    });
+    this.router.navigate(['/login']).then(() => window.location.reload());
   }
 
   private persist(u: SessionUser) {

@@ -1,0 +1,15 @@
+.inicio-profesor {
+  max-width: 500px;
+}
+
+.card {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f9fafb;
+  border: 1px solid #e0e0e0;
+}
+
+h2 {
+  margin-bottom: 8px;
+}

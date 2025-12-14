@@ -1,39 +1,81 @@
 <section class="card">
-    <header class="card__header">
-        <h3>Listado de alumnos</h3>
+  <header class="card__header">
+    <h3>Listado de alumnos</h3>
 
-    </header>
-    @if(alumnos().length > 0){
-    <div class="card__body">
+    <div class="toolbar">
+      <label class="lbl">Buscar</label>
 
+      <input
+        class="search"
+        type="text"
+        [value]="query()"
+        (input)="onBuscar(($any($event.target).value))"
+        placeholder="Apellido, nombre, legajo o DNI (con o sin puntos)"
+      />
 
-        <table class="tbl">
-            <thead>
-                <tr>
-                    <th>Legajo</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>DNI</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for(alumno of alumnos(); track $index){
-                <tr>
-                    <td>{{alumno.legajo}}</td>
-                    <td>{{alumno.nombre}}</td>
-                    <td>{{alumno.apellido}}</td>
-                    <td>{{alumno.dni}}</td>
-                    
-                    <td>
-                        <a [routerLink]="['/dashboard/admin/detalle', alumno.id]" class="btn btn--small btn--info">
-                            Ver detalle
-                        </a>
-                    </td>
-                </tr>}
-            </tbody>
-        </table>
+      <button type="button" class="btn-outline" (click)="limpiar()">
+        Limpiar
+      </button>
+
+      <div class="counter">
+        Mostrando <strong>{{ alumnosFiltrados().length }}</strong> de
+        <strong>{{ alumnos().length }}</strong>
+      </div>
     </div>
-    }
+  </header>
 
+  @if (alumnos().length > 0) {
+    <div class="card__body">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Legajo</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (alumno of alumnosFiltrados(); track alumno.id) {
+            <tr>
+              <td>{{ alumno.legajo }}</td>
+              <td>{{ alumno.nombre }}</td>
+              <td>{{ alumno.apellido }}</td>
+              <td>{{ alumno.dni }}</td>
+              <td class="acciones">
+                <a
+                  [routerLink]="['/dashboard/admin/detalle', alumno.id]"
+                  class="btn btn--small btn--info"
+                >
+                  Ver
+                </a>
+
+                <button
+                  type="button"
+                  class="btn btn--small btn--warning"
+                  (click)="editarAlumno(alumno)"
+                >
+                  Editar
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn--small btn--danger"
+                  (click)="eliminarAlumno(alumno)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      @if (alumnosFiltrados().length === 0) {
+        <p class="empty">No hay resultados para esa búsqueda.</p>
+      }
+    </div>
+  }
 </section>

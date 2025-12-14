@@ -1,86 +1,23 @@
-<section class="card">
-  <header class="card__header">
-    <h3>
-      <ng-container *ngIf="alumno(); else fallbackTitle">
-        Bienvenido/a, {{ alumno()?.nombre }}!
-      </ng-container>
-      <ng-template #fallbackTitle>
-        Bienvenido/a, {{ username() }}!
-      </ng-template>
-    </h3>
-    <small>Alumnos</small>
-  </header>
+<div class="page-container">
+  <div class="card">
+    <h2>Bienvenido/a, {{ usuario()?.username }}!</h2>
 
-  <div class="card__body">
-    <ng-container *ngIf="alumno(); else noAlumno">
-      <div class="grid">
-        <div class="row">
-          <div class="col">
-            <label>Nombre</label>
-            <div class="value">
-              {{ alumno()?.nombre }} {{ alumno()?.apellido }}
-            </div>
-          </div>
-          <div class="col">
-            <label>Legajo</label>
-            <div class="value">{{ alumno()?.legajo }}</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>DNI</label>
-            <div class="value">{{ alumno()?.dni }}</div>
-          </div>
-          <div class="col">
-            <label>Email</label>
-            <div class="value">{{ alumno()?.email }}</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>Teléfono</label>
-            <div class="value">{{ alumno()?.telefono }}</div>
-          </div>
-          <div class="col">
-            <label>Condición</label>
-            <div class="value">{{ alumno()?.condicion }}</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <label>Fecha de ingreso</label>
-            <div class="value">{{ alumno()?.fechaIngreso }}</div>
-          </div>
-          <div class="col">
-            <label>ID interno</label>
-            <div class="value">{{ alumno()?.id }}</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- <p class="hint">
-        Datos obtenidos de <code>students</code> (json-server) con el
-        <code>studentId</code> guardado en la sesión.
-      </p> -->
+    <ng-container *ngIf="alumno(); else sinAlumno">
+      <p><strong>Legajo:</strong> {{ alumno()?.legajo }}</p>
+      <p><strong>Nombre:</strong> {{ alumno()?.nombre }}</p>
+      <p><strong>Apellido:</strong> {{ alumno()?.apellido }}</p>
+      <p><strong>DNI:</strong> {{ alumno()?.dni }}</p>
+      <p><strong>Email:</strong> {{ alumno()?.email }}</p>
+      <p><strong>Teléfono:</strong> {{ alumno()?.telefono }}</p>
+      <p><strong>Condición:</strong> {{ alumno()?.condicion }}</p>
+      <p><strong>Fecha de ingreso:</strong> {{ alumno()?.fechaIngreso }}</p>
     </ng-container>
 
-    <ng-template #noAlumno>
-      <p class="hint">
-        No se encontró un <strong>alumno</strong> asociado. Verificá que el
-        <code>user</code> de <strong>db.json</strong> tenga <code>studentId</code>
-        apuntando a un registro real en <code>students</code>.
+    <ng-template #sinAlumno>
+      <p class="error">
+        {{ mensaje() }}
       </p>
-      <div class="grid">
-        <div class="row">
-          <div class="col">
-            <label>Usuario</label>
-            <div class="value">{{ username() }}</div>
-          </div>
-        </div>
-      </div>
+      <p><strong>Usuario:</strong> {{ usuario()?.username }}</p>
     </ng-template>
   </div>
-</section>
+</div>

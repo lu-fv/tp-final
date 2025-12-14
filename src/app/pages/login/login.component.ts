@@ -1,4 +1,3 @@
-
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -7,7 +6,6 @@ import {
   ReactiveFormsModule,
   FormControl,
 } from '@angular/forms';
-
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,13 +31,13 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private authCore = inject(CoreAuthService);
   private router = inject(Router);
 
+  // Ahora el rol puede ser alumno / admin / profesor
   role = new FormControl<Rol>('alumno', { nonNullable: true });
 
   loginForm = this.fb.group({
@@ -59,6 +57,7 @@ export class LoginComponent {
   }
 
   alert = signal<string | null>(null);
+
   get user() {
     return this.loginForm.get('user');
   }
@@ -71,6 +70,7 @@ export class LoginComponent {
 
     const username = String(this.user?.value ?? '').trim();
     const pass = String(this.password?.value ?? '').trim();
+    const selectedRole = this.role.value;
 
     this.authCore
       .login(username, pass)
@@ -80,35 +80,25 @@ export class LoginComponent {
           return;
         }
 
-     
-        if (this.role.value== 'admin') {
-          if (!this.authCore.isAdmin()) {
-            this.authCore.logout();
-            this.alert.set(
-              'Usuario logueado como admin, seleccione el rol correcto'
-            );
-            return;
-          } else {
-            this.router.navigateByUrl('dashboard/admin');
-          }
-        } else if (this.role.value == 'alumno') {
-          if (this.authCore.isAdmin()) {
-            this.authCore.logout();
-            this.alert.set(
-              'Usuario logueado como alumno, seleccione el rol correcto'
-            );
-            return;
-          } else {
-            this.router.navigateByUrl('dashboard/student');
-          }
-        } else {
+        const realRole = this.authCore.role();
+
+        // Si el usuario seleccionó un rol que no le corresponde
+        if (realRole !== selectedRole) {
           this.authCore.logout();
-          this.alert.set('Rol seleccionado inválido');
+          this.alert.set('El rol seleccionado no coincide con el usuario');
           return;
         }
+
+        // Redirecciones correctas por rol
+        if (realRole === 'admin') {
+          this.router.navigateByUrl('dashboard/admin');
+        } else if (realRole === 'alumno') {
+          this.router.navigateByUrl('dashboard/student');
+        } else if (realRole === 'profesor') {
+          this.router.navigateByUrl('dashboard/profesor');
+        }
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         this.alert.set('Ocurrió un error al iniciar sesión');
       });
   }

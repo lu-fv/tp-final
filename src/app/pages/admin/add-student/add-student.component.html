@@ -1,43 +1,58 @@
 <div class="page-container">
   <div class="card">
-    <h2 class="title">Formulario de Alumno</h2>
+    <h2 class="title">
+      {{ editMode() ? 'Editar alumno' : 'Alta de alumno' }}
+    </h2>
 
-    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-layout">
+    <div *ngIf="isLoading()" class="loading">
+      Cargando…
+    </div>
 
+    <form
+      *ngIf="!isLoading()"
+      [formGroup]="studentForm"
+      (ngSubmit)="onSubmit()"
+      class="form-layout"
+    >
       <mat-form-field appearance="outline">
         <mat-label>Legajo*</mat-label>
-        <input matInput formControlName="studentId" placeholder="Ej: MDP-2020-001" />
+        <input matInput formControlName="legajo" placeholder="Ej: MDP-2020-001" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre*</mat-label>
-        <input matInput formControlName="firstName" placeholder="Ej: Gabriel" />
+        <input matInput formControlName="nombre" placeholder="Ej: Gabriel" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Apellido*</mat-label>
-        <input matInput formControlName="lastName" placeholder="Ej: Laguna" />
+        <input matInput formControlName="apellido" placeholder="Ej: Laguna" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>DNI*</mat-label>
-        <input matInput formControlName="nationalId" placeholder="Ej: 37.240.635" />
+        <input matInput formControlName="dni" placeholder="Ej: 37.240.635" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email*</mat-label>
-        <input matInput type="email" formControlName="email" placeholder="Ej: alumno@utn.edu.ar" />
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Ej: alumno@utn.edu.ar"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Teléfono*</mat-label>
-        <input matInput formControlName="phone" placeholder="Ej: 223-555-0000" />
+        <input matInput formControlName="telefono" placeholder="Ej: 223-555-0000" />
         <mat-hint>Formato: xxxx-xxx-xxxx</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Condición*</mat-label>
-        <mat-select formControlName="status">
+        <mat-select formControlName="condicion">
           <mat-option value="regular">Regular</mat-option>
           <mat-option value="irregular">Libre</mat-option>
         </mat-select>
@@ -45,20 +60,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Fecha de ingreso*</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          formControlName="admissionDate"
-          placeholder="Seleccione una fecha"
-        />
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput type="date" formControlName="fechaIngreso" />
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit" class="btn-save">
-        Guardar
+        {{ editMode() ? 'Guardar cambios' : 'Guardar' }}
       </button>
-
     </form>
 
     <div

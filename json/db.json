@@ -13,6 +13,13 @@
       "password": "1234",
       "role": "alumno",
       "studentId": 102
+    },
+    {
+      "id": "ffc4",
+      "username": "MDP-2020-004",
+      "password": "1234",
+      "role": "alumno",
+      "studentId": 1765658081130
     }
   ],
   "admins": [
@@ -27,6 +34,20 @@
       "username": "secretaria",
       "password": "utn2025",
       "nombre": "Secretaría Académica"
+    }
+  ],
+  "profesores": [
+    {
+      "id": "1",
+      "username": "profe",
+      "password": "1234",
+      "nombre": "Carlos Pérez",
+      "role": "profesor",
+      "email": "carlos.perez@utn.edu.ar",
+      "telefono": "223-555-1234",
+      "direccion": "Av. Colón 1234, Mar del Plata",
+      "dni": "20.123.456",
+      "legajo": "PROF-0001"
     }
   ],
   "students": [
@@ -561,6 +582,34 @@
       "courseId": "12",
       "estado": "inscripto",
       "fecha": "2025-11-18T21:44:12.723Z"
+    },
+    {
+      "id": "69a5",
+      "studentId": 103,
+      "courseId": "11",
+      "estado": "inscripto",
+      "fecha": "2025-11-20T20:32:13.261Z"
+    },
+    {
+      "id": "78cd",
+      "studentId": 101,
+      "courseId": "13",
+      "estado": "inscripto",
+      "fecha": "2025-11-20T20:32:31.586Z"
+    },
+    {
+      "id": "2209",
+      "studentId": 101,
+      "courseId": "21",
+      "estado": "inscripto",
+      "fecha": "2025-12-13T13:21:42.031Z"
+    },
+    {
+      "id": "e977",
+      "studentId": 101,
+      "courseId": "22",
+      "estado": "inscripto",
+      "fecha": "2025-12-14T00:56:10.808Z"
     }
   ],
   "course_grades": [
@@ -592,15 +641,6 @@
       "condicion": "aprobado"
     },
     {
-      "id": "5005",
-      "courseId": "14",
-      "parcial1": 8,
-      "parcial2": 8,
-      "studentId": 101,
-      "promedio": 8,
-      "condicion": "aprobado"
-    },
-    {
       "id": "5006",
       "courseId": "15",
       "parcial1": 8,
@@ -608,6 +648,24 @@
       "studentId": 101,
       "promedio": 7,
       "condicion": "regular"
+    },
+    {
+      "id": "5007",
+      "courseId": "13",
+      "parcial1": 8,
+      "parcial2": 10,
+      "studentId": 101,
+      "promedio": 9,
+      "condicion": "aprobado"
+    },
+    {
+      "id": "5009",
+      "courseId": 21,
+      "parcial1": 8,
+      "parcial2": 8,
+      "studentId": 101,
+      "promedio": 8,
+      "condicion": "aprobado"
     }
   ],
   "exam_tables": [
@@ -793,6 +851,20 @@
       "examTableId": "7004",
       "estado": "inscripto",
       "fecha": "2025-11-18T23:16:08.671Z"
+    },
+    {
+      "id": "ebc7",
+      "studentId": 101,
+      "examTableId": "7005",
+      "estado": "inscripto",
+      "fecha": "2025-11-20T20:38:28.056Z"
+    },
+    {
+      "id": "23e1",
+      "studentId": 101,
+      "examTableId": "7010",
+      "estado": "inscripto",
+      "fecha": "2025-12-13T12:03:14.475Z"
     }
   ],
   "exam_grades": [
@@ -816,7 +888,58 @@
       "examTableId": "7004",
       "nota": 7,
       "resultado": "aprobado"
+    },
+    {
+      "id": "8103",
+      "studentId": 101,
+      "examTableId": "7005",
+      "nota": 4,
+      "resultado": "desaprobado"
+    },
+    {
+      "id": "8104",
+      "studentId": 101,
+      "examTableId": "7010",
+      "nota": 8,
+      "resultado": "aprobado"
     }
   ],
-  "payments": []
+  "payments": [
+    {
+      "id": "fdaa",
+      "studentId": 101,
+      "courseId": "14",
+      "installment": 1,
+      "amount": 20000,
+      "date": "2025-11-20T20:24:24.118Z",
+      "concept": "Cursada 95-1111 - cuota 1"
+    },
+    {
+      "id": "4f3c",
+      "studentId": 101,
+      "courseId": "14",
+      "installment": 2,
+      "amount": 20000,
+      "date": "2025-11-20T20:24:31.374Z",
+      "concept": "Cursada 95-1111 - cuota 2"
+    },
+    {
+      "id": "a5db",
+      "studentId": 101,
+      "courseId": "14",
+      "installment": 3,
+      "amount": 20000,
+      "date": "2025-11-20T20:24:31.385Z",
+      "concept": "Cursada 95-1111 - cuota 3"
+    },
+    {
+      "id": "81d8",
+      "studentId": 101,
+      "courseId": "14",
+      "installment": 4,
+      "amount": 20000,
+      "date": "2025-11-20T20:24:31.462Z",
+      "concept": "Cursada 95-1111 - cuota 4"
+    }
+  ]
 }

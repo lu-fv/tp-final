@@ -1,40 +1,110 @@
-.card{
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 6px 16px rgba(0,0,0,.08);
-  padding:18px 22px;
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
-.card__header{
-  margin-bottom:12px;
+.card__header h3 {
+  margin-bottom: 14px;
+  font-size: 1.25rem;
 }
 
-.tbl{
-  width:100%;
-  border-collapse: collapse;
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+.lbl {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.search {
+  flex: 1;
+  max-width: 50%;          
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #cfd8ea;
+  font-size: 0.95rem;
+}
+
+.btn-outline {
+  flex: 0 0 auto;         
+  height: 34px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  border: 1px solid #cfd8ea;
+  background: #fff;
+  cursor: pointer;
 }
 
 
-.tbl thead th,
-.tbl tbody td{
-  padding:8px 10px;
-  border-bottom:1px solid #e5e7eb;
-  text-align: left;          
+.counter {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.tbl th {
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+}
+
+.tbl td {
+  background: #fff;
+  padding: 14px;
+}
+
+.tbl tr {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  min-width: 90px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
 
 
-.ok{ color:#16a34a; font-weight:700; }
-.bad{ color:#dc2626; font-weight:700; }
-
-a{
-  padding:6px 12px;
-  border-radius:8px;
-  border:1px solid #1d4ed8;
-  background:#1d4ed8;
-  color:#fff;
+.btn--info {
+  background: #2563eb;
+  color: #fff;
 }
 
-.alert{
-  margin-bottom:8px;
-  color:#334155;
+.btn--success {
+  background: #16a34a;
+  color: #fff;
+}
+
+.btn--danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn--info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,35 +1,13 @@
 import { Component, inject } from '@angular/core';
-import {
-  NgIf,
-  NgFor,
-  NgClass,
-  AsyncPipe,
-  DatePipe,
-  CurrencyPipe,
-} from '@angular/common';
-import {
-  BehaviorSubject,
-  combineLatest,
-  map,
-  firstValueFrom,
-  switchMap,
-} from 'rxjs';
+import {NgIf,NgFor, NgClass, AsyncPipe, DatePipe, CurrencyPipe,} from '@angular/common';
+import { BehaviorSubject, combineLatest, map, firstValueFrom, switchMap,} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../../../core/auth.service';
-import {
-  StudentAcademicService,
-} from '../../../services/student-academic.service';
-import {
-  Subject,
-  ExamTable,
-  ExamGrade,
-  Student,
-} from '../../../core/models';
+import { StudentAcademicService,} from '../../../services/student-academic.service';
+import { Subject, ExamTable, ExamGrade, Student,} from '../../../core/models';
 
-// @ts-ignore
 import jsPDF from 'jspdf';
-// @ts-ignore
 import html2canvas from 'html2canvas';
 
 type RowAcademico = {
@@ -56,7 +34,6 @@ export class CertificadosComponent {
 
   private refresh$ = new BehaviorSubject<void>(undefined);
 
-  /** ViewModel para la pantalla */
   vm$ = this.refresh$.pipe(
     map(() => Number(this.auth.user()?.studentId)),
     switchMap((sid) =>
@@ -89,7 +66,6 @@ export class CertificadosComponent {
             detalle: `${t.turno} - ${t.periodo}`,
             condicion: eg.resultado ?? '',
             nota: eg.nota ?? null,
-            // fecha REAL de la mesa
             fecha: t.fecha ?? null,
           };
         })
@@ -101,10 +77,6 @@ export class CertificadosComponent {
       };
     })
   );
-
-  // ============================================================
-  //  CERTIFICADO ACADÉMICO – PDF
-  // ============================================================
 
   async descargarCertificadoAcademico() {
     const vm: any = await firstValueFrom(this.vm$);
@@ -228,7 +200,6 @@ export class CertificadosComponent {
       </p>
     `;
 
-    // Contenedor central para que no quede “pegado” a la izquierda
       const contenido = `
     <div style="width:520px; margin:0 auto; font-family:Arial, sans-serif;">
       ${encabezado}
@@ -247,15 +218,10 @@ export class CertificadosComponent {
     });
   }
 
-  // ============================================================
-  //  CERTIFICADO DE ALUMNO REGULAR – PDF
-  // ============================================================
-
   async descargarCertificadoRegular() {
     const vm: any = await firstValueFrom(this.vm$);
     const stud: Student = vm.student;
 
-    // Validamos condición REAL del alumno desde students del json
     if ((stud.condicion ?? '').toLowerCase() !== 'regular') {
       alert('El alumno no se encuentra en condición de REGULAR.');
       return;

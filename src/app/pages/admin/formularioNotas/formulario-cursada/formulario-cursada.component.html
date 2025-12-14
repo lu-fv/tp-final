@@ -1,54 +1,134 @@
+<div #formTop></div>
+
 <h2>Formulario notas de cursada</h2>
 
 <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
 
+  <mat-form-field appearance="outline">
+    <mat-label>Cursada</mat-label>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Cursada</mat-label>
-        <select matNativeControl formControlName="courseId" required>
-            <option value="" disabled>Seleccione una cursada</option>
-            <option *ngFor="let materiasCursada of materiasCursadas()" [value]="materiasCursada.id">
-                {{materiasCursada.name}}
-            </option>
-        </select>
-        <mat-error *ngIf="courseForm.get('courseId')?.hasError('required')">
-            El nombre es obligatorio
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Parcial 1</mat-label>
-        <input matInput type="number" formControlName="parcial1" min="0" max="10" step="0.1"
-            [disabled]="!isParcial1Enabled()">
-        <mat-hint>{{ getParcial1Hint() }}</mat-hint>
-        <mat-error *ngIf="courseForm.get('parcial1')?.hasError('min')">
-            La nota no puede ser menor a 0
-        </mat-error>
-        <mat-error *ngIf="courseForm.get('parcial1')?.hasError('max')">
-            La nota no puede ser mayor a 10
-        </mat-error>
-    </mat-form-field>
+    <select matNativeControl formControlName="courseId" required>
+      <option value="" disabled>Seleccione una cursada</option>
+      <option *ngFor="let materiasCursada of materiasCursadas()" [value]="materiasCursada.id">
+        {{ materiasCursada.name }}
+      </option>
+    </select>
 
-    <!-- Campo Parcial 2 -->
-    <mat-form-field appearance="fill">
-        <mat-label>Parcial 2</mat-label>
-        <input matInput type="number" formControlName="parcial2" min="0" max="10" step="0.1"
-            [disabled]="!isParcial2Enabled()">
-        <mat-hint>{{ getParcial2Hint() }}</mat-hint>
-        <mat-error *ngIf="courseForm.get('parcial2')?.hasError('min')">
-            La nota no puede ser menor a 0
-        </mat-error>
-        <mat-error *ngIf="courseForm.get('parcial2')?.hasError('max')">
-            La nota no puede ser mayor a 10
-        </mat-error>
-    </mat-form-field>
+    <mat-error *ngIf="courseForm.get('courseId')?.hasError('required')">
+      La cursada es obligatoria
+    </mat-error>
+  </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Parcial 1</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="parcial1"
+      min="0"
+      max="10"
+      step="0.1"
+    />
+    <mat-hint>{{ getParcial1Hint() }}</mat-hint>
 
+    <mat-error *ngIf="courseForm.get('parcial1')?.hasError('min')">
+      La nota no puede ser menor a 0
+    </mat-error>
+    <mat-error *ngIf="courseForm.get('parcial1')?.hasError('max')">
+      La nota no puede ser mayor a 10
+    </mat-error>
+  </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Guardar</button>
+  <mat-form-field appearance="fill">
+    <mat-label>Parcial 2</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="parcial2"
+      min="0"
+      max="10"
+      step="0.1"
+    />
+    <mat-hint>{{ getParcial2Hint() }}</mat-hint>
+
+    <mat-error *ngIf="courseForm.get('parcial2')?.hasError('min')">
+      La nota no puede ser menor a 0
+    </mat-error>
+    <mat-error *ngIf="courseForm.get('parcial2')?.hasError('max')">
+      La nota no puede ser mayor a 10
+    </mat-error>
+  </mat-form-field>
+
+  <div style="margin-top: 10px; display:flex; gap:10px; align-items:center;">
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEditing() ? 'Actualizar' : 'Guardar' }}
+    </button>
+
+    <button
+      *ngIf="isEditing()"
+      mat-stroked-button
+      type="button"
+      (click)="cancelEdit()"
+    >
+      Cancelar
+    </button>
+  </div>
 </form>
-<div *ngIf="alert()" [ngClass]="{
+
+<div
+  *ngIf="alert()"
+  [ngClass]="{
     'success-msg': alert()?.type === 'success',
     'error-msg': alert()?.type === 'error'
-  }" class="status-container">
-    {{ alert()?.text }}
+  }"
+  class="status-container"
+>
+  {{ alert()?.text }}
 </div>
+
+<hr class="sep" />
+
+<h3>Notas de cursada cargadas</h3>
+
+<div class="grades-list" *ngIf="courseGradesRows().length; else emptyState">
+  <div class="grade-row" *ngFor="let row of courseGradesRows()">
+    <div class="left">
+      <div class="materia">{{ row.materia }}</div>
+      <div class="meta">
+        P1: {{ row.parcial1 }} | P2: {{ row.parcial2 }} | Prom: {{ row.promedio }} |
+        Condición: {{ row.condicion }}
+      </div>
+    </div>
+
+    <div class="right">
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="onEdit(row)"
+        [disabled]="row.locked"
+        [title]="row.locked ? row.lockedReason : 'Editar'"
+      >
+        Editar
+      </button>
+
+      <button
+        mat-stroked-button
+        color="warn"
+        type="button"
+        (click)="onDelete(row)"
+        [disabled]="row.locked"
+        [title]="row.locked ? row.lockedReason : 'Eliminar'"
+      >
+        Eliminar
+      </button>
+
+      <div *ngIf="row.locked" class="locked-reason">
+        {{ row.lockedReason }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyState>
+  <p class="empty">No hay notas de cursada cargadas para este alumno.</p>
+</ng-template>

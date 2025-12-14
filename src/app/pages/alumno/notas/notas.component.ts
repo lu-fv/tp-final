@@ -1,5 +1,4 @@
 
-
 import { Component, inject } from '@angular/core';
 import { NgIf, NgFor, AsyncPipe, DatePipe } from '@angular/common';
 import { combineLatest, map } from 'rxjs';
@@ -7,13 +6,7 @@ import { combineLatest, map } from 'rxjs';
 import { StudentAcademicService } from '../../../services/student-academic.service';
 import { AuthService } from '../../../core/auth.service';
 
-import {
-  Subject,
-  Course,
-  CourseGrade,
-  ExamTable,
-  ExamGrade
-} from '../../../core/models';
+import { Subject, Course, CourseGrade, ExamTable, ExamGrade} from '../../../core/models';
 
 
 
