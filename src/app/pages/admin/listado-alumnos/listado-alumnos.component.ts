@@ -1,6 +1,7 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 import { StudentApiService } from '../../../services/student-api.service';
 import { Student } from '../../../core/models';
@@ -14,17 +15,17 @@ import { Student } from '../../../core/models';
 })
 export class ListadoAlumnosComponent {
   private studentApi = inject(StudentApiService);
+  private router = inject(Router);
 
   protected alumnos = signal<Student[]>([]);
   protected query = signal<string>('');
-  private router = inject(Router);
 
   private norm(v: string): string {
     return (v ?? '')
       .toLowerCase()
       .trim()
       .replace(/\s+/g, ' ')
-      .replace(/\./g, ''); 
+      .replace(/\./g, '');
   }
 
   protected alumnosFiltrados = computed(() => {
@@ -32,10 +33,10 @@ export class ListadoAlumnosComponent {
     if (!q) return this.alumnos();
 
     return this.alumnos().filter((a) => {
-      const legajo = this.norm(a.legajo ?? '');
-      const nombre = this.norm(a.nombre ?? '');
-      const apellido = this.norm(a.apellido ?? '');
-      const dni = this.norm(String(a.dni ?? ''));
+      const legajo = this.norm((a as any).legajo ?? '');
+      const nombre = this.norm((a as any).nombre ?? '');
+      const apellido = this.norm((a as any).apellido ?? '');
+      const dni = this.norm(String((a as any).dni ?? ''));
 
       return (
         legajo.includes(q) ||
@@ -48,9 +49,8 @@ export class ListadoAlumnosComponent {
   });
 
   ngOnInit(): void {
-  this.cargarAlumnos();
+    this.cargarAlumnos();
   }
-
 
   onBuscar(valor: string) {
     this.query.set(valor);
@@ -61,31 +61,40 @@ export class ListadoAlumnosComponent {
   }
 
   editarAlumno(alumno: Student) {
-  this.router.navigate(['/dashboard/admin/alta'], {
-    queryParams: { id: alumno.id }
+    this.router.navigate(['/dashboard/admin/alta'], {
+      queryParams: { id: String((alumno as any).id) },
     });
   }
 
   eliminarAlumno(alumno: Student) {
     const ok = confirm(
-      `¿Seguro que querés eliminar al alumno ${alumno.nombre} ${alumno.apellido}?`
+      `¿Seguro que querés eliminar al alumno ${(alumno as any).nombre} ${(alumno as any).apellido}?`
     );
     if (!ok) return;
 
-    const id = String(alumno.id); 
+    const studentId = String((alumno as any).id ?? '').trim();
+    const legajo = String((alumno as any).legajo ?? '').trim();
 
-    this.studentApi.delete(id).subscribe({
-      next: () => this.cargarAlumnos(),
-      error: (err) => console.error('Error al eliminar alumno', err),
-    });
+    if (!studentId) {
+      alert('No se pudo eliminar: id inválido.');
+      return;
+    }
+
+    // 1) borrar user(s) vinculados
+    // 2) borrar alumno
+    this.studentApi
+      .deleteUsersForStudent(studentId, legajo)
+      .pipe(switchMap(() => this.studentApi.delete(studentId)))
+      .subscribe({
+        next: () => this.cargarAlumnos(),
+        error: (err) => {
+          console.error('Error al eliminar alumno', err);
+          alert('No se pudo eliminar al alumno (404/Backend). Revisá el id en db.json.');
+        },
+      });
   }
 
-
   private cargarAlumnos(): void {
-  this.studentApi.getAll().subscribe((students) => this.alumnos.set(students ?? []));
-}
-
-
-
-
+    this.studentApi.getAll().subscribe((students) => this.alumnos.set(students ?? []));
+  }
 }

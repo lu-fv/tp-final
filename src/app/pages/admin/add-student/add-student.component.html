@@ -16,38 +16,68 @@
     >
       <mat-form-field appearance="outline">
         <mat-label>Legajo*</mat-label>
-        <input matInput formControlName="legajo" placeholder="Ej: MDP-2020-001" />
+        <input matInput formControlName="legajo" placeholder="Ej: MDP-2020-001" readonly />
+       
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Nombre*</mat-label>
         <input matInput formControlName="nombre" placeholder="Ej: Gabriel" />
+        <mat-error *ngIf="studentForm.get('nombre')?.hasError('required') && studentForm.get('nombre')?.touched">
+          El nombre es obligatorio.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Apellido*</mat-label>
         <input matInput formControlName="apellido" placeholder="Ej: Laguna" />
+        <mat-error *ngIf="studentForm.get('apellido')?.hasError('required') && studentForm.get('apellido')?.touched">
+          El apellido es obligatorio.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>DNI*</mat-label>
         <input matInput formControlName="dni" placeholder="Ej: 37.240.635" />
+        <mat-error *ngIf="studentForm.get('dni')?.hasError('required') && studentForm.get('dni')?.touched">
+          El DNI es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('dni')?.hasError('dniDuplicado') && studentForm.get('dni')?.touched">
+          Ya existe un alumno con ese DNI.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email*</mat-label>
-        <input
-          matInput
-          type="email"
-          formControlName="email"
-          placeholder="Ej: alumno@utn.edu.ar"
-        />
+        <input matInput type="email" formControlName="email" placeholder="Ej: alumno&#64;utn.edu.ar" />
+
+        <mat-error *ngIf="studentForm.get('email')?.hasError('required') && studentForm.get('email')?.touched">
+          El email es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('email')?.hasError('email') && studentForm.get('email')?.touched">
+          Ingresá un email válido (debe contener &#64;).
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('email')?.hasError('emailDuplicado') && studentForm.get('email')?.touched">
+          Ya existe un alumno con ese email.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Teléfono*</mat-label>
         <input matInput formControlName="telefono" placeholder="Ej: 223-555-0000" />
         <mat-hint>Formato: xxxx-xxx-xxxx</mat-hint>
+        <mat-error
+        *ngIf="studentForm.get('telefono')?.hasError('required') && studentForm.get('telefono')?.touched"
+      >
+        El teléfono es obligatorio.
+      </mat-error>
+
+      <mat-error
+        *ngIf="studentForm.get('telefono')?.hasError('pattern') && studentForm.get('telefono')?.touched"
+      >
+        Formato inválido. Usá 223-555-0000 o 2233-555-0000.
+      </mat-error>
+
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -61,6 +91,9 @@
       <mat-form-field appearance="outline">
         <mat-label>Fecha de ingreso*</mat-label>
         <input matInput type="date" formControlName="fechaIngreso" />
+        <mat-error *ngIf="studentForm.get('fechaIngreso')?.hasError('required') && studentForm.get('fechaIngreso')?.touched">
+          La fecha de ingreso es obligatoria.
+        </mat-error>
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit" class="btn-save">
